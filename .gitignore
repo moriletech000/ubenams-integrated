@@ -2,6 +2,7 @@
 *.md
 *.bat
 *.txt
+*.ps1
 
 # Environment Files
 .env
