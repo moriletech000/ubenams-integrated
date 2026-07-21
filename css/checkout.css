@@ -182,3 +182,65 @@
         position: static;
     }
 }
+
+@media (max-width: 480px) {
+    .checkout-section h1 {
+        font-size: 32px;
+        margin-bottom: 30px;
+    }
+
+    .form-section {
+        padding: 20px;
+    }
+
+    .form-section h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .payment-option {
+        padding: 12px;
+        font-size: 14px;
+    }
+
+    .payment-option input[type="radio"] {
+        width: 18px;
+        height: 18px;
+        margin-right: 10px;
+    }
+
+    .payment-option i {
+        font-size: 18px;
+    }
+
+    .checkout-summary {
+        padding: 20px;
+    }
+
+    .checkout-summary h2 {
+        font-size: 20px;
+        margin-bottom: 15px;
+    }
+
+    .summary-item {
+        font-size: 13px;
+    }
+
+    .summary-row {
+        font-size: 14px;
+    }
+
+    .summary-row.total {
+        font-size: 18px;
+    }
+}

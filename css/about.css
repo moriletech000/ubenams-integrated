@@ -62,3 +62,62 @@
     color: #666;
     line-height: 1.6;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-content {
+        padding: 40px 0;
+    }
+
+    .about-text h2 {
+        font-size: 28px;
+        margin-bottom: 20px;
+    }
+
+    .about-text p {
+        font-size: 16px;
+        margin-bottom: 15px;
+    }
+
+    .why-choose-us {
+        padding: 40px 0;
+    }
+
+    .why-choose-us h2 {
+        font-size: 28px;
+        margin-bottom: 40px;
+    }
+
+    .feature-box-large {
+        padding: 30px 20px;
+        margin-bottom: 20px;
+    }
+
+    .feature-box-large i {
+        font-size: 36px;
+        margin-bottom: 15px;
+    }
+
+    .feature-box-large h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-text h2 {
+        font-size: 24px;
+    }
+
+    .about-text p {
+        font-size: 14px;
+    }
+
+    .why-choose-us h2 {
+        font-size: 24px;
+    }
+
+    .feature-box-large {
+        padding: 25px 15px;
+    }
+}

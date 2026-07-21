@@ -41,3 +41,35 @@
     color: #666;
     font-size: 16px;
 }
+
+/* Responsive */
+@media (max-width: 768px) {
+    .filter-section {
+        padding: 20px 0;
+    }
+
+    .filter-buttons {
+        gap: 10px;
+    }
+
+    .filter-btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .products-info p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-btn {
+        padding: 8px 15px;
+        font-size: 13px;
+        border-radius: 20px;
+    }
+
+    .filter-buttons {
+        gap: 8px;
+    }
+}

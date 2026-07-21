@@ -381,4 +381,111 @@
         width: 100%;
         justify-content: center;
     }
+
+    .admin-header h1 {
+        font-size: 32px;
+    }
+
+    .admin-header p {
+        font-size: 16px;
+    }
+
+    .filter-tabs {
+        gap: 8px;
+    }
+
+    .filter-tab {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-section {
+        padding: 40px 0;
+    }
+
+    .admin-header h1 {
+        font-size: 28px;
+    }
+
+    .admin-header p {
+        font-size: 14px;
+    }
+
+    .stat-card {
+        padding: 20px;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stat-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 28px;
+    }
+
+    .stat-info h3 {
+        font-size: 28px;
+    }
+
+    .stat-info p {
+        font-size: 13px;
+    }
+
+    .filter-tab {
+        padding: 8px 15px;
+        font-size: 13px;
+    }
+
+    .filter-tab i {
+        display: none;
+    }
+
+    .orders-container {
+        padding: 20px;
+    }
+
+    .order-card {
+        padding: 20px;
+    }
+
+    .order-id {
+        font-size: 16px;
+    }
+
+    .order-status {
+        padding: 6px 15px;
+        font-size: 11px;
+    }
+
+    .info-label {
+        font-size: 11px;
+    }
+
+    .info-value {
+        font-size: 14px;
+    }
+
+    .order-items {
+        padding: 12px;
+    }
+
+    .order-items h4 {
+        font-size: 13px;
+    }
+
+    .order-items li {
+        font-size: 13px;
+        padding: 6px 0;
+    }
+
+    .order-total {
+        font-size: 20px;
+    }
+
+    .order-actions button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
 }
