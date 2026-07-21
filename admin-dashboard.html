@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Ubenams Integrated</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="index.html"><img src="logo.png" alt="Ubenams Integrated"></a>
+                </div>
+                <nav id="nav-menu">
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="admin-dashboard.html" class="active">Admin Dashboard</a></li>
+                    </ul>
+                </nav>
+                <div class="nav-icons">
+                    <button class="mobile-menu-btn" id="mobile-menu-btn">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Dashboard -->
+    <section class="admin-section">
+        <div class="container">
+            <div class="admin-header">
+                <h1><i class="fas fa-chart-line"></i> Admin Dashboard</h1>
+                <p>Manage orders and view statistics</p>
+            </div>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #3498db;">
+                        <i class="fas fa-shopping-bag"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="total-orders">0</h3>
+                        <p>Total Orders</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #ffc107;">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="pending-orders">0</h3>
+                        <p>Pending Verification</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #27ae60;">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="confirmed-orders">0</h3>
+                        <p>Confirmed Orders</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon" style="background: #088178;">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <div class="stat-info">
+                        <h3 id="total-revenue">₦0</h3>
+                        <p>Total Revenue</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Filter Tabs -->
+            <div class="filter-tabs">
+                <button class="filter-tab active" onclick="filterOrders('all')">
+                    <i class="fas fa-list"></i> All Orders
+                </button>
+                <button class="filter-tab" onclick="filterOrders('pending_verification')">
+                    <i class="fas fa-clock"></i> Pending Verification
+                </button>
+                <button class="filter-tab" onclick="filterOrders('confirmed')">
+                    <i class="fas fa-check"></i> Confirmed
+                </button>
+                <button class="filter-tab" onclick="filterOrders('paid')">
+                    <i class="fas fa-credit-card"></i> Paid
+                </button>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="orders-container">
+                <div id="orders-list">
+                    <!-- Orders will be loaded here -->
+                </div>
+                <div id="empty-orders" style="display: none; text-align: center; padding: 60px 20px;">
+                    <i class="fas fa-inbox" style="font-size: 80px; color: #ddd; margin-bottom: 20px;"></i>
+                    <h2 style="color: #999;">No Orders Yet</h2>
+                    <p style="color: #999;">Orders will appear here when customers place them.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>CONTACT</h4>
+                    <p><strong>HEAD OFFICE:</strong> Block - B12, 13, 14, & 16 Block C8, First Floor, Suite D1, Suite B2 & 2nd Floor, Joy Plaza, Cement Bus stop Lagos Abeokuta Exp. Way, Lagos.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>About</h4>
+                    <ul>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Follow Us</h4>
+                    <div class="social-links">
+                        <a href="https://web.facebook.com/profile.php?id=100090953615345" target="_blank"><i class="fab fa-facebook"></i></a>
+                        <a href="https://wa.me/qr/LTB4ZJ3W4KA5J1" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                        <a href="https://www.instagram.com/ubenams_integrated_/" target="_blank"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>Copyright © 2025 by Ubenams Integrated | All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/products.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>

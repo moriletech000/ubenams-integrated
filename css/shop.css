@@ -1,0 +1,43 @@
+/* Shop Page Styles */
+
+.filter-section {
+    padding: 30px 0;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.filter-btn {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #f1f1f1;
+    color: #222;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-btn:hover {
+    background: #e0e0e0;
+}
+
+.filter-btn.active {
+    background: #088178;
+    color: #fff;
+}
+
+.products-info {
+    margin-bottom: 30px;
+}
+
+.products-info p {
+    color: #666;
+    font-size: 16px;
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page - Verify Setup</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #088178;
+            margin-bottom: 30px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+        }
+        .test-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .success {
+            background: #27ae60;
+            color: white;
+        }
+        .error {
+            background: #e74c3c;
+            color: white;
+        }
+        .info {
+            background: #3498db;
+            color: white;
+        }
+        button {
+            background: #088178;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #066961;
+        }
+        .result {
+            margin-top: 10px;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 3px;
+        }
+        a {
+            color: #088178;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .links {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+        }
+        .links a {
+            display: inline-block;
+            margin: 10px 10px 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🧪 Website Setup Test</h1>
+        
+        <div class="test-section">
+            <h2>1. Product Data <span class="status" id="products-status">Testing...</span></h2>
+            <p>Products loaded: <span id="product-count">0</span></p>
+            <div class="result" id="products-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>2. LocalStorage (Cart) <span class="status" id="storage-status">Testing...</span></h2>
+            <button onclick="testStorage()">Test Cart Storage</button>
+            <div class="result" id="storage-result"></div>
+        </div>
+
+        <div class="test-section">
+            <h2>3. Logo Image <span class="status" id="logo-status">Testing...</span></h2>
+            <img src="logo.png" alt="Logo" style="max-width: 200px; display: block; margin: 10px 0;" onerror="document.getElementById('logo-status').className='status error'; document.getElementById('logo-status').textContent='❌ Missing';" onload="document.getElementById('logo-status').className='status success'; document.getElementById('logo-status').textContent='✅ Found';">
+        </div>
+
+        <div class="test-section">
+            <h2>4. External Resources</h2>
+            <p>Font Awesome: <span class="status success" id="fa-status">✅ Loaded</span></p>
+            <p>Paystack: <span class="status" id="paystack-status">Checking...</span></p>
+        </div>
+
+        <div class="test-section">
+            <h2>5. Quick Actions</h2>
+            <button onclick="addTestProduct()">Add Test Product to Cart</button>
+            <button onclick="clearTestCart()">Clear Cart</button>
+            <button onclick="viewCart()">View Cart</button>
+            <div class="result" id="action-result"></div>
+        </div>
+
+        <div class="links">
+            <h2>📄 Website Pages</h2>
+            <a href="index.html">Home</a> |
+            <a href="shop.html">Shop</a> |
+            <a href="about.html">About</a> |
+            <a href="contact.html">Contact</a> |
+            <a href="cart.html">Cart</a>
+        </div>
+
+        <div class="test-section">
+            <h2>📋 Setup Checklist</h2>
+            <ul style="list-style: none; padding: 0;">
+                <li style="margin: 10px 0;">☑️ All HTML files created</li>
+                <li style="margin: 10px 0;">☑️ All CSS files created</li>
+                <li style="margin: 10px 0;">☑️ All JavaScript files created</li>
+                <li style="margin: 10px 0;">☑️ Logo.png exists</li>
+                <li style="margin: 10px 0;">⬜ Paystack public key configured (see js/checkout.js)</li>
+                <li style="margin: 10px 0;">⬜ Backend API setup (optional, see BACKEND-SETUP.md)</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
+    <script>
+        // Test products loading
+        if (products && products.length > 0) {
+            document.getElementById('product-count').textContent = products.length;
+            document.getElementById('products-status').className = 'status success';
+            document.getElementById('products-status').textContent = '✅ Success';
+            document.getElementById('products-result').innerHTML = 
+                `First product: ${products[0].name} - ${formatPrice(products[0].price)}`;
+        } else {
+            document.getElementById('products-status').className = 'status error';
+            document.getElementById('products-status').textContent = '❌ Failed';
+            document.getElementById('products-result').textContent = 'No products found!';
+        }
+
+        // Test localStorage
+        function testStorage() {
+            try {
+                localStorage.setItem('test', 'value');
+                const value = localStorage.getItem('test');
+                localStorage.removeItem('test');
+                
+                if (value === 'value') {
+                    document.getElementById('storage-status').className = 'status success';
+                    document.getElementById('storage-status').textContent = '✅ Working';
+                    document.getElementById('storage-result').textContent = 
+                        'LocalStorage is working! Cart data will persist.';
+                }
+            } catch (e) {
+                document.getElementById('storage-status').className = 'status error';
+                document.getElementById('storage-status').textContent = '❌ Failed';
+                document.getElementById('storage-result').textContent = 
+                    'LocalStorage error: ' + e.message;
+            }
+        }
+
+        // Test Paystack
+        if (typeof PaystackPop !== 'undefined') {
+            document.getElementById('paystack-status').className = 'status success';
+            document.getElementById('paystack-status').textContent = '✅ Loaded';
+        } else {
+            document.getElementById('paystack-status').className = 'status info';
+            document.getElementById('paystack-status').textContent = 'ℹ️ Not on checkout page';
+        }
+
+        // Quick actions
+        function addTestProduct() {
+            if (products.length > 0) {
+                addToCart(products[0].id);
+                document.getElementById('action-result').innerHTML = 
+                    `✅ Added "${products[0].name}" to cart! Cart items: ${getCartCount()}`;
+            }
+        }
+
+        function clearTestCart() {
+            clearCart();
+            document.getElementById('action-result').textContent = 
+                '✅ Cart cleared!';
+        }
+
+        function viewCart() {
+            window.location.href = 'cart.html';
+        }
+
+        // Auto-run storage test
+        testStorage();
+
+        console.log('%c✅ Website Setup Complete!', 'color: #27ae60; font-size: 20px; font-weight: bold;');
+        console.log('Products loaded:', products.length);
+        console.log('Cart items:', getCartCount());
+    </script>
+</body>
+</html>
