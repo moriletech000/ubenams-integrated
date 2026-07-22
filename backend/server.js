@@ -5,11 +5,21 @@ const crypto = require('crypto');
 require('dotenv').config();
 
 // Use PostgreSQL for production (Render), MySQL for local development
-const dbConfig = process.env.DATABASE_URL 
-    ? require('./config/database-postgres')
-    : require('./config/database');
+let dbConfig;
+try {
+    dbConfig = process.env.DATABASE_URL 
+        ? require('./config/database-postgres')
+        : require('./config/database');
+} catch (error) {
+    console.error('⚠️  Database configuration error:', error.message);
+    console.log('⚠️  Server starting without database connection');
+    console.log('💡 Make sure to set DATABASE_URL environment variable in Render');
+}
 
-const { testConnection, initializeTables } = dbConfig;
+const { testConnection, initializeTables } = dbConfig || { 
+    testConnection: async () => false, 
+    initializeTables: async () => {} 
+};
 const { verifyEmailConfig } = require('./config/email');
 const orderRoutes = require('./routes/orders');
 const webhookRoutes = require('./routes/webhooks');
