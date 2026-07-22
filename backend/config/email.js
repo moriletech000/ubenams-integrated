@@ -1,16 +1,29 @@
 const nodemailer = require('nodemailer');
 
-// Create email transporter
+// Create email transporter with extended timeout and connection settings
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASSWORD
-    }
+    },
+    tls: {
+        rejectUnauthorized: false
+    },
+    connectionTimeout: 10000, // 10 seconds
+    greetingTimeout: 10000,
+    socketTimeout: 10000
 });
 
 // Verify transporter configuration
 async function verifyEmailConfig() {
+    // Skip email verification if EMAIL_USER or EMAIL_PASSWORD is not set
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+        console.log('⚠️  Email not configured (missing EMAIL_USER or EMAIL_PASSWORD)');
+        console.log('⚠️  Email features will be disabled, but the server will continue running');
+        return false;
+    }
+
     try {
         await transporter.verify();
         console.log('✅ Email service configured successfully');
@@ -18,6 +31,7 @@ async function verifyEmailConfig() {
     } catch (error) {
         console.error('❌ Email configuration failed:', error.message);
         console.log('⚠️  Email features will be limited, but the server will continue running');
+        console.log('💡 Tip: Make sure EMAIL_PASSWORD has NO SPACES (Gmail App Password format)');
         return false;
     }
 }
@@ -183,6 +197,12 @@ async function sendCustomerOrderConfirmation(orderData) {
 
 // Send email verification email
 async function sendVerificationEmail(email, firstName, token) {
+    // Check if email is configured
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+        console.log('⚠️  Email not configured - skipping verification email');
+        return false;
+    }
+
     const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:5500'}/verify-email.html?token=${token}`;
     
     const mailOptions = {
@@ -241,6 +261,12 @@ async function sendVerificationEmail(email, firstName, token) {
 
 // Send welcome email after verification
 async function sendWelcomeEmail(email, firstName) {
+    // Check if email is configured
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+        console.log('⚠️  Email not configured - skipping welcome email');
+        return false;
+    }
+
     const mailOptions = {
         from: process.env.EMAIL_USER,
         to: email,
@@ -300,6 +326,12 @@ async function sendWelcomeEmail(email, firstName) {
 
 // Send password reset email
 async function sendPasswordResetEmail(email, firstName, token) {
+    // Check if email is configured
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+        console.log('⚠️  Email not configured - skipping password reset email');
+        return false;
+    }
+
     const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5500'}/reset-password.html?token=${token}`;
     
     const mailOptions = {
