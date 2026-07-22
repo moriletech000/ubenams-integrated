@@ -17,6 +17,7 @@ async function verifyEmailConfig() {
         return true;
     } catch (error) {
         console.error('❌ Email configuration failed:', error.message);
+        console.log('⚠️  Email features will be limited, but the server will continue running');
         return false;
     }
 }

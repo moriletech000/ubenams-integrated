@@ -96,9 +96,7 @@ async function startServer() {
     }
     
     // Test email configuration (non-blocking)
-    verifyEmailConfig().catch(err => {
-        console.log('⚠️  Email configuration check failed, but server will continue');
-    });
+    verifyEmailConfig();
     
     // Start listening on 0.0.0.0 for Render deployment
     const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';

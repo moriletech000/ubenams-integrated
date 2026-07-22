@@ -66,8 +66,10 @@ router.post('/register', async (req, res) => {
             [email, passwordHash, firstName, lastName, phone || null, verificationToken]
         );
 
-        // Send verification email
-        await sendVerificationEmail(email, firstName, verificationToken);
+        // Send verification email (non-blocking - don't wait for it)
+        sendVerificationEmail(email, firstName, verificationToken).catch(err => {
+            console.error('Failed to send verification email:', err);
+        });
 
         res.status(201).json({
             success: true,
@@ -116,8 +118,10 @@ router.get('/verify-email/:token', async (req, res) => {
             [user.id]
         );
 
-        // Send welcome email
-        await sendWelcomeEmail(user.email, user.first_name);
+        // Send welcome email (non-blocking)
+        sendWelcomeEmail(user.email, user.first_name).catch(err => {
+            console.error('Failed to send welcome email:', err);
+        });
 
         res.json({
             success: true,
@@ -239,8 +243,10 @@ router.post('/forgot-password', async (req, res) => {
             [resetToken, resetTokenExpiry, user.id]
         );
 
-        // Send reset email
-        await sendPasswordResetEmail(user.email, user.first_name, resetToken);
+        // Send reset email (non-blocking)
+        sendPasswordResetEmail(user.email, user.first_name, resetToken).catch(err => {
+            console.error('Failed to send password reset email:', err);
+        });
 
         res.json({
             success: true,
@@ -357,8 +363,10 @@ router.post('/resend-verification', async (req, res) => {
             );
         }
 
-        // Resend verification email
-        await sendVerificationEmail(user.email, user.first_name, verificationToken);
+        // Resend verification email (non-blocking)
+        sendVerificationEmail(user.email, user.first_name, verificationToken).catch(err => {
+            console.error('Failed to resend verification email:', err);
+        });
 
         res.json({
             success: true,
