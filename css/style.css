@@ -140,11 +140,18 @@ nav ul li a.active {
 .btn-primary {
     background: #E91E8C;
     color: #fff;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .btn-primary:hover {
-    background: #066961;
+    background: #FF69B4;
     transform: translateY(-2px);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
 }
 
 .btn-secondary {
@@ -301,11 +308,17 @@ nav ul li a.active {
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 .add-to-cart-btn:hover {
-    background: #066961;
+    background: #FF69B4;
     transform: scale(1.1);
+}
+
+.add-to-cart-btn:active {
+    transform: scale(1.05);
 }
 
 .section-footer {
@@ -396,7 +409,7 @@ footer {
 }
 
 .newsletter-form button:hover {
-    background: #066961;
+    background: #FF69B4;
 }
 
 .footer-bottom {
