@@ -95,15 +95,19 @@ async function startServer() {
         console.log('⚠️  Server starting without database connection');
     }
     
-    // Test email configuration
-    await verifyEmailConfig();
+    // Test email configuration (non-blocking)
+    verifyEmailConfig().catch(err => {
+        console.log('⚠️  Email configuration check failed, but server will continue');
+    });
     
-    // Start listening
-    app.listen(PORT, () => {
+    // Start listening on 0.0.0.0 for Render deployment
+    const HOST = process.env.NODE_ENV === 'production' ? '0.0.0.0' : 'localhost';
+    
+    app.listen(PORT, HOST, () => {
         console.log('\n' + '='.repeat(50));
         console.log(`✅ Server running on port ${PORT}`);
-        console.log(`🌐 API URL: http://localhost:${PORT}/api`);
-        console.log(`💚 Health Check: http://localhost:${PORT}/health`);
+        console.log(`🌐 API URL: http://${HOST}:${PORT}/api`);
+        console.log(`💚 Health Check: http://${HOST}:${PORT}/health`);
         console.log('='.repeat(50) + '\n');
     });
 }
