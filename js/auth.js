@@ -1,5 +1,22 @@
 // Authentication JavaScript
-const API_URL = 'http://localhost:3000/api';
+// Auto-detect API URL based on environment
+const getApiUrl = () => {
+    // Check if running on mobile/remote device
+    const hostname = window.location.hostname;
+    
+    // If accessing via IP or domain (not localhost), use the same host
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+        // Use the same host for API calls
+        return `${window.location.protocol}//${hostname}:3000/api`;
+    }
+    
+    // Default to localhost for local development
+    return 'http://localhost:3000/api';
+};
+
+const API_URL = getApiUrl();
+
+console.log('API URL:', API_URL); // For debugging
 
 // Show message function
 function showMessage(message, type = 'success') {
@@ -68,6 +85,8 @@ if (document.getElementById('register-form')) {
         }
 
         try {
+            showMessage('Creating your account...', 'success');
+            
             const response = await fetch(`${API_URL}/auth/register`, {
                 method: 'POST',
                 headers: {
@@ -92,7 +111,13 @@ if (document.getElementById('register-form')) {
             }
         } catch (error) {
             console.error('Registration error:', error);
-            showMessage('An error occurred. Please try again.', 'error');
+            
+            // More detailed error message
+            if (error.message === 'Failed to fetch') {
+                showMessage('Cannot connect to server. Please check your internet connection and make sure the backend server is running.', 'error');
+            } else {
+                showMessage('An error occurred. Please try again. Error: ' + error.message, 'error');
+            }
         }
     });
 }
@@ -154,7 +179,13 @@ if (document.getElementById('login-form')) {
             }
         } catch (error) {
             console.error('Login error:', error);
-            showMessage('An error occurred. Please try again.', 'error');
+            
+            // More detailed error message
+            if (error.message === 'Failed to fetch') {
+                showMessage('Cannot connect to server. Please check your internet connection and make sure the backend server is running.', 'error');
+            } else {
+                showMessage('An error occurred. Please try again. Error: ' + error.message, 'error');
+            }
         }
     });
 }

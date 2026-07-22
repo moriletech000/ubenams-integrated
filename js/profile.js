@@ -1,5 +1,14 @@
 // Profile Page JavaScript
-const API_URL = 'http://localhost:3000/api';
+// Auto-detect API URL based on environment
+const getApiUrl = () => {
+    const hostname = window.location.hostname;
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+        return `${window.location.protocol}//${hostname}:3000/api`;
+    }
+    return 'http://localhost:3000/api';
+};
+
+const API_URL = getApiUrl();
 
 // Check if user is logged in
 function isLoggedIn() {

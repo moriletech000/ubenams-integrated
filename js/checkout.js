@@ -3,8 +3,16 @@
 // NOTE: Replace with your actual Paystack public key
 const PAYSTACK_PUBLIC_KEY = 'pk_test_your_key_here'; // Get from https://dashboard.paystack.com/settings/developer
 
-// Backend API Configuration
-const API_BASE_URL = 'http://localhost:3000/api'; // Change this to your production URL when deploying
+// Backend API Configuration - Auto-detect based on environment
+const getApiUrl = () => {
+    const hostname = window.location.hostname;
+    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
+        return `${window.location.protocol}//${hostname}:3000/api`;
+    }
+    return 'http://localhost:3000/api';
+};
+
+const API_BASE_URL = getApiUrl();
 
 // Check if user is logged in
 function isLoggedIn() {
