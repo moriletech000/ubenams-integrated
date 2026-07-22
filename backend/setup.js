@@ -3,6 +3,8 @@
  * Run this after installing dependencies to initialize the database
  */
 
+require('dotenv').config();
+
 const { testConnection, initializeTables } = require('./config/database');
 const { verifyEmailConfig } = require('./config/email');
 

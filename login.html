@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ubenams Integrated - Quality Home Materials</title>
+    <title>Login - Ubenams Integrated</title>
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/auth.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
@@ -13,11 +14,11 @@
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <img src="logo.png" alt="Ubenams Integrated">
+                    <a href="index.html"><img src="logo.png" alt="Ubenams Integrated"></a>
                 </div>
                 <nav id="nav-menu">
                     <ul>
-                        <li><a href="index.html" class="active">Home</a></li>
+                        <li><a href="index.html">Home</a></li>
                         <li><a href="shop.html">Shop</a></li>
                         <li><a href="about.html">About</a></li>
                         <li><a href="contact.html">Contact</a></li>
@@ -36,71 +37,40 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
+    <!-- Login Section -->
+    <section class="auth-section">
         <div class="container">
-            <div class="hero-content">
-                <h6>Quality Home Materials</h6>
-                <h1>Super Value Deals</h1>
-                <h2>On all products</h2>
-                <a href="shop.html" class="btn btn-primary">Shop Now</a>
-            </div>
-        </div>
-    </section>
+            <div class="auth-container">
+                <div class="auth-box">
+                    <h1>Welcome Back</h1>
+                    <p class="auth-subtitle">Login to your account</p>
 
-    <!-- Features Section -->
-    <section class="features">
-        <div class="container">
-            <div class="features-grid">
-                <div class="feature-box">
-                    <i class="fas fa-shield-alt"></i>
-                    <h6>QUALITY</h6>
-                    <p>Premium quality products</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-tag"></i>
-                    <h6>NEGOTIABLE</h6>
-                    <p>Best prices available</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-truck"></i>
-                    <h6>DELIVERY</h6>
-                    <p>Fast delivery service</p>
-                </div>
-                <div class="feature-box">
-                    <i class="fas fa-wrench"></i>
-                    <h6>INSTALLATION</h6>
-                    <p>Professional installation</p>
-                </div>
-            </div>
-        </div>
-    </section>
+                    <form id="login-form" class="auth-form">
+                        <div class="form-group">
+                            <label><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" name="email" required placeholder="your@email.com">
+                        </div>
 
-    <!-- Featured Products -->
-    <section class="products-section">
-        <div class="container">
-            <div class="section-header">
-                <h2>Featured Products</h2>
-                <p>Current products available in stock</p>
-            </div>
-            <div class="products-grid" id="featured-products">
-                <!-- Products will be loaded by JavaScript -->
-            </div>
-            <div class="section-footer">
-                <a href="shop.html" class="btn btn-primary">Explore More</a>
-            </div>
-        </div>
-    </section>
+                        <div class="form-group">
+                            <label><i class="fas fa-lock"></i> Password</label>
+                            <input type="password" id="password" name="password" required placeholder="Enter your password">
+                        </div>
 
-    <!-- New Arrivals -->
-    <section class="products-section bg-white">
-        <div class="container">
-            <div class="section-header">
-                <h2>New Arrivals</h2>
-                <p>Recently updated stocks</p>
-            </div>
-            <div class="products-grid" id="new-arrivals">
-                <!-- Products will be loaded by JavaScript -->
+                        <div class="form-options">
+                            <a href="forgot-password.html" class="forgot-link">Forgot Password?</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            <i class="fas fa-sign-in-alt"></i> Login
+                        </button>
+
+                        <div class="auth-switch">
+                            Don't have an account? <a href="register.html">Register here</a>
+                        </div>
+                    </form>
+
+                    <div id="message" class="message"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -111,7 +81,7 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <h4>CONTACT</h4>
-                    <p><strong>HEAD OFFICE:</strong> Block - B12, 13, 14, & 16 Block C8, First Floor, Suite D1, Suite B2 & 2nd Floor, Joy Plaza, Cement Bus stop Lagos Abeokuta Exp. <a href="admin-dashboard.html" style="color: #bbb; text-decoration: none; cursor: default;">Way</a>, Lagos.</p>
+                    <p><strong>HEAD OFFICE:</strong> Block - B12, 13, 14, & 16 Block C8, First Floor, Suite D1, Suite B2 & 2nd Floor, Joy Plaza, Cement Bus stop Lagos Abeokuta Exp. Way, Lagos.</p>
                     <p><strong>BRANCH OFFICE:</strong> 52 Ikumola street, Mangoro Lagos.</p>
                     <p><strong>Tel:</strong> 08164638622, 08121458422, 07084493030, 08151789620</p>
                 </div>
@@ -149,9 +119,7 @@
         </div>
     </footer>
 
-    <script src="js/products.js"></script>
+    <script src="js/auth.js"></script>
     <script src="js/cart.js"></script>
-    <script src="js/main.js"></script>
-    <script src="js/header-auth.js"></script>
 </body>
 </html>

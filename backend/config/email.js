@@ -180,9 +180,191 @@ async function sendCustomerOrderConfirmation(orderData) {
     }
 }
 
+// Send email verification email
+async function sendVerificationEmail(email, firstName, token) {
+    const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:5500'}/verify-email.html?token=${token}`;
+    
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Verify Your Email - UBENAMS Integrated',
+        html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                    .header { background: #27ae60; color: white; padding: 20px; text-align: center; }
+                    .content { background: #f9f9f9; padding: 30px; }
+                    .button { display: inline-block; background: #27ae60; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+                    .footer { text-align: center; padding: 20px; color: #777; font-size: 12px; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h2>Welcome to UBENAMS Integrated! 🎉</h2>
+                    </div>
+                    <div class="content">
+                        <p>Hi ${firstName},</p>
+                        <p>Thank you for registering with UBENAMS Integrated!</p>
+                        <p>Please verify your email address by clicking the button below:</p>
+                        <center>
+                            <a href="${verificationUrl}" class="button">Verify Email Address</a>
+                        </center>
+                        <p>Or copy and paste this link in your browser:</p>
+                        <p style="word-break: break-all; color: #666;">${verificationUrl}</p>
+                        <p>This link will expire in 24 hours.</p>
+                        <p>If you didn't create an account, please ignore this email.</p>
+                    </div>
+                    <div class="footer">
+                        <p>UBENAMS Integrated</p>
+                        <p>...exceptional unique products.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('✅ Verification email sent to:', email);
+        return true;
+    } catch (error) {
+        console.error('❌ Failed to send verification email:', error.message);
+        return false;
+    }
+}
+
+// Send welcome email after verification
+async function sendWelcomeEmail(email, firstName) {
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Welcome to UBENAMS Integrated!',
+        html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                    .header { background: #27ae60; color: white; padding: 20px; text-align: center; }
+                    .content { background: #f9f9f9; padding: 30px; }
+                    .button { display: inline-block; background: #27ae60; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+                    .footer { text-align: center; padding: 20px; color: #777; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h2>Email Verified Successfully! ✅</h2>
+                    </div>
+                    <div class="content">
+                        <p>Hi ${firstName},</p>
+                        <p>Your email has been verified successfully! You can now enjoy all the features of UBENAMS Integrated.</p>
+                        <p>Here's what you can do now:</p>
+                        <ul>
+                            <li>Browse our unique products</li>
+                            <li>Place orders with ease</li>
+                            <li>Track your order status</li>
+                            <li>Manage your profile</li>
+                        </ul>
+                        <center>
+                            <a href="${process.env.FRONTEND_URL || 'http://localhost:5500'}/shop.html" class="button">Start Shopping</a>
+                        </center>
+                        <p>Thank you for choosing UBENAMS Integrated!</p>
+                    </div>
+                    <div class="footer">
+                        <p>UBENAMS Integrated</p>
+                        <p>...exceptional unique products.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('✅ Welcome email sent to:', email);
+        return true;
+    } catch (error) {
+        console.error('❌ Failed to send welcome email:', error.message);
+        return false;
+    }
+}
+
+// Send password reset email
+async function sendPasswordResetEmail(email, firstName, token) {
+    const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5500'}/reset-password.html?token=${token}`;
+    
+    const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: 'Reset Your Password - UBENAMS Integrated',
+        html: `
+            <!DOCTYPE html>
+            <html>
+            <head>
+                <style>
+                    body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+                    .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+                    .header { background: #e74c3c; color: white; padding: 20px; text-align: center; }
+                    .content { background: #f9f9f9; padding: 30px; }
+                    .button { display: inline-block; background: #e74c3c; color: white; padding: 15px 30px; text-decoration: none; border-radius: 5px; margin: 20px 0; }
+                    .footer { text-align: center; padding: 20px; color: #777; font-size: 12px; }
+                    .warning { background: #fff3cd; border-left: 4px solid #ffc107; padding: 10px; margin: 20px 0; }
+                </style>
+            </head>
+            <body>
+                <div class="container">
+                    <div class="header">
+                        <h2>Password Reset Request 🔐</h2>
+                    </div>
+                    <div class="content">
+                        <p>Hi ${firstName},</p>
+                        <p>We received a request to reset your password for your UBENAMS Integrated account.</p>
+                        <p>Click the button below to reset your password:</p>
+                        <center>
+                            <a href="${resetUrl}" class="button">Reset Password</a>
+                        </center>
+                        <p>Or copy and paste this link in your browser:</p>
+                        <p style="word-break: break-all; color: #666;">${resetUrl}</p>
+                        <div class="warning">
+                            <strong>⚠️ Security Notice:</strong>
+                            <p>This link will expire in 1 hour for security reasons.</p>
+                        </div>
+                        <p>If you didn't request a password reset, please ignore this email or contact us if you have concerns.</p>
+                    </div>
+                    <div class="footer">
+                        <p>UBENAMS Integrated</p>
+                        <p>...exceptional unique products.</p>
+                    </div>
+                </div>
+            </body>
+            </html>
+        `
+    };
+
+    try {
+        await transporter.sendMail(mailOptions);
+        console.log('✅ Password reset email sent to:', email);
+        return true;
+    } catch (error) {
+        console.error('❌ Failed to send password reset email:', error.message);
+        return false;
+    }
+}
+
 module.exports = {
     transporter,
     verifyEmailConfig,
     sendAdminOrderNotification,
-    sendCustomerOrderConfirmation
+    sendCustomerOrderConfirmation,
+    sendVerificationEmail,
+    sendWelcomeEmail,
+    sendPasswordResetEmail
 };

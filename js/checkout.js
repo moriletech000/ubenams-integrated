@@ -6,11 +6,38 @@ const PAYSTACK_PUBLIC_KEY = 'pk_test_your_key_here'; // Get from https://dashboa
 // Backend API Configuration
 const API_BASE_URL = 'http://localhost:3000/api'; // Change this to your production URL when deploying
 
+// Check if user is logged in
+function isLoggedIn() {
+    return localStorage.getItem('user') !== null;
+}
+
+// Get current user
+function getCurrentUser() {
+    const userStr = localStorage.getItem('user');
+    return userStr ? JSON.parse(userStr) : null;
+}
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Require login to checkout
+    if (!isLoggedIn()) {
+        alert('Please login or create an account to checkout');
+        window.location.href = 'login.html?redirect=checkout.html';
+        return;
+    }
+
     // Redirect if cart is empty
     if (cart.length === 0) {
         window.location.href = 'cart.html';
         return;
+    }
+
+    // Auto-fill user information if logged in
+    const user = getCurrentUser();
+    if (user) {
+        document.querySelector('input[name="firstName"]').value = user.firstName || '';
+        document.querySelector('input[name="lastName"]').value = user.lastName || '';
+        document.querySelector('input[name="email"]').value = user.email || '';
+        document.querySelector('input[name="phone"]').value = user.phone || '';
     }
 
     displayCheckoutSummary();
@@ -59,8 +86,10 @@ function setupCheckoutForm() {
 function processCheckout() {
     const form = document.getElementById('checkout-form');
     const formData = new FormData(form);
+    const user = getCurrentUser();
     
     const orderData = {
+        userId: user ? user.id : null, // Link order to user
         customer: {
             firstName: formData.get('firstName'),
             lastName: formData.get('lastName'),

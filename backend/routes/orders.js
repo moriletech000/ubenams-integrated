@@ -28,14 +28,15 @@ router.post('/', async (req, res) => {
             // Insert order
             await connection.query(
                 `INSERT INTO orders (
-                    order_id, customer_first_name, customer_last_name, 
+                    order_id, user_id, customer_first_name, customer_last_name, 
                     customer_email, customer_phone, customer_address, 
                     customer_city, customer_state, customer_zip,
                     subtotal, shipping, total, payment_method, 
                     payment_reference, payment_status
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
                 [
                     orderId,
+                    orderData.userId || null,
                     orderData.customer.firstName,
                     orderData.customer.lastName,
                     orderData.customer.email,

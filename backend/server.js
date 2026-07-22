@@ -8,6 +8,7 @@ const { testConnection, initializeTables } = require('./config/database');
 const { verifyEmailConfig } = require('./config/email');
 const orderRoutes = require('./routes/orders');
 const webhookRoutes = require('./routes/webhooks');
+const authRoutes = require('./routes/auth');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -20,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // Routes
 app.use('/api/orders', orderRoutes);
 app.use('/api/webhooks', webhookRoutes);
+app.use('/api/auth', authRoutes);
 
 // Health check endpoint
 app.get('/health', (req, res) => {
@@ -35,7 +37,8 @@ app.get('/', (req, res) => {
         endpoints: {
             health: '/health',
             orders: '/api/orders',
-            webhooks: '/api/webhooks'
+            webhooks: '/api/webhooks',
+            auth: '/api/auth'
         }
     });
 });
