@@ -53,7 +53,7 @@ nav ul li a {
 
 nav ul li a:hover,
 nav ul li a.active {
-    color: #088178;
+    color: #E91E8C;
 }
 
 .nav-icons {
@@ -71,14 +71,14 @@ nav ul li a.active {
 }
 
 .cart-icon:hover {
-    color: #088178;
+    color: #E91E8C;
 }
 
 .cart-count {
     position: absolute;
     top: -8px;
     right: -8px;
-    background: #088178;
+    background: #E91E8C;
     color: #fff;
     border-radius: 50%;
     width: 20px;
@@ -106,7 +106,7 @@ nav ul li a.active {
 }
 
 .hero-content h6 {
-    color: #088178;
+    color: #E91E8C;
     font-size: 14px;
     font-weight: 700;
     margin-bottom: 10px;
@@ -120,7 +120,7 @@ nav ul li a.active {
 
 .hero-content h2 {
     font-size: 42px;
-    color: #088178;
+    color: #E91E8C;
     margin-bottom: 30px;
 }
 
@@ -138,7 +138,7 @@ nav ul li a.active {
 }
 
 .btn-primary {
-    background: #088178;
+    background: #E91E8C;
     color: #fff;
 }
 
@@ -175,7 +175,7 @@ nav ul li a.active {
 
 .feature-box i {
     font-size: 48px;
-    color: #088178;
+    color: #E91E8C;
     margin-bottom: 15px;
 }
 
@@ -286,11 +286,11 @@ nav ul li a.active {
 .product-price {
     font-size: 20px;
     font-weight: 700;
-    color: #088178;
+    color: #E91E8C;
 }
 
 .add-to-cart-btn {
-    background: #088178;
+    background: #E91E8C;
     color: #fff;
     border: none;
     width: 40px;
@@ -353,7 +353,7 @@ footer {
 }
 
 .footer-col ul li a:hover {
-    color: #088178;
+    color: #E91E8C;
 }
 
 .social-links {
@@ -368,7 +368,7 @@ footer {
 }
 
 .social-links a:hover {
-    color: #088178;
+    color: #E91E8C;
 }
 
 .newsletter-form {
@@ -386,7 +386,7 @@ footer {
 
 .newsletter-form button {
     padding: 12px 20px;
-    background: #088178;
+    background: #E91E8C;
     color: #fff;
     border: none;
     border-radius: 0 5px 5px 0;
@@ -411,7 +411,7 @@ footer {
 }
 
 .footer-bottom .tagline {
-    color: #088178;
+    color: #E91E8C;
     font-style: italic;
 }
 

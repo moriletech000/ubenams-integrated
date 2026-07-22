@@ -62,7 +62,7 @@
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #088178;
+    border-color: #E91E8C;
 }
 
 .form-group textarea {
@@ -87,7 +87,7 @@
 }
 
 .payment-option:hover {
-    border-color: #088178;
+    border-color: #E91E8C;
     background: #f9f9f9;
 }
 
@@ -106,7 +106,7 @@
 
 .payment-option i {
     font-size: 20px;
-    color: #088178;
+    color: #E91E8C;
 }
 
 .checkout-summary {
@@ -166,7 +166,7 @@
 }
 
 .summary-row.total span:last-child {
-    color: #088178;
+    color: #E91E8C;
 }
 
 @media (max-width: 968px) {

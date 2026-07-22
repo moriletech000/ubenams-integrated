@@ -35,7 +35,7 @@
 
 .contact-item i {
     font-size: 28px;
-    color: #088178;
+    color: #E91E8C;
     margin-top: 5px;
     flex-shrink: 0;
 }
@@ -95,7 +95,7 @@
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: #088178;
+    border-color: #E91E8C;
 }
 
 .contact-form textarea {

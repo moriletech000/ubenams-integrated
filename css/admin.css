@@ -18,7 +18,7 @@
 }
 
 .admin-header h1 i {
-    color: #088178;
+    color: #E91E8C;
     margin-right: 10px;
 }
 
@@ -94,13 +94,13 @@
 }
 
 .filter-tab:hover {
-    border-color: #088178;
-    color: #088178;
+    border-color: #E91E8C;
+    color: #E91E8C;
 }
 
 .filter-tab.active {
-    background: #088178;
-    border-color: #088178;
+    background: #E91E8C;
+    border-color: #E91E8C;
     color: white;
 }
 
@@ -125,8 +125,8 @@
 }
 
 .order-card:hover {
-    border-color: #088178;
-    box-shadow: 0 3px 15px rgba(8,129,120,0.1);
+    border-color: #E91E8C;
+    box-shadow: 0 3px 15px rgba(233, 30, 140, 0.1);
 }
 
 .order-header {
@@ -227,7 +227,7 @@
 .order-total {
     font-size: 24px;
     font-weight: 700;
-    color: #088178;
+    color: #E91E8C;
     margin-bottom: 20px;
 }
 
