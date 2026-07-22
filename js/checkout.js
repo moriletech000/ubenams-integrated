@@ -6,10 +6,19 @@ const PAYSTACK_PUBLIC_KEY = 'pk_test_your_key_here'; // Get from https://dashboa
 // Backend API Configuration - Auto-detect based on environment
 const getApiUrl = () => {
     const hostname = window.location.hostname;
-    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
-        return `${window.location.protocol}//${hostname}:3000/api`;
+    
+    // Production: Use Render backend
+    if (hostname.includes('vercel.app') || hostname.includes('ubenams')) {
+        return 'https://ubenams-integrated.onrender.com/api';
     }
-    return 'http://localhost:3000/api';
+    
+    // Local development: Use localhost
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        return 'http://localhost:3000/api';
+    }
+    
+    // Mobile/IP access: Use computer's IP
+    return `${window.location.protocol}//${hostname}:3000/api`;
 };
 
 const API_BASE_URL = getApiUrl();

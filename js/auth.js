@@ -1,17 +1,20 @@
 // Authentication JavaScript
 // Auto-detect API URL based on environment
 const getApiUrl = () => {
-    // Check if running on mobile/remote device
     const hostname = window.location.hostname;
     
-    // If accessing via IP or domain (not localhost), use the same host
-    if (hostname !== 'localhost' && hostname !== '127.0.0.1') {
-        // Use the same host for API calls
-        return `${window.location.protocol}//${hostname}:3000/api`;
+    // Production: Use Render backend
+    if (hostname.includes('vercel.app') || hostname.includes('ubenams')) {
+        return 'https://ubenams-integrated.onrender.com/api';
     }
     
-    // Default to localhost for local development
-    return 'http://localhost:3000/api';
+    // Local development: Use localhost
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        return 'http://localhost:3000/api';
+    }
+    
+    // Mobile/IP access: Use computer's IP
+    return `${window.location.protocol}//${hostname}:3000/api`;
 };
 
 const API_URL = getApiUrl();
