@@ -6,7 +6,7 @@
     align-items: center;
     justify-content: center;
     padding: 60px 20px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: #E91E8C;
 }
 
 .auth-container {
@@ -59,7 +59,7 @@
 
 .form-group label i {
     margin-right: 5px;
-    color: #667eea;
+    color: #E91E8C;
 }
 
 .form-group input {
@@ -73,8 +73,8 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #E91E8C;
+    box-shadow: 0 0 0 3px rgba(233, 30, 140, 0.1);
 }
 
 .form-help {
@@ -91,14 +91,14 @@
 }
 
 .forgot-link {
-    color: #667eea;
+    color: #E91E8C;
     font-size: 14px;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .forgot-link:hover {
-    color: #764ba2;
+    color: #C91876;
 }
 
 .btn-block {
@@ -116,14 +116,14 @@
 }
 
 .auth-switch a {
-    color: #667eea;
+    color: #E91E8C;
     text-decoration: none;
     font-weight: 600;
     transition: color 0.3s ease;
 }
 
 .auth-switch a:hover {
-    color: #764ba2;
+    color: #C91876;
 }
 
 .message {
@@ -159,7 +159,7 @@
 }
 
 #loading i {
-    color: #667eea;
+    color: #E91E8C;
     margin-bottom: 20px;
 }
 

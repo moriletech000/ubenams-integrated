@@ -22,7 +22,7 @@
 }
 
 .profile-header h1 i {
-    color: #667eea;
+    color: #E91E8C;
     margin-right: 10px;
 }
 
@@ -49,7 +49,7 @@
 }
 
 .profile-card h2 i {
-    color: #667eea;
+    color: #E91E8C;
     margin-right: 10px;
 }
 
@@ -87,8 +87,8 @@
 
 .form-group input:focus {
     outline: none;
-    border-color: #667eea;
-    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    border-color: #E91E8C;
+    box-shadow: 0 0 0 3px rgba(233, 30, 140, 0.1);
 }
 
 .form-actions {
@@ -118,7 +118,7 @@
 }
 
 .orders-section h2 i {
-    color: #667eea;
+    color: #E91E8C;
     margin-right: 10px;
 }
 
@@ -129,7 +129,7 @@
 }
 
 .loading i {
-    color: #667eea;
+    color: #E91E8C;
     margin-right: 10px;
 }
 
@@ -256,7 +256,7 @@
 .order-total {
     font-size: 18px;
     font-weight: 600;
-    color: #27ae60;
+    color: #E91E8C;
 }
 
 .order-payment {
@@ -314,13 +314,13 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background: #667eea;
+    background: #E91E8C;
     color: white;
     transition: all 0.3s ease;
 }
 
 .user-icon:hover {
-    background: #764ba2;
+    background: #C91876;
     transform: scale(1.1);
 }
 

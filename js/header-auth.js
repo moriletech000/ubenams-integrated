@@ -21,7 +21,7 @@
         const user = getCurrentUser();
         const authIcon = document.createElement('a');
         authIcon.id = 'auth-icon';
-        authIcon.style.cssText = 'display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; color: #088178; transition: all 0.3s ease; text-decoration: none;';
+        authIcon.style.cssText = 'display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; border-radius: 50%; color: #E91E8C; transition: all 0.3s ease; text-decoration: none;';
         
         if (user) {
             // Show profile icon if logged in
