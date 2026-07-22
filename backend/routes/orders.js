@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const { pool } = require('../config/database');
+const db = require('../config/db-adapter');
 const { sendAdminOrderNotification, sendCustomerOrderConfirmation } = require('../config/email');
 
 // Create new order
@@ -120,7 +121,7 @@ router.get('/:orderId', async (req, res) => {
     try {
         const { orderId } = req.params;
         
-        const [orders] = await pool.query(
+        const [orders] = await db.query(
             'SELECT * FROM orders WHERE order_id = ?',
             [orderId]
         );
@@ -132,7 +133,7 @@ router.get('/:orderId', async (req, res) => {
             });
         }
         
-        const [items] = await pool.query(
+        const [items] = await db.query(
             'SELECT * FROM order_items WHERE order_id = ?',
             [orderId]
         );
@@ -159,12 +160,12 @@ router.get('/', async (req, res) => {
         const limit = parseInt(req.query.limit) || 20;
         const offset = (page - 1) * limit;
         
-        const [orders] = await pool.query(
+        const [orders] = await db.query(
             'SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?',
             [limit, offset]
         );
         
-        const [countResult] = await pool.query(
+        const [countResult] = await db.query(
             'SELECT COUNT(*) as total FROM orders'
         );
         
@@ -203,7 +204,7 @@ router.patch('/:orderId/status', async (req, res) => {
             });
         }
         
-        await pool.query(
+        await db.query(
             'UPDATE orders SET order_status = ? WHERE order_id = ?',
             [status, orderId]
         );
@@ -223,3 +224,5 @@ router.patch('/:orderId/status', async (req, res) => {
 });
 
 module.exports = router;
+
+

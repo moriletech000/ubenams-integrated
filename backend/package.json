@@ -8,19 +8,27 @@
     "dev": "nodemon server.js",
     "setup": "node setup.js"
   },
-  "keywords": ["ecommerce", "backend", "express"],
+  "keywords": [
+    "ecommerce",
+    "backend",
+    "express"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
+    "bcrypt": "^5.1.1",
     "body-parser": "^1.20.2",
-    "nodemailer": "^6.9.7",
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
+    "express": "^4.18.2",
     "mysql2": "^3.6.5",
-    "bcrypt": "^5.1.1"
+    "nodemailer": "^6.9.7",
+    "pg": "^8.22.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
   }
 }

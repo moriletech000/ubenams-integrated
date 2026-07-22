@@ -1,0 +1,32 @@
+services:
+  - type: web
+    name: ubenams-backend
+    env: node
+    region: oregon
+    plan: free
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 3000
+      - key: DATABASE_URL
+        fromDatabase:
+          name: ubenams-db
+          property: connectionString
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASSWORD
+        sync: false
+      - key: ADMIN_EMAIL
+        sync: false
+      - key: FRONTEND_URL
+        value: https://ubenams-integrated.vercel.app
+
+databases:
+  - name: ubenams-db
+    databaseName: ubenams_db
+    user: ubenams_user
+    region: oregon
+    plan: free

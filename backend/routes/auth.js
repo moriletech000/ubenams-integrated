@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
 const { pool } = require('../config/database');
+const db = require('../config/db-adapter');
 const { 
     sendVerificationEmail, 
     sendPasswordResetEmail,
@@ -40,7 +41,7 @@ router.post('/register', async (req, res) => {
 
     try {
         // Check if user already exists
-        const [existingUsers] = await pool.query(
+        const [existingUsers] = await db.query(
             'SELECT id FROM users WHERE email = ?',
             [email]
         );
@@ -59,7 +60,7 @@ router.post('/register', async (req, res) => {
         const verificationToken = crypto.randomBytes(32).toString('hex');
 
         // Insert user
-        const [result] = await pool.query(
+        const [result] = await db.query(
             `INSERT INTO users (email, password_hash, first_name, last_name, phone, verification_token) 
              VALUES (?, ?, ?, ?, ?, ?)`,
             [email, passwordHash, firstName, lastName, phone || null, verificationToken]
@@ -88,7 +89,7 @@ router.get('/verify-email/:token', async (req, res) => {
     const { token } = req.params;
 
     try {
-        const [users] = await pool.query(
+        const [users] = await db.query(
             'SELECT id, email, first_name, email_verified FROM users WHERE verification_token = ?',
             [token]
         );
@@ -110,7 +111,7 @@ router.get('/verify-email/:token', async (req, res) => {
         }
 
         // Update user as verified
-        await pool.query(
+        await db.query(
             'UPDATE users SET email_verified = TRUE, verification_token = NULL WHERE id = ?',
             [user.id]
         );
@@ -145,7 +146,7 @@ router.post('/login', async (req, res) => {
 
     try {
         // Get user
-        const [users] = await pool.query(
+        const [users] = await db.query(
             'SELECT id, email, password_hash, first_name, last_name, phone, email_verified FROM users WHERE email = ?',
             [email]
         );
@@ -213,7 +214,7 @@ router.post('/forgot-password', async (req, res) => {
 
     try {
         // Check if user exists
-        const [users] = await pool.query(
+        const [users] = await db.query(
             'SELECT id, email, first_name FROM users WHERE email = ?',
             [email]
         );
@@ -233,7 +234,7 @@ router.post('/forgot-password', async (req, res) => {
         const resetTokenExpiry = new Date(Date.now() + 3600000); // 1 hour from now
 
         // Save reset token
-        await pool.query(
+        await db.query(
             'UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE id = ?',
             [resetToken, resetTokenExpiry, user.id]
         );
@@ -276,7 +277,7 @@ router.post('/reset-password/:token', async (req, res) => {
 
     try {
         // Find user with valid reset token
-        const [users] = await pool.query(
+        const [users] = await db.query(
             'SELECT id FROM users WHERE reset_token = ? AND reset_token_expiry > NOW()',
             [token]
         );
@@ -294,7 +295,7 @@ router.post('/reset-password/:token', async (req, res) => {
         const passwordHash = await bcrypt.hash(password, 10);
 
         // Update password and clear reset token
-        await pool.query(
+        await db.query(
             'UPDATE users SET password_hash = ?, reset_token = NULL, reset_token_expiry = NULL WHERE id = ?',
             [passwordHash, user.id]
         );
@@ -325,7 +326,7 @@ router.post('/resend-verification', async (req, res) => {
     }
 
     try {
-        const [users] = await pool.query(
+        const [users] = await db.query(
             'SELECT id, email, first_name, email_verified, verification_token FROM users WHERE email = ?',
             [email]
         );
@@ -350,7 +351,7 @@ router.post('/resend-verification', async (req, res) => {
         let verificationToken = user.verification_token;
         if (!verificationToken) {
             verificationToken = crypto.randomBytes(32).toString('hex');
-            await pool.query(
+            await db.query(
                 'UPDATE users SET verification_token = ? WHERE id = ?',
                 [verificationToken, user.id]
             );
@@ -378,7 +379,7 @@ router.get('/profile/:userId', async (req, res) => {
     const { userId } = req.params;
 
     try {
-        const [users] = await pool.query(
+        const [users] = await db.query(
             'SELECT id, email, first_name, last_name, phone, email_verified, created_at FROM users WHERE id = ?',
             [userId]
         );
@@ -410,7 +411,7 @@ router.put('/profile/:userId', async (req, res) => {
     const { firstName, lastName, phone } = req.body;
 
     try {
-        await pool.query(
+        await db.query(
             'UPDATE users SET first_name = ?, last_name = ?, phone = ? WHERE id = ?',
             [firstName, lastName, phone || null, userId]
         );
@@ -434,7 +435,7 @@ router.get('/orders/:userId', async (req, res) => {
     const { userId } = req.params;
 
     try {
-        const [orders] = await pool.query(
+        const [orders] = await db.query(
             `SELECT o.*, 
                     GROUP_CONCAT(
                         JSON_OBJECT(
@@ -473,3 +474,4 @@ router.get('/orders/:userId', async (req, res) => {
 });
 
 module.exports = router;
+

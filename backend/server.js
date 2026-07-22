@@ -4,7 +4,12 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 require('dotenv').config();
 
-const { testConnection, initializeTables } = require('./config/database');
+// Use PostgreSQL for production (Render), MySQL for local development
+const dbConfig = process.env.DATABASE_URL 
+    ? require('./config/database-postgres')
+    : require('./config/database');
+
+const { testConnection, initializeTables } = dbConfig;
 const { verifyEmailConfig } = require('./config/email');
 const orderRoutes = require('./routes/orders');
 const webhookRoutes = require('./routes/webhooks');
@@ -15,7 +20,9 @@ const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors({
-    origin: '*', // Allow all origins (you can restrict this in production)
+    origin: process.env.NODE_ENV === 'production' 
+        ? ['https://ubenams-integrated.vercel.app', 'https://*.vercel.app']
+        : '*', // Allow all origins in development
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
