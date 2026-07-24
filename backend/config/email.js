@@ -1,37 +1,47 @@
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 
-// Create email transporter with extended timeout and connection settings
-const transporter = nodemailer.createTransport({
-    service: 'gmail',
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
-    },
-    tls: {
-        rejectUnauthorized: false
-    },
-    connectionTimeout: 10000, // 10 seconds
-    greetingTimeout: 10000,
-    socketTimeout: 10000
-});
+// Initialize SendGrid with API key from environment
+if (process.env.SENDGRID_API_KEY) {
+    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+}
 
-// Verify transporter configuration
+// Verify SendGrid configuration
 async function verifyEmailConfig() {
-    // Skip email verification if EMAIL_USER or EMAIL_PASSWORD is not set
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-        console.log('⚠️  Email not configured (missing EMAIL_USER or EMAIL_PASSWORD)');
+    // Skip email verification if SENDGRID_API_KEY or FROM_EMAIL is not set
+    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
+        console.log('⚠️  Email not configured (missing SENDGRID_API_KEY or FROM_EMAIL)');
         console.log('⚠️  Email features will be disabled, but the server will continue running');
         return false;
     }
 
     try {
-        await transporter.verify();
-        console.log('✅ Email service configured successfully');
+        console.log('✅ SendGrid email service configured successfully');
+        console.log(`📧 Sending emails from: ${process.env.FROM_EMAIL}`);
         return true;
     } catch (error) {
         console.error('❌ Email configuration failed:', error.message);
         console.log('⚠️  Email features will be limited, but the server will continue running');
-        console.log('💡 Tip: Make sure EMAIL_PASSWORD has NO SPACES (Gmail App Password format)');
+        return false;
+    }
+}
+
+// Helper function to send email via SendGrid
+async function sendEmail(mailOptions) {
+    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
+        console.log('⚠️  Email not configured - skipping email');
+        return false;
+    }
+
+    try {
+        await sgMail.send({
+            to: mailOptions.to,
+            from: process.env.FROM_EMAIL, // Must be verified in SendGrid
+            subject: mailOptions.subject,
+            html: mailOptions.html
+        });
+        return true;
+    } catch (error) {
+        console.error('❌ Failed to send email:', error.message);
         return false;
     }
 }
@@ -39,7 +49,6 @@ async function verifyEmailConfig() {
 // Send order confirmation email to admin
 async function sendAdminOrderNotification(orderData) {
     const mailOptions = {
-        from: process.env.EMAIL_USER,
         to: process.env.ADMIN_EMAIL || 'admin@ubenamsintegrated.com',
         subject: `🛒 New Order - ${orderData.orderId}`,
         html: `
@@ -105,7 +114,7 @@ async function sendAdminOrderNotification(orderData) {
     };
 
     try {
-        await transporter.sendMail(mailOptions);
+        await sendEmail(mailOptions);
         console.log('✅ Admin notification email sent');
         return true;
     } catch (error) {
@@ -117,7 +126,6 @@ async function sendAdminOrderNotification(orderData) {
 // Send order confirmation email to customer
 async function sendCustomerOrderConfirmation(orderData) {
     const mailOptions = {
-        from: process.env.EMAIL_USER,
         to: orderData.customer.email,
         subject: `Order Confirmation - ${orderData.orderId}`,
         html: `
@@ -186,7 +194,7 @@ async function sendCustomerOrderConfirmation(orderData) {
     };
 
     try {
-        await transporter.sendMail(mailOptions);
+        await sendEmail(mailOptions);
         console.log('✅ Customer confirmation email sent');
         return true;
     } catch (error) {
@@ -198,7 +206,7 @@ async function sendCustomerOrderConfirmation(orderData) {
 // Send email verification email
 async function sendVerificationEmail(email, firstName, token) {
     // Check if email is configured
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
         console.log('⚠️  Email not configured - skipping verification email');
         return false;
     }
@@ -206,7 +214,6 @@ async function sendVerificationEmail(email, firstName, token) {
     const verificationUrl = `${process.env.FRONTEND_URL || 'http://localhost:5500'}/verify-email.html?token=${token}`;
     
     const mailOptions = {
-        from: process.env.EMAIL_USER,
         to: email,
         subject: 'Verify Your Email - UBENAMS Integrated',
         html: `
@@ -250,7 +257,7 @@ async function sendVerificationEmail(email, firstName, token) {
     };
 
     try {
-        await transporter.sendMail(mailOptions);
+        await sendEmail(mailOptions);
         console.log('✅ Verification email sent to:', email);
         return true;
     } catch (error) {
@@ -262,13 +269,12 @@ async function sendVerificationEmail(email, firstName, token) {
 // Send welcome email after verification
 async function sendWelcomeEmail(email, firstName) {
     // Check if email is configured
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
         console.log('⚠️  Email not configured - skipping welcome email');
         return false;
     }
 
     const mailOptions = {
-        from: process.env.EMAIL_USER,
         to: email,
         subject: 'Welcome to UBENAMS Integrated!',
         html: `
@@ -315,7 +321,7 @@ async function sendWelcomeEmail(email, firstName) {
     };
 
     try {
-        await transporter.sendMail(mailOptions);
+        await sendEmail(mailOptions);
         console.log('✅ Welcome email sent to:', email);
         return true;
     } catch (error) {
@@ -327,7 +333,7 @@ async function sendWelcomeEmail(email, firstName) {
 // Send password reset email
 async function sendPasswordResetEmail(email, firstName, token) {
     // Check if email is configured
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
         console.log('⚠️  Email not configured - skipping password reset email');
         return false;
     }
@@ -335,7 +341,6 @@ async function sendPasswordResetEmail(email, firstName, token) {
     const resetUrl = `${process.env.FRONTEND_URL || 'http://localhost:5500'}/reset-password.html?token=${token}`;
     
     const mailOptions = {
-        from: process.env.EMAIL_USER,
         to: email,
         subject: 'Reset Your Password - UBENAMS Integrated',
         html: `
@@ -383,7 +388,7 @@ async function sendPasswordResetEmail(email, firstName, token) {
     };
 
     try {
-        await transporter.sendMail(mailOptions);
+        await sendEmail(mailOptions);
         console.log('✅ Password reset email sent to:', email);
         return true;
     } catch (error) {
@@ -393,7 +398,6 @@ async function sendPasswordResetEmail(email, firstName, token) {
 }
 
 module.exports = {
-    transporter,
     verifyEmailConfig,
     sendAdminOrderNotification,
     sendCustomerOrderConfirmation,
