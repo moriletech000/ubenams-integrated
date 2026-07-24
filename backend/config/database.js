@@ -166,9 +166,13 @@ async function initializeTables() {
     }
 }
 
-// Query helper function (matches MySQL2 format)
-async function query(text, params) {
-    const result = await pool.query(text, params);
+// Query helper function that converts MySQL placeholders to PostgreSQL
+async function query(text, params = []) {
+    // Convert MySQL placeholders (?) to PostgreSQL ($1, $2, etc.)
+    let paramIndex = 1;
+    const pgText = text.replace(/\?/g, () => `$${paramIndex++}`);
+    
+    const result = await pool.query(pgText, params);
     // Return in MySQL2 format [rows, fields]
     return [result.rows, result.fields];
 }

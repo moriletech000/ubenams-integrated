@@ -2,9 +2,29 @@
 
 let currentFilter = 'all';
 
+// Auto-detect API URL based on environment
+const getApiUrl = () => {
+    const hostname = window.location.hostname;
+    
+    // Production: Use Render backend
+    if (hostname.includes('vercel.app') || hostname.includes('ubenams')) {
+        return 'https://ubenams-integrated.onrender.com/api';
+    }
+    
+    // Local development: Use localhost
+    if (hostname === 'localhost' || hostname === '127.0.0.1') {
+        return 'http://localhost:3000/api';
+    }
+    
+    // Mobile/IP access: Use computer's IP
+    return `${window.location.protocol}//${hostname}:3000/api`;
+};
+
+const API_URL = getApiUrl();
+
 // Format price
 function formatPrice(price) {
-    return '₦' + price.toLocaleString('en-NG');
+    return '₦' + parseFloat(price).toLocaleString('en-NG');
 }
 
 // Load admin dashboard
@@ -23,68 +43,106 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Auto-refresh every 30 seconds
+    // Auto-refresh every 10 seconds
     setInterval(() => {
         loadOrders();
         updateStats();
-    }, 30000);
+    }, 10000);
 });
 
-// Load orders
-function loadOrders() {
-    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
+// Load orders from backend API
+async function loadOrders() {
     const ordersList = document.getElementById('orders-list');
     const emptyOrders = document.getElementById('empty-orders');
 
-    if (orders.length === 0) {
-        ordersList.innerHTML = '';
-        emptyOrders.style.display = 'block';
-        return;
+    try {
+        // Show loading state
+        ordersList.innerHTML = '<p style="text-align: center; padding: 40px; color: #999;">Loading orders...</p>';
+        
+        const response = await fetch(`${API_URL}/orders?limit=100`);
+        const data = await response.json();
+
+        if (!data.success || !data.orders || data.orders.length === 0) {
+            ordersList.innerHTML = '';
+            emptyOrders.style.display = 'block';
+            return;
+        }
+
+        emptyOrders.style.display = 'none';
+
+        let orders = data.orders;
+
+        // Filter orders
+        if (currentFilter !== 'all') {
+            if (currentFilter === 'pending_verification') {
+                orders = orders.filter(order => order.order_status === 'pending');
+            } else if (currentFilter === 'confirmed') {
+                orders = orders.filter(order => order.order_status === 'verified' || order.order_status === 'processing' || order.order_status === 'shipped');
+            } else if (currentFilter === 'paid') {
+                orders = orders.filter(order => order.payment_status === 'completed' || order.payment_status === 'paid');
+            }
+        }
+
+        // Fetch items for each order
+        const ordersWithItems = await Promise.all(orders.map(async (order) => {
+            try {
+                const itemsResponse = await fetch(`${API_URL}/orders/${order.order_id}`);
+                const itemsData = await itemsResponse.json();
+                return {
+                    ...order,
+                    items: itemsData.items || []
+                };
+            } catch (error) {
+                console.error('Error fetching items for order:', order.order_id, error);
+                return {
+                    ...order,
+                    items: []
+                };
+            }
+        }));
+
+        ordersList.innerHTML = ordersWithItems.map(order => createOrderCard(order)).join('');
+    } catch (error) {
+        console.error('Error loading orders:', error);
+        ordersList.innerHTML = '<p style="text-align: center; padding: 40px; color: #e74c3c;">Failed to load orders. Please check your connection.</p>';
     }
-
-    emptyOrders.style.display = 'none';
-
-    // Filter orders
-    let filteredOrders = orders;
-    if (currentFilter !== 'all') {
-        filteredOrders = orders.filter(order => order.status === currentFilter);
-    }
-
-    // Sort by date (newest first)
-    filteredOrders.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
-    ordersList.innerHTML = filteredOrders.map(order => createOrderCard(order)).join('');
 }
 
 // Create order card HTML
 function createOrderCard(order) {
-    const statusClass = `status-${order.status.replace('_', '-')}`;
-    const statusText = order.status.replace('_', ' ').toUpperCase();
-    const orderDate = new Date(order.createdAt).toLocaleString('en-NG');
+    const statusClass = `status-${order.order_status.replace('_', '-')}`;
+    const statusText = order.order_status.replace('_', ' ').toUpperCase();
+    const orderDate = new Date(order.created_at).toLocaleString('en-NG');
+    const isPending = order.order_status === 'pending';
 
     return `
         <div class="order-card">
             <div class="order-header">
-                <span class="order-id">${order.id}</span>
+                <span class="order-id">${order.order_id}</span>
                 <span class="order-status ${statusClass}">${statusText}</span>
+                ${isPending ? '<span class="order-status status-pending-verification">⏳ NEEDS VERIFICATION</span>' : ''}
             </div>
 
             <div class="order-info">
                 <div class="info-item">
                     <span class="info-label">Customer</span>
-                    <span class="info-value">${order.customer.firstName} ${order.customer.lastName}</span>
+                    <span class="info-value">${order.customer_first_name} ${order.customer_last_name}</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Email</span>
-                    <span class="info-value">${order.customer.email}</span>
+                    <span class="info-value">${order.customer_email}</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Phone</span>
-                    <span class="info-value">${order.customer.phone}</span>
+                    <span class="info-value">${order.customer_phone}</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Payment Method</span>
-                    <span class="info-value">${order.paymentMethod.toUpperCase()}</span>
+                    <span class="info-value">${order.payment_method.toUpperCase()}</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Payment Status</span>
+                    <span class="info-value">${order.payment_status.toUpperCase()}</span>
                 </div>
                 <div class="info-item">
                     <span class="info-label">Order Date</span>
@@ -92,16 +150,16 @@ function createOrderCard(order) {
                 </div>
                 <div class="info-item">
                     <span class="info-label">Address</span>
-                    <span class="info-value">${order.customer.address}, ${order.customer.city}</span>
+                    <span class="info-value">${order.customer_address}, ${order.customer_city}</span>
                 </div>
             </div>
 
             <div class="order-items">
                 <h4>Order Items</h4>
                 <ul>
-                    ${order.items.map(item => `
-                        <li>${item.name} x ${item.quantity} = ${formatPrice(item.price * item.quantity)}</li>
-                    `).join('')}
+                    ${order.items && order.items.length > 0 ? order.items.map(item => `
+                        <li>${item.product_name} x ${item.quantity} = ${formatPrice(parseFloat(item.price) * item.quantity)}</li>
+                    `).join('') : '<li>Loading items...</li>'}
                 </ul>
             </div>
 
@@ -109,28 +167,16 @@ function createOrderCard(order) {
                 Total: ${formatPrice(order.total)}
             </div>
 
-            ${order.paymentProofName ? `
-                <div class="payment-proof">
-                    <p style="font-weight: 600; margin-bottom: 10px; color: #666;">
-                        <i class="fas fa-image"></i> Payment Proof Uploaded
-                    </p>
-                    ${order.paymentProof ? `
-                        <img src="${order.paymentProof}" alt="Payment Proof" 
-                             onclick="viewPaymentProof('${order.paymentProof}')">
-                    ` : `<p style="color: #999;">File: ${order.paymentProofName}</p>`}
-                </div>
-            ` : ''}
-
             <div class="order-actions">
-                ${order.status === 'pending_verification' ? `
-                    <button class="btn-approve" onclick="approveOrder('${order.id}')">
-                        <i class="fas fa-check"></i> Approve Order
+                ${isPending ? `
+                    <button class="btn-approve" onclick="approveOrder('${order.order_id}')">
+                        <i class="fas fa-check"></i> Verify & Approve Order
                     </button>
-                    <button class="btn-reject" onclick="rejectOrder('${order.id}')">
+                    <button class="btn-reject" onclick="rejectOrder('${order.order_id}')">
                         <i class="fas fa-times"></i> Reject Order
                     </button>
                 ` : ''}
-                <button class="btn-view" onclick="viewOrderDetails('${order.id}')">
+                <button class="btn-view" onclick="viewOrderDetails('${order.order_id}')">
                     <i class="fas fa-eye"></i> View Details
                 </button>
             </div>
@@ -152,48 +198,61 @@ function filterOrders(status) {
 }
 
 // Approve order
-function approveOrder(orderId) {
-    if (!confirm('Are you sure you want to approve this order? The customer will be notified.')) {
+async function approveOrder(orderId) {
+    if (!confirm('Are you sure you want to verify and approve this order? The customer will be notified.')) {
         return;
     }
 
-    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-    const orderIndex = orders.findIndex(o => o.id === orderId);
-    
-    if (orderIndex !== -1) {
-        orders[orderIndex].status = 'confirmed';
-        orders[orderIndex].confirmedAt = new Date().toISOString();
-        localStorage.setItem('orders', JSON.stringify(orders));
-        
-        // Send confirmation notification (in production, this would be an email)
-        sendConfirmationNotification(orders[orderIndex]);
-        
-        showNotification('Order approved successfully!', 'success');
-        loadOrders();
-        updateStats();
+    try {
+        const response = await fetch(`${API_URL}/orders/${orderId}/status`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ status: 'verified' })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showNotification('Order verified and approved successfully!', 'success');
+            loadOrders();
+            updateStats();
+        } else {
+            showNotification('Failed to approve order: ' + data.error, 'error');
+        }
+    } catch (error) {
+        console.error('Error approving order:', error);
+        showNotification('Failed to approve order. Please try again.', 'error');
     }
 }
 
 // Reject order
-function rejectOrder(orderId) {
+async function rejectOrder(orderId) {
     const reason = prompt('Enter reason for rejection (optional):');
     if (reason === null) return; // User cancelled
 
-    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-    const orderIndex = orders.findIndex(o => o.id === orderId);
-    
-    if (orderIndex !== -1) {
-        orders[orderIndex].status = 'rejected';
-        orders[orderIndex].rejectionReason = reason;
-        orders[orderIndex].rejectedAt = new Date().toISOString();
-        localStorage.setItem('orders', JSON.stringify(orders));
-        
-        // Send rejection notification (in production, this would be an email)
-        sendRejectionNotification(orders[orderIndex]);
-        
-        showNotification('Order rejected', 'error');
-        loadOrders();
-        updateStats();
+    try {
+        const response = await fetch(`${API_URL}/orders/${orderId}/status`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ status: 'cancelled' })
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+            showNotification('Order rejected', 'error');
+            loadOrders();
+            updateStats();
+        } else {
+            showNotification('Failed to reject order: ' + data.error, 'error');
+        }
+    } catch (error) {
+        console.error('Error rejecting order:', error);
+        showNotification('Failed to reject order. Please try again.', 'error');
     }
 }
 
@@ -222,48 +281,69 @@ function viewPaymentProof(imageUrl) {
 }
 
 // View order details
-function viewOrderDetails(orderId) {
-    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-    const order = orders.find(o => o.id === orderId);
-    
-    if (!order) return;
-    
-    alert(`
+async function viewOrderDetails(orderId) {
+    try {
+        const response = await fetch(`${API_URL}/orders/${orderId}`);
+        const data = await response.json();
+        
+        if (!data.success) {
+            alert('Failed to load order details');
+            return;
+        }
+        
+        const order = data.order;
+        const items = data.items || [];
+        
+        alert(`
 Order Details:
 ━━━━━━━━━━━━━━━━━━
-Order ID: ${order.id}
-Customer: ${order.customer.firstName} ${order.customer.lastName}
-Email: ${order.customer.email}
-Phone: ${order.customer.phone}
+Order ID: ${order.order_id}
+Customer: ${order.customer_first_name} ${order.customer_last_name}
+Email: ${order.customer_email}
+Phone: ${order.customer_phone}
 
 Shipping Address:
-${order.customer.address}
-${order.customer.city}, ${order.customer.state}
+${order.customer_address}
+${order.customer_city}, ${order.customer_state}
 
 Items:
-${order.items.map(item => `- ${item.name} x ${item.quantity}`).join('\n')}
+${items.map(item => `- ${item.product_name} x ${item.quantity}`).join('\n')}
 
 Total: ${formatPrice(order.total)}
-Payment: ${order.paymentMethod.toUpperCase()}
-Status: ${order.status.toUpperCase()}
-    `);
+Payment: ${order.payment_method.toUpperCase()}
+Payment Status: ${order.payment_status.toUpperCase()}
+Order Status: ${order.order_status.toUpperCase()}
+        `);
+    } catch (error) {
+        console.error('Error viewing order details:', error);
+        alert('Failed to load order details');
+    }
 }
 
 // Update statistics
-function updateStats() {
-    const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-    
-    const totalOrders = orders.length;
-    const pendingOrders = orders.filter(o => o.status === 'pending_verification').length;
-    const confirmedOrders = orders.filter(o => o.status === 'confirmed' || o.status === 'paid').length;
-    const totalRevenue = orders
-        .filter(o => o.status === 'confirmed' || o.status === 'paid')
-        .reduce((sum, order) => sum + order.total, 0);
-    
-    document.getElementById('total-orders').textContent = totalOrders;
-    document.getElementById('pending-orders').textContent = pendingOrders;
-    document.getElementById('confirmed-orders').textContent = confirmedOrders;
-    document.getElementById('total-revenue').textContent = formatPrice(totalRevenue);
+async function updateStats() {
+    try {
+        const response = await fetch(`${API_URL}/orders?limit=1000`);
+        const data = await response.json();
+
+        if (!data.success) return;
+
+        const orders = data.orders || [];
+        
+        const totalOrders = orders.length;
+        const pendingOrders = orders.filter(o => o.order_status === 'pending').length;
+        const confirmedOrders = orders.filter(o => o.order_status === 'verified' || o.order_status === 'processing' || o.order_status === 'shipped').length;
+        const totalRevenue = orders
+            .filter(o => o.payment_status === 'completed' || o.payment_status === 'paid')
+            .reduce((sum, order) => sum + parseFloat(order.total || 0), 0);
+        
+        document.getElementById('total-orders').textContent = totalOrders;
+        document.getElementById('pending-orders').textContent = pendingOrders;
+        document.getElementById('confirmed-orders').textContent = confirmedOrders;
+        document.getElementById('total-revenue').textContent = formatPrice(totalRevenue);
+    } catch (error) {
+        console.error('Error updating stats:', error);
+    }
 }
 
 // Send confirmation notification
