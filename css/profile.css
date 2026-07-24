@@ -206,6 +206,36 @@
     color: #0c5460;
 }
 
+.status-badge.verified {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.pending-verification {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.status-badge.paid {
+    background: #d4edda;
+    color: #155724;
+}
+
+.status-badge.unpaid {
+    background: #f8d7da;
+    color: #721c24;
+}
+
+.status-badge.shipped {
+    background: #cce5ff;
+    color: #004085;
+}
+
+.status-badge.delivered {
+    background: #d4edda;
+    color: #155724;
+}
+
 .order-items {
     margin: 15px 0;
 }

@@ -195,7 +195,15 @@ function sendOrderToBackend(orderData, paymentReference) {
         orderId: 'ORD-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase()
     };
 
-    // Send to backend API
+    // Send to backend API with retry logic
+    sendOrderWithRetry(backendOrderData, 0);
+}
+
+// Retry sending order to backend (max 5 attempts, 1 second apart)
+function sendOrderWithRetry(backendOrderData, attemptCount) {
+    const maxAttempts = 5;
+    const btn = document.getElementById('place-order-btn');
+
     fetch(`${API_BASE_URL}/orders`, {
         method: 'POST',
         headers: {
@@ -213,19 +221,6 @@ function sendOrderToBackend(orderData, paymentReference) {
         if (data.success) {
             console.log('✅ Order processed successfully:', data.orderId);
             
-            // Also save to localStorage as backup
-            const order = {
-                id: data.orderId,
-                ...orderData,
-                paymentReference: paymentReference,
-                status: paymentReference ? 'paid' : 'pending',
-                createdAt: new Date().toISOString()
-            };
-            
-            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-            orders.push(order);
-            localStorage.setItem('orders', JSON.stringify(orders));
-            
             // Clear cart
             clearCart();
             
@@ -237,37 +232,23 @@ function sendOrderToBackend(orderData, paymentReference) {
         }
     })
     .catch(error => {
-        console.error('❌ Error sending order to backend:', error);
+        console.error(`❌ Error sending order (attempt ${attemptCount + 1}/${maxAttempts}):`, error);
         
-        // Fallback: save locally if backend fails
-        const orderId = 'ORD-LOCAL-' + Date.now();
-        const order = {
-            id: orderId,
-            ...orderData,
-            paymentReference: paymentReference,
-            status: 'pending_sync',
-            createdAt: new Date().toISOString()
-        };
-        
-        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-        orders.push(order);
-        localStorage.setItem('orders', JSON.stringify(orders));
-        
-        // Show warning but still proceed
-        showNotification('Order saved locally. We will sync with server when connection is restored.');
-        
-        clearCart();
-        localStorage.setItem('lastOrderId', orderId);
-        
-        setTimeout(() => {
-            window.location.href = 'order-confirmation.html';
-        }, 2000);
-    })
-    .finally(() => {
-        // Reset button state
-        if (btn) {
-            btn.disabled = false;
-            btn.textContent = 'Place Order';
+        if (attemptCount < maxAttempts - 1) {
+            // Retry after 1 second
+            if (btn) {
+                btn.textContent = `Retrying... (${attemptCount + 1}/${maxAttempts})`;
+            }
+            setTimeout(() => {
+                sendOrderWithRetry(backendOrderData, attemptCount + 1);
+            }, 1000);
+        } else {
+            // All retries failed
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = 'Place Order';
+            }
+            showNotification('Failed to process order. Please check your internet connection and try again.', 'error');
         }
     });
 }
@@ -391,7 +372,14 @@ function confirmBankTransfer() {
         paymentProof: file ? file.name : null
     };
 
-    // Send to backend
+    // Send to backend with retry logic
+    sendBankTransferWithRetry(backendOrderData, 0, file);
+}
+
+// Retry bank transfer order (max 5 attempts)
+function sendBankTransferWithRetry(backendOrderData, attemptCount, file) {
+    const maxAttempts = 5;
+    
     fetch(`${API_BASE_URL}/orders`, {
         method: 'POST',
         headers: {
@@ -403,20 +391,6 @@ function confirmBankTransfer() {
     .then(data => {
         if (data.success) {
             console.log('✅ Bank transfer order created:', data.orderId);
-            
-            // Save locally as backup
-            const order = {
-                id: data.orderId,
-                ...orderData,
-                paymentProof: file ? URL.createObjectURL(file) : null,
-                paymentProofName: file ? file.name : null,
-                status: 'pending_verification',
-                createdAt: new Date().toISOString()
-            };
-            
-            const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-            orders.push(order);
-            localStorage.setItem('orders', JSON.stringify(orders));
             
             // Close modal
             closeBankTransferModal();
@@ -432,31 +406,22 @@ function confirmBankTransfer() {
         }
     })
     .catch(error => {
-        console.error('❌ Error processing bank transfer:', error);
+        console.error(`❌ Error processing bank transfer (attempt ${attemptCount + 1}/${maxAttempts}):`, error);
         
-        // Fallback: save locally
-        const order = {
-            id: orderId,
-            ...orderData,
-            paymentProof: file ? URL.createObjectURL(file) : null,
-            paymentProofName: file ? file.name : null,
-            status: 'pending_sync',
-            createdAt: new Date().toISOString()
-        };
-        
-        const orders = JSON.parse(localStorage.getItem('orders') || '[]');
-        orders.push(order);
-        localStorage.setItem('orders', JSON.stringify(orders));
-        
-        showNotification('Order saved locally. We will sync with server when connection is restored.');
-        
-        closeBankTransferModal();
-        clearCart();
-        localStorage.setItem('lastOrderId', orderId);
-        
-        setTimeout(() => {
-            window.location.href = 'order-pending.html';
-        }, 2000);
+        if (attemptCount < maxAttempts - 1) {
+            // Retry after 1 second
+            const confirmBtn = document.querySelector('#bank-transfer-modal button');
+            if (confirmBtn) {
+                confirmBtn.innerHTML = `<i class="fas fa-spinner fa-spin"></i> Retrying... (${attemptCount + 1}/${maxAttempts})`;
+            }
+            setTimeout(() => {
+                sendBankTransferWithRetry(backendOrderData, attemptCount + 1, file);
+            }, 1000);
+        } else {
+            // All retries failed
+            closeBankTransferModal();
+            showNotification('Failed to process order. Please check your internet connection and try again.', 'error');
+        }
     });
 }
 

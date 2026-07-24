@@ -81,7 +81,12 @@ async function loadOrders() {
         ordersLoading.style.display = 'none';
 
         if (data.success && data.orders.length > 0) {
-            ordersContainer.innerHTML = data.orders.map(order => `
+            ordersContainer.innerHTML = data.orders.map(order => {
+                // Determine verification status
+                const isVerified = order.order_status === 'verified' || order.order_status === 'completed' || order.order_status === 'shipped' || order.order_status === 'delivered';
+                const isPending = order.order_status === 'pending';
+                
+                return `
                 <div class="order-card">
                     <div class="order-header">
                         <div>
@@ -95,8 +100,10 @@ async function loadOrders() {
                             })}</div>
                         </div>
                         <div class="order-status">
-                            <span class="status-badge ${order.payment_status}">${order.payment_status}</span>
-                            <span class="status-badge ${order.order_status}">${order.order_status}</span>
+                            <span class="status-badge ${order.payment_status}">${formatStatusText(order.payment_status)}</span>
+                            <span class="status-badge ${order.order_status}">${formatStatusText(order.order_status)}</span>
+                            ${isPending ? '<span class="status-badge pending-verification"><i class="fas fa-clock"></i> Awaiting Admin Verification</span>' : ''}
+                            ${isVerified ? '<span class="status-badge verified"><i class="fas fa-check-circle"></i> Verified by Admin</span>' : ''}
                         </div>
                     </div>
                     
@@ -122,7 +129,8 @@ async function loadOrders() {
                         </div>
                     </div>
                 </div>
-            `).join('');
+            `;
+            }).join('');
         } else {
             noOrders.style.display = 'block';
         }
@@ -130,6 +138,22 @@ async function loadOrders() {
         console.error('Error loading orders:', error);
         ordersLoading.innerHTML = '<p style="color: red;">Failed to load orders. Please try again.</p>';
     }
+}
+
+// Format status text for better display
+function formatStatusText(status) {
+    const statusMap = {
+        'pending': 'Pending',
+        'pending_verification': 'Pending Verification',
+        'verified': 'Verified',
+        'processing': 'Processing',
+        'shipped': 'Shipped',
+        'delivered': 'Delivered',
+        'cancelled': 'Cancelled',
+        'paid': 'Paid',
+        'unpaid': 'Unpaid'
+    };
+    return statusMap[status] || status;
 }
 
 // Edit Profile Button
@@ -214,4 +238,9 @@ document.getElementById('logout-btn').addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
     loadProfile();
     loadOrders();
+    
+    // Auto-refresh orders every 5 seconds to show admin verification status
+    setInterval(() => {
+        loadOrders();
+    }, 5000);
 });
