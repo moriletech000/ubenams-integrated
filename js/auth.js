@@ -101,16 +101,16 @@ if (document.getElementById('register-form')) {
             const data = await response.json();
 
             if (data.success) {
-                showMessage('Registration successful! Please check your email to verify your account.', 'success');
+                showMessage('✓ Account created successfully! A welcome email has been sent. Redirecting to login...', 'success');
                 // Clear form
                 document.getElementById('register-form').reset();
                 
-                // Redirect to login after 3 seconds
+                // Redirect to login after 2 seconds
                 setTimeout(() => {
                     window.location.href = 'login.html';
-                }, 3000);
+                }, 2000);
             } else {
-                showMessage(data.error || 'Registration failed. Please try again.', 'error');
+                showMessage(data.error || '✗ Registration failed. Please try again.', 'error');
             }
         } catch (error) {
             console.error('Registration error:', error);
@@ -151,7 +151,7 @@ if (document.getElementById('login-form')) {
                 // Store user data
                 localStorage.setItem('user', JSON.stringify(data.user));
                 
-                showMessage('Login successful! Redirecting...', 'success');
+                showMessage('✓ Login successful! Redirecting...', 'success');
                 
                 // Redirect to profile or intended page
                 setTimeout(() => {
@@ -159,26 +159,15 @@ if (document.getElementById('login-form')) {
                     window.location.href = redirectUrl;
                 }, 1000);
             } else {
-                if (data.needsVerification) {
-                    showMessage('Please verify your email before logging in. Check your inbox for the verification link.', 'error');
-                    
-                    // Show resend verification option
-                    setTimeout(() => {
-                        const resendLink = document.createElement('a');
-                        resendLink.href = '#';
-                        resendLink.textContent = 'Resend verification email';
-                        resendLink.style.display = 'block';
-                        resendLink.style.marginTop = '10px';
-                        resendLink.style.color = '#667eea';
-                        resendLink.onclick = async (e) => {
-                            e.preventDefault();
-                            await resendVerification(formData.email);
-                        };
-                        document.getElementById('message').appendChild(resendLink);
-                    }, 100);
+                // Show specific error message
+                if (data.errorType === 'INVALID_PASSWORD') {
+                    showMessage('✗ Incorrect password. Please try again.', 'error');
+                } else if (data.error && data.error.includes('Invalid email')) {
+                    showMessage('✗ No account found with this email address.', 'error');
                 } else {
-                    showMessage(data.error || 'Login failed. Please check your credentials.', 'error');
+                    showMessage(data.error || '✗ Login failed. Please check your credentials.', 'error');
                 }
+            }
             }
         } catch (error) {
             console.error('Login error:', error);
@@ -362,3 +351,22 @@ function updateHeaderWithUser() {
 document.addEventListener('DOMContentLoaded', () => {
     updateHeaderWithUser();
 });
+
+
+// Toggle password visibility
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(`${inputId}-icon`);
+    
+    if (!input || !icon) return;
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
