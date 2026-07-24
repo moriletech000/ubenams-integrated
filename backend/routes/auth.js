@@ -59,21 +59,21 @@ router.post('/register', async (req, res) => {
         // Generate verification token
         const verificationToken = crypto.randomBytes(32).toString('hex');
 
-        // Insert user
+        // Insert user (email_verified = TRUE by default)
         const [result] = await db.query(
-            `INSERT INTO users (email, password_hash, first_name, last_name, phone, verification_token) 
-             VALUES (?, ?, ?, ?, ?, ?)`,
-            [email, passwordHash, firstName, lastName, phone || null, verificationToken]
+            `INSERT INTO users (email, password_hash, first_name, last_name, phone, email_verified) 
+             VALUES (?, ?, ?, ?, ?, TRUE)`,
+            [email, passwordHash, firstName, lastName, phone || null]
         );
 
-        // Send verification email (non-blocking - don't wait for it)
-        sendVerificationEmail(email, firstName, verificationToken).catch(err => {
-            console.error('Failed to send verification email:', err);
+        // Send welcome email (non-blocking - don't wait for it)
+        sendWelcomeEmail(email, firstName).catch(err => {
+            console.error('Failed to send welcome email:', err);
         });
 
         res.status(201).json({
             success: true,
-            message: 'Registration successful! Please check your email to verify your account.',
+            message: 'Registration successful! Redirecting to login...',
             userId: result.insertId
         });
 
@@ -158,20 +158,11 @@ router.post('/login', async (req, res) => {
         if (users.length === 0) {
             return res.status(401).json({
                 success: false,
-                error: 'Invalid email or password'
+                error: '✗ No account found with this email address.'
             });
         }
 
         const user = users[0];
-
-        // Check if email is verified
-        if (!user.email_verified) {
-            return res.status(403).json({
-                success: false,
-                error: 'Please verify your email before logging in',
-                needsVerification: true
-            });
-        }
 
         // Verify password
         const passwordMatch = await bcrypt.compare(password, user.password_hash);
@@ -179,14 +170,14 @@ router.post('/login', async (req, res) => {
         if (!passwordMatch) {
             return res.status(401).json({
                 success: false,
-                error: 'Invalid email or password'
+                error: '✗ Incorrect password. Please try again.'
             });
         }
 
         // Return user data (excluding password)
         res.json({
             success: true,
-            message: 'Login successful',
+            message: '✓ Login successful! Redirecting...',
             user: {
                 id: user.id,
                 email: user.email,

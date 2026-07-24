@@ -21,6 +21,22 @@ const API_URL = getApiUrl();
 
 console.log('API URL:', API_URL); // For debugging
 
+// Toggle password visibility
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    const icon = document.getElementById(`${inputId}-icon`);
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        icon.classList.remove('fa-eye');
+        icon.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        icon.classList.remove('fa-eye-slash');
+        icon.classList.add('fa-eye');
+    }
+}
+
 // Show message function
 function showMessage(message, type = 'success') {
     const messageDiv = document.getElementById('message');
@@ -101,7 +117,7 @@ if (document.getElementById('register-form')) {
             const data = await response.json();
 
             if (data.success) {
-                showMessage('✓ Account created successfully! A welcome email has been sent. Redirecting to login...', 'success');
+                showMessage(data.message || '✓ Registration successful! Redirecting to login...', 'success');
                 // Clear form
                 document.getElementById('register-form').reset();
                 
@@ -110,7 +126,12 @@ if (document.getElementById('register-form')) {
                     window.location.href = 'login.html';
                 }, 2000);
             } else {
-                showMessage(data.error || '✗ Registration failed. Please try again.', 'error');
+                // Add shake animation to form
+                const form = document.getElementById('register-form');
+                form.classList.add('shake');
+                setTimeout(() => form.classList.remove('shake'), 500);
+                
+                showMessage(data.error || 'Registration failed. Please try again.', 'error');
             }
         } catch (error) {
             console.error('Registration error:', error);
@@ -151,32 +172,29 @@ if (document.getElementById('login-form')) {
                 // Store user data
                 localStorage.setItem('user', JSON.stringify(data.user));
                 
-                showMessage('✓ Login successful! Redirecting...', 'success');
+                showMessage(data.message || '✓ Login successful! Redirecting...', 'success');
                 
                 // Redirect to profile or intended page
                 setTimeout(() => {
                     const redirectUrl = new URLSearchParams(window.location.search).get('redirect') || 'profile.html';
                     window.location.href = redirectUrl;
-                }, 1000);
+                }, 1500);
             } else {
-                // Show specific error message
-                if (data.errorType === 'INVALID_PASSWORD') {
-                    showMessage('✗ Incorrect password. Please try again.', 'error');
-                } else if (data.error && data.error.includes('Invalid email')) {
-                    showMessage('✗ No account found with this email address.', 'error');
-                } else {
-                    showMessage(data.error || '✗ Login failed. Please check your credentials.', 'error');
-                }
-            }
+                // Add shake animation to form
+                const form = document.getElementById('login-form');
+                form.classList.add('shake');
+                setTimeout(() => form.classList.remove('shake'), 500);
+                
+                showMessage(data.error || '✗ Login failed. Please check your credentials.', 'error');
             }
         } catch (error) {
             console.error('Login error:', error);
             
             // More detailed error message
             if (error.message === 'Failed to fetch') {
-                showMessage('Cannot connect to server. Please check your internet connection and make sure the backend server is running.', 'error');
+                showMessage('Cannot connect to server. Please check your internet connection.', 'error');
             } else {
-                showMessage('An error occurred. Please try again. Error: ' + error.message, 'error');
+                showMessage('An error occurred. Please try again.', 'error');
             }
         }
     });
@@ -351,22 +369,3 @@ function updateHeaderWithUser() {
 document.addEventListener('DOMContentLoaded', () => {
     updateHeaderWithUser();
 });
-
-
-// Toggle password visibility
-function togglePassword(inputId) {
-    const input = document.getElementById(inputId);
-    const icon = document.getElementById(`${inputId}-icon`);
-    
-    if (!input || !icon) return;
-    
-    if (input.type === 'password') {
-        input.type = 'text';
-        icon.classList.remove('fa-eye');
-        icon.classList.add('fa-eye-slash');
-    } else {
-        input.type = 'password';
-        icon.classList.remove('fa-eye-slash');
-        icon.classList.add('fa-eye');
-    }
-}

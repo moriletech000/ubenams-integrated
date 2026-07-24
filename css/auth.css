@@ -77,6 +77,47 @@
     box-shadow: 0 0 0 3px rgba(233, 30, 140, 0.1);
 }
 
+/* Password Toggle */
+.password-input-wrapper {
+    position: relative;
+}
+
+.password-input-wrapper input {
+    padding-right: 45px;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s ease;
+}
+
+.password-toggle:hover {
+    color: #E91E8C;
+}
+
+.password-toggle i {
+    font-size: 16px;
+}
+
+/* Shake animation for errors */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+    20%, 40%, 60%, 80% { transform: translateX(5px); }
+}
+
+.shake {
+    animation: shake 0.5s;
+}
+
 .form-help {
     display: block;
     margin-top: 5px;
@@ -218,48 +259,4 @@
     .auth-switch {
         font-size: 13px;
     }
-}
-
-
-/* Password visibility toggle */
-.password-input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.password-input-wrapper input {
-    padding-right: 45px;
-    flex: 1;
-}
-
-.password-toggle {
-    position: absolute;
-    right: 10px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    color: #666;
-    font-size: 18px;
-    padding: 5px 10px;
-    transition: color 0.3s ease;
-}
-
-.password-toggle:hover {
-    color: #E91E8C;
-}
-
-.password-toggle:focus {
-    outline: none;
-}
-
-/* Error message styling */
-.message.error {
-    animation: shake 0.5s;
-}
-
-@keyframes shake {
-    0%, 100% { transform: translateX(0); }
-    10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
-    20%, 40%, 60%, 80% { transform: translateX(5px); }
 }
