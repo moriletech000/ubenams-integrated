@@ -1,22 +1,22 @@
 const mysql = require('mysql2/promise');
 
-// Only create pool if we're supposed to use MySQL (no DATABASE_URL set)
+// Only create MySQL pool if DATABASE_URL is not set
 let pool = null;
 
-// Lazy pool creation - only creates when needed
-function getPool() {
-    if (!pool && !process.env.DATABASE_URL) {
-        pool = mysql.createPool({
-            host: process.env.DB_HOST || 'localhost',
-            user: process.env.DB_USER || 'root',
-            password: process.env.DB_PASSWORD || '',
-            database: process.env.DB_NAME || 'ubenams_db',
-            waitForConnections: true,
-            connectionLimit: 10,
-            queueLimit: 0
-        });
-    }
-    return pool;
+if (!process.env.DATABASE_URL) {
+    // Create connection pool for MySQL (local development)
+    pool = mysql.createPool({
+        host: process.env.DB_HOST || 'localhost',
+        user: process.env.DB_USER || 'root',
+        password: process.env.DB_PASSWORD || '',
+        database: process.env.DB_NAME || 'ubenams_db',
+        waitForConnections: true,
+        connectionLimit: 10,
+        queueLimit: 0
+    });
+    console.log('MySQL pool created for local development');
+} else {
+    console.log('DATABASE_URL detected - MySQL pool skipped (using PostgreSQL)');
 }
 
 // Test connection
@@ -27,7 +27,12 @@ async function testConnection() {
             return false;
         }
         
-        const connection = await getPool().getConnection();
+        if (!pool) {
+            console.log('⚠️  MySQL pool not initialized');
+            return false;
+        }
+        
+        const connection = await pool.getConnection();
         console.log('✅ MySQL Database connected successfully');
         connection.release();
         return true;
@@ -45,7 +50,12 @@ async function initializeTables() {
             return;
         }
         
-        const connection = await getPool().getConnection();
+        if (!pool) {
+            console.log('⚠️  MySQL pool not initialized - skipping table creation');
+            return;
+        }
+        
+        const connection = await pool.getConnection();
         
         // Create orders table
         await connection.query(`
@@ -102,7 +112,7 @@ async function initializeTables() {
 }
 
 module.exports = {
-    pool: getPool,
+    pool,
     testConnection,
     initializeTables
 };
