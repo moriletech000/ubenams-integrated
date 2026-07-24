@@ -1,32 +1,20 @@
-const nodemailer = require('nodemailer');
+const { Resend } = require('resend');
 
-// Create email transporter with proper Gmail SMTP configuration
-const transporter = nodemailer.createTransport({
-    host: 'smtp.gmail.com',
-    port: 587,
-    secure: false, // Use TLS
-    auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASSWORD
-    },
-    tls: {
-        rejectUnauthorized: false
-    }
-});
+// Initialize Resend with API key from environment
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
-// Verify transporter configuration
+// Verify Resend configuration
 async function verifyEmailConfig() {
-    // Skip email verification if EMAIL_USER or EMAIL_PASSWORD is not set
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
-        console.log('⚠️  Email not configured (missing EMAIL_USER or EMAIL_PASSWORD)');
+    // Skip email verification if RESEND_API_KEY or FROM_EMAIL is not set
+    if (!process.env.RESEND_API_KEY || !process.env.FROM_EMAIL) {
+        console.log('⚠️  Email not configured (missing RESEND_API_KEY or FROM_EMAIL)');
         console.log('⚠️  Email features will be disabled, but the server will continue running');
         return false;
     }
 
     try {
-        await transporter.verify();
-        console.log('✅ Gmail email service configured successfully');
-        console.log(`📧 Sending emails from: ${process.env.EMAIL_USER}`);
+        console.log('✅ Resend email service configured successfully');
+        console.log(`📧 Sending emails from: ${process.env.FROM_EMAIL}`);
         return true;
     } catch (error) {
         console.error('❌ Email configuration failed:', error.message);
@@ -35,17 +23,19 @@ async function verifyEmailConfig() {
     }
 }
 
-// Helper function to send email
+// Helper function to send email via Resend
 async function sendEmail(mailOptions) {
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    if (!resend || !process.env.FROM_EMAIL) {
         console.log('⚠️  Email not configured - skipping email');
         return false;
     }
 
     try {
-        await transporter.sendMail({
-            from: `"UBENAMS Integrated" <${process.env.EMAIL_USER}>`,
-            ...mailOptions
+        await resend.emails.send({
+            from: `UBENAMS Integrated <${process.env.FROM_EMAIL}>`,
+            to: mailOptions.to,
+            subject: mailOptions.subject,
+            html: mailOptions.html
         });
         return true;
     } catch (error) {
@@ -214,7 +204,7 @@ async function sendCustomerOrderConfirmation(orderData) {
 // Send email verification email
 async function sendVerificationEmail(email, firstName, token) {
     // Check if email is configured
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    if (!resend || !process.env.FROM_EMAIL) {
         console.log('⚠️  Email not configured - skipping verification email');
         return false;
     }
@@ -277,7 +267,7 @@ async function sendVerificationEmail(email, firstName, token) {
 // Send welcome email after verification
 async function sendWelcomeEmail(email, firstName) {
     // Check if email is configured
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    if (!resend || !process.env.FROM_EMAIL) {
         console.log('⚠️  Email not configured - skipping welcome email');
         return false;
     }
@@ -341,7 +331,7 @@ async function sendWelcomeEmail(email, firstName) {
 // Send password reset email
 async function sendPasswordResetEmail(email, firstName, token) {
     // Check if email is configured
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+    if (!resend || !process.env.FROM_EMAIL) {
         console.log('⚠️  Email not configured - skipping password reset email');
         return false;
     }
