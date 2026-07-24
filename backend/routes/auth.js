@@ -2,8 +2,7 @@ const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcrypt');
 const crypto = require('crypto');
-const { pool } = require('../config/database');
-const db = require('../config/db-adapter');
+const { pool, query } = require('../config/database');
 const { 
     sendVerificationEmail, 
     sendPasswordResetEmail,
@@ -41,7 +40,7 @@ router.post('/register', async (req, res) => {
 
     try {
         // Check if user already exists
-        const [existingUsers] = await db.query(
+        const [existingUsers] = await query(
             'SELECT id FROM users WHERE email = ?',
             [email]
         );
@@ -60,7 +59,7 @@ router.post('/register', async (req, res) => {
         const verificationToken = crypto.randomBytes(32).toString('hex');
 
         // Insert user (email_verified = TRUE by default)
-        const [result] = await db.query(
+        const [result] = await query(
             `INSERT INTO users (email, password_hash, first_name, last_name, phone, email_verified) 
              VALUES (?, ?, ?, ?, ?, TRUE)`,
             [email, passwordHash, firstName, lastName, phone || null]
@@ -91,7 +90,7 @@ router.get('/verify-email/:token', async (req, res) => {
     const { token } = req.params;
 
     try {
-        const [users] = await db.query(
+        const [users] = await query(
             'SELECT id, email, first_name, email_verified FROM users WHERE verification_token = ?',
             [token]
         );
@@ -113,7 +112,7 @@ router.get('/verify-email/:token', async (req, res) => {
         }
 
         // Update user as verified
-        await db.query(
+        await query(
             'UPDATE users SET email_verified = TRUE, verification_token = NULL WHERE id = ?',
             [user.id]
         );
@@ -150,7 +149,7 @@ router.post('/login', async (req, res) => {
 
     try {
         // Get user
-        const [users] = await db.query(
+        const [users] = await query(
             'SELECT id, email, password_hash, first_name, last_name, phone, email_verified FROM users WHERE email = ?',
             [email]
         );
@@ -209,7 +208,7 @@ router.post('/forgot-password', async (req, res) => {
 
     try {
         // Check if user exists
-        const [users] = await db.query(
+        const [users] = await query(
             'SELECT id, email, first_name FROM users WHERE email = ?',
             [email]
         );
@@ -229,7 +228,7 @@ router.post('/forgot-password', async (req, res) => {
         const resetTokenExpiry = new Date(Date.now() + 3600000); // 1 hour from now
 
         // Save reset token
-        await db.query(
+        await query(
             'UPDATE users SET reset_token = ?, reset_token_expiry = ? WHERE id = ?',
             [resetToken, resetTokenExpiry, user.id]
         );
@@ -274,7 +273,7 @@ router.post('/reset-password/:token', async (req, res) => {
 
     try {
         // Find user with valid reset token
-        const [users] = await db.query(
+        const [users] = await query(
             'SELECT id FROM users WHERE reset_token = ? AND reset_token_expiry > NOW()',
             [token]
         );
@@ -292,7 +291,7 @@ router.post('/reset-password/:token', async (req, res) => {
         const passwordHash = await bcrypt.hash(password, 10);
 
         // Update password and clear reset token
-        await db.query(
+        await query(
             'UPDATE users SET password_hash = ?, reset_token = NULL, reset_token_expiry = NULL WHERE id = ?',
             [passwordHash, user.id]
         );
@@ -323,7 +322,7 @@ router.post('/resend-verification', async (req, res) => {
     }
 
     try {
-        const [users] = await db.query(
+        const [users] = await query(
             'SELECT id, email, first_name, email_verified, verification_token FROM users WHERE email = ?',
             [email]
         );
@@ -348,7 +347,7 @@ router.post('/resend-verification', async (req, res) => {
         let verificationToken = user.verification_token;
         if (!verificationToken) {
             verificationToken = crypto.randomBytes(32).toString('hex');
-            await db.query(
+            await query(
                 'UPDATE users SET verification_token = ? WHERE id = ?',
                 [verificationToken, user.id]
             );
@@ -378,7 +377,7 @@ router.get('/profile/:userId', async (req, res) => {
     const { userId } = req.params;
 
     try {
-        const [users] = await db.query(
+        const [users] = await query(
             'SELECT id, email, first_name, last_name, phone, email_verified, created_at FROM users WHERE id = ?',
             [userId]
         );
@@ -410,7 +409,7 @@ router.put('/profile/:userId', async (req, res) => {
     const { firstName, lastName, phone } = req.body;
 
     try {
-        await db.query(
+        await query(
             'UPDATE users SET first_name = ?, last_name = ?, phone = ? WHERE id = ?',
             [firstName, lastName, phone || null, userId]
         );
@@ -435,14 +434,14 @@ router.get('/orders/:userId', async (req, res) => {
 
     try {
         // Get orders
-        const [orders] = await db.query(
+        const [orders] = await query(
             `SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC`,
             [userId]
         );
 
         // Get items for each order
         const ordersWithItems = await Promise.all(orders.map(async (order) => {
-            const [items] = await db.query(
+            const [items] = await query(
                 `SELECT product_name, quantity, price, product_image 
                  FROM order_items WHERE order_id = ?`,
                 [order.order_id]
@@ -468,4 +467,5 @@ router.get('/orders/:userId', async (req, res) => {
 });
 
 module.exports = router;
+
 

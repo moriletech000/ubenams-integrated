@@ -1,43 +1,31 @@
-const mysql = require('mysql2/promise');
+const { Pool } = require('pg');
 
-// Only create MySQL pool if DATABASE_URL is not set
-let pool = null;
+// PostgreSQL Database Configuration
+// DATABASE_URL is required (set in Render environment variables)
 
 if (!process.env.DATABASE_URL) {
-    // Create connection pool for MySQL (local development)
-    pool = mysql.createPool({
-        host: process.env.DB_HOST || 'localhost',
-        user: process.env.DB_USER || 'root',
-        password: process.env.DB_PASSWORD || '',
-        database: process.env.DB_NAME || 'ubenams_db',
-        waitForConnections: true,
-        connectionLimit: 10,
-        queueLimit: 0
-    });
-    console.log('MySQL pool created for local development');
-} else {
-    console.log('DATABASE_URL detected - MySQL pool skipped (using PostgreSQL)');
+    console.error('❌ DATABASE_URL environment variable is not set!');
+    console.error('💡 Please set DATABASE_URL in your Render dashboard or .env file');
+    throw new Error('DATABASE_URL is required for PostgreSQL connection');
 }
+
+console.log('✅ DATABASE_URL found, initializing PostgreSQL connection...');
+
+// Create connection pool
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL,
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
+});
 
 // Test connection
 async function testConnection() {
     try {
-        if (process.env.DATABASE_URL) {
-            console.log('⚠️  DATABASE_URL is set - skipping MySQL connection test');
-            return false;
-        }
-        
-        if (!pool) {
-            console.log('⚠️  MySQL pool not initialized');
-            return false;
-        }
-        
-        const connection = await pool.getConnection();
-        console.log('✅ MySQL Database connected successfully');
-        connection.release();
+        const client = await pool.connect();
+        console.log('✅ PostgreSQL Database connected successfully');
+        client.release();
         return true;
     } catch (error) {
-        console.error('❌ MySQL Database connection failed:', error.message);
+        console.error('❌ Database connection failed:', error.message);
         return false;
     }
 }
@@ -45,23 +33,43 @@ async function testConnection() {
 // Initialize database tables
 async function initializeTables() {
     try {
-        if (process.env.DATABASE_URL) {
-            console.log('⚠️  DATABASE_URL is set - skipping MySQL table initialization');
-            return;
-        }
+        const client = await pool.connect();
         
-        if (!pool) {
-            console.log('⚠️  MySQL pool not initialized - skipping table creation');
-            return;
-        }
+        // Create users table first (referenced by orders)
+        await client.query(`
+            CREATE TABLE IF NOT EXISTS users (
+                id SERIAL PRIMARY KEY,
+                email VARCHAR(150) UNIQUE NOT NULL,
+                password_hash VARCHAR(255) NOT NULL,
+                first_name VARCHAR(100) NOT NULL,
+                last_name VARCHAR(100) NOT NULL,
+                phone VARCHAR(20),
+                email_verified BOOLEAN DEFAULT FALSE,
+                verification_token VARCHAR(255),
+                reset_token VARCHAR(255),
+                reset_token_expiry TIMESTAMP,
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
         
-        const connection = await pool.getConnection();
+        // Create index on users
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)
+        `);
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_users_verification ON users(verification_token)
+        `);
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_users_reset ON users(reset_token)
+        `);
         
         // Create orders table
-        await connection.query(`
+        await client.query(`
             CREATE TABLE IF NOT EXISTS orders (
-                id INT AUTO_INCREMENT PRIMARY KEY,
+                id SERIAL PRIMARY KEY,
                 order_id VARCHAR(50) UNIQUE NOT NULL,
+                user_id INTEGER REFERENCES users(id) ON DELETE SET NULL,
                 customer_first_name VARCHAR(100) NOT NULL,
                 customer_last_name VARCHAR(100) NOT NULL,
                 customer_email VARCHAR(150) NOT NULL,
@@ -78,41 +86,96 @@ async function initializeTables() {
                 payment_status VARCHAR(20) DEFAULT 'pending',
                 order_status VARCHAR(20) DEFAULT 'pending',
                 created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-                INDEX idx_order_id (order_id),
-                INDEX idx_email (customer_email),
-                INDEX idx_payment_reference (payment_reference),
-                INDEX idx_created_at (created_at)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+                updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
+        `);
+        
+        // Create indexes on orders
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_orders_order_id ON orders(order_id)
+        `);
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_orders_user_id ON orders(user_id)
+        `);
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_orders_email ON orders(customer_email)
+        `);
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_orders_payment_ref ON orders(payment_reference)
+        `);
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_orders_created_at ON orders(created_at)
         `);
         
         // Create order_items table
-        await connection.query(`
+        await client.query(`
             CREATE TABLE IF NOT EXISTS order_items (
-                id INT AUTO_INCREMENT PRIMARY KEY,
-                order_id VARCHAR(50) NOT NULL,
+                id SERIAL PRIMARY KEY,
+                order_id VARCHAR(50) NOT NULL REFERENCES orders(order_id) ON DELETE CASCADE,
                 product_id VARCHAR(50) NOT NULL,
                 product_name VARCHAR(200) NOT NULL,
                 product_image VARCHAR(255),
-                quantity INT NOT NULL,
+                quantity INTEGER NOT NULL,
                 price DECIMAL(10, 2) NOT NULL,
                 subtotal DECIMAL(10, 2) NOT NULL,
-                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-                FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE CASCADE,
-                INDEX idx_order_id (order_id),
-                INDEX idx_product_id (product_id)
-            ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci
+                created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+            )
         `);
         
-        console.log('✅ Database tables initialized');
-        connection.release();
+        // Create indexes on order_items
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_order_items_order_id ON order_items(order_id)
+        `);
+        await client.query(`
+            CREATE INDEX IF NOT EXISTS idx_order_items_product_id ON order_items(product_id)
+        `);
+        
+        // Create function to auto-update updated_at timestamp
+        await client.query(`
+            CREATE OR REPLACE FUNCTION update_updated_at_column()
+            RETURNS TRIGGER AS $$
+            BEGIN
+                NEW.updated_at = CURRENT_TIMESTAMP;
+                RETURN NEW;
+            END;
+            $$ language 'plpgsql'
+        `);
+        
+        // Create triggers for auto-updating updated_at
+        await client.query(`
+            DROP TRIGGER IF EXISTS update_users_updated_at ON users
+        `);
+        await client.query(`
+            CREATE TRIGGER update_users_updated_at BEFORE UPDATE ON users
+            FOR EACH ROW EXECUTE FUNCTION update_updated_at_column()
+        `);
+        
+        await client.query(`
+            DROP TRIGGER IF EXISTS update_orders_updated_at ON orders
+        `);
+        await client.query(`
+            CREATE TRIGGER update_orders_updated_at BEFORE UPDATE ON orders
+            FOR EACH ROW EXECUTE FUNCTION update_updated_at_column()
+        `);
+        
+        console.log('✅ PostgreSQL Database tables initialized');
+        client.release();
     } catch (error) {
         console.error('❌ Failed to initialize tables:', error.message);
+        throw error;
     }
+}
+
+// Query helper function (matches MySQL2 format)
+async function query(text, params) {
+    const result = await pool.query(text, params);
+    // Return in MySQL2 format [rows, fields]
+    return [result.rows, result.fields];
 }
 
 module.exports = {
     pool,
+    query,
     testConnection,
     initializeTables
 };

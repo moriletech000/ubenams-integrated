@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const { pool } = require('../config/database');
-const db = require('../config/db-adapter');
+const { pool, query } = require('../config/database');
 const { sendAdminOrderNotification, sendCustomerOrderConfirmation } = require('../config/email');
 
 // Create new order
@@ -20,21 +19,21 @@ router.post('/', async (req, res) => {
         // Generate order ID if not provided
         const orderId = orderData.orderId || 'ORD-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9).toUpperCase();
         
-        const connection = await pool.getConnection();
+        const client = await pool.connect();
         
         try {
             // Start transaction
-            await connection.beginTransaction();
+            await client.query('BEGIN');
             
-            // Insert order
-            await connection.query(
+            // Insert order (PostgreSQL uses $1, $2, etc.)
+            await client.query(
                 `INSERT INTO orders (
                     order_id, user_id, customer_first_name, customer_last_name, 
                     customer_email, customer_phone, customer_address, 
                     customer_city, customer_state, customer_zip,
                     subtotal, shipping, total, payment_method, 
                     payment_reference, payment_status
-                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+                ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16)`,
                 [
                     orderId,
                     orderData.userId || null,
@@ -45,7 +44,7 @@ router.post('/', async (req, res) => {
                     orderData.customer.address,
                     orderData.customer.city,
                     orderData.customer.state,
-                    orderData.customer.zip || null,
+                    orderData.customer.zipCode || null,
                     orderData.subtotal,
                     orderData.shipping,
                     orderData.total,
@@ -57,11 +56,11 @@ router.post('/', async (req, res) => {
             
             // Insert order items
             for (const item of orderData.items) {
-                await connection.query(
+                await client.query(
                     `INSERT INTO order_items (
                         order_id, product_id, product_name, product_image,
                         quantity, price, subtotal
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+                    ) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
                     [
                         orderId,
                         item.id,
@@ -75,7 +74,7 @@ router.post('/', async (req, res) => {
             }
             
             // Commit transaction
-            await connection.commit();
+            await client.query('COMMIT');
             
             // Send email notifications (don't wait for these)
             const emailData = {
@@ -100,10 +99,10 @@ router.post('/', async (req, res) => {
             
         } catch (error) {
             // Rollback transaction on error
-            await connection.rollback();
+            await client.query('ROLLBACK');
             throw error;
         } finally {
-            connection.release();
+            client.release();
         }
         
     } catch (error) {
@@ -121,7 +120,7 @@ router.get('/:orderId', async (req, res) => {
     try {
         const { orderId } = req.params;
         
-        const [orders] = await db.query(
+        const [orders] = await query(
             'SELECT * FROM orders WHERE order_id = ?',
             [orderId]
         );
@@ -133,7 +132,7 @@ router.get('/:orderId', async (req, res) => {
             });
         }
         
-        const [items] = await db.query(
+        const [items] = await query(
             'SELECT * FROM order_items WHERE order_id = ?',
             [orderId]
         );
@@ -160,12 +159,12 @@ router.get('/', async (req, res) => {
         const limit = parseInt(req.query.limit) || 20;
         const offset = (page - 1) * limit;
         
-        const [orders] = await db.query(
+        const [orders] = await query(
             'SELECT * FROM orders ORDER BY created_at DESC LIMIT ? OFFSET ?',
             [limit, offset]
         );
         
-        const [countResult] = await db.query(
+        const [countResult] = await query(
             'SELECT COUNT(*) as total FROM orders'
         );
         
@@ -204,7 +203,7 @@ router.patch('/:orderId/status', async (req, res) => {
             });
         }
         
-        await db.query(
+        await query(
             'UPDATE orders SET order_status = ? WHERE order_id = ?',
             [status, orderId]
         );
@@ -224,5 +223,6 @@ router.patch('/:orderId/status', async (req, res) => {
 });
 
 module.exports = router;
+
 
 
