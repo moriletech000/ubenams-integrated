@@ -194,7 +194,7 @@ router.patch('/:orderId/status', async (req, res) => {
         const { orderId } = req.params;
         const { status } = req.body;
         
-        const validStatuses = ['pending', 'processing', 'shipped', 'delivered', 'cancelled'];
+        const validStatuses = ['pending', 'verified', 'processing', 'shipped', 'delivered', 'cancelled'];
         
         if (!validStatuses.includes(status)) {
             return res.status(400).json({
