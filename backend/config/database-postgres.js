@@ -2,8 +2,11 @@ const { Pool } = require('pg');
 
 // Check if DATABASE_URL is provided
 if (!process.env.DATABASE_URL) {
-    throw new Error('DATABASE_URL environment variable is not set. Please configure your database connection.');
+    console.error('❌ DATABASE_URL environment variable is not set!');
+    throw new Error('DATABASE_URL environment variable is not set. Please configure your database connection in Render dashboard.');
 }
+
+console.log('✅ DATABASE_URL found, creating PostgreSQL pool...');
 
 // Create connection pool
 const pool = new Pool({

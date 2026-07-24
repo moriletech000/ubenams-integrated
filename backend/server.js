@@ -4,12 +4,20 @@ const bodyParser = require('body-parser');
 const crypto = require('crypto');
 require('dotenv').config();
 
+// Log environment to help debug
+console.log('Environment:', process.env.NODE_ENV);
+console.log('DATABASE_URL exists:', !!process.env.DATABASE_URL);
+
 // Use PostgreSQL for production (Render), MySQL for local development
 let dbConfig;
 try {
-    dbConfig = process.env.DATABASE_URL 
-        ? require('./config/database-postgres')
-        : require('./config/database');
+    if (process.env.DATABASE_URL) {
+        console.log('Loading PostgreSQL configuration...');
+        dbConfig = require('./config/database-postgres');
+    } else {
+        console.log('Loading MySQL configuration...');
+        dbConfig = require('./config/database');
+    }
 } catch (error) {
     console.error('⚠️  Database configuration error:', error.message);
     console.log('⚠️  Server starting without database connection');
