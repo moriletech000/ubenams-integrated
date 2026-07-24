@@ -59,21 +59,21 @@ router.post('/register', async (req, res) => {
         // Generate verification token
         const verificationToken = crypto.randomBytes(32).toString('hex');
 
-        // Insert user (auto-verified)
+        // Insert user
         const [result] = await db.query(
-            `INSERT INTO users (email, password_hash, first_name, last_name, phone, email_verified) 
-             VALUES (?, ?, ?, ?, ?, TRUE)`,
-            [email, passwordHash, firstName, lastName, phone || null]
+            `INSERT INTO users (email, password_hash, first_name, last_name, phone, verification_token) 
+             VALUES (?, ?, ?, ?, ?, ?)`,
+            [email, passwordHash, firstName, lastName, phone || null, verificationToken]
         );
 
-        // Send welcome email (non-blocking - don't wait for it)
-        sendWelcomeEmail(email, firstName).catch(err => {
-            console.error('Failed to send welcome email:', err);
+        // Send verification email (non-blocking - don't wait for it)
+        sendVerificationEmail(email, firstName, verificationToken).catch(err => {
+            console.error('Failed to send verification email:', err);
         });
 
         res.status(201).json({
             success: true,
-            message: 'Registration successful! You can now login.',
+            message: 'Registration successful! Please check your email to verify your account.',
             userId: result.insertId
         });
 
@@ -164,14 +164,22 @@ router.post('/login', async (req, res) => {
 
         const user = users[0];
 
+        // Check if email is verified
+        if (!user.email_verified) {
+            return res.status(403).json({
+                success: false,
+                error: 'Please verify your email before logging in',
+                needsVerification: true
+            });
+        }
+
         // Verify password
         const passwordMatch = await bcrypt.compare(password, user.password_hash);
 
         if (!passwordMatch) {
             return res.status(401).json({
                 success: false,
-                error: 'Invalid password. Please check your password and try again.',
-                errorType: 'INVALID_PASSWORD'
+                error: 'Invalid email or password'
             });
         }
 
@@ -435,28 +443,23 @@ router.get('/orders/:userId', async (req, res) => {
     const { userId } = req.params;
 
     try {
+        // Get orders
         const [orders] = await db.query(
-            `SELECT o.*, 
-                    GROUP_CONCAT(
-                        JSON_OBJECT(
-                            'product_name', oi.product_name,
-                            'quantity', oi.quantity,
-                            'price', oi.price,
-                            'product_image', oi.product_image
-                        )
-                    ) as items
-             FROM orders o
-             LEFT JOIN order_items oi ON o.order_id = oi.order_id
-             WHERE o.user_id = ?
-             GROUP BY o.id
-             ORDER BY o.created_at DESC`,
+            `SELECT * FROM orders WHERE user_id = ? ORDER BY created_at DESC`,
             [userId]
         );
 
-        // Parse items JSON
-        const ordersWithItems = orders.map(order => ({
-            ...order,
-            items: order.items ? JSON.parse(`[${order.items}]`) : []
+        // Get items for each order
+        const ordersWithItems = await Promise.all(orders.map(async (order) => {
+            const [items] = await db.query(
+                `SELECT product_name, quantity, price, product_image 
+                 FROM order_items WHERE order_id = ?`,
+                [order.order_id]
+            );
+            return {
+                ...order,
+                items
+            };
         }));
 
         res.json({
