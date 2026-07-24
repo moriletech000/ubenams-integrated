@@ -2,6 +2,42 @@
 
 let currentFilter = 'all';
 
+// Check if admin is logged in
+function isAdminLoggedIn() {
+    const adminSession = localStorage.getItem('adminSession');
+    if (!adminSession) return false;
+    
+    try {
+        const session = JSON.parse(adminSession);
+        // Check if session is still valid (24 hours)
+        const sessionAge = Date.now() - session.timestamp;
+        const twentyFourHours = 24 * 60 * 60 * 1000;
+        
+        if (sessionAge > twentyFourHours) {
+            // Session expired
+            localStorage.removeItem('adminSession');
+            return false;
+        }
+        
+        return session.authenticated === true;
+    } catch (error) {
+        return false;
+    }
+}
+
+// Redirect to login if not authenticated
+if (!isAdminLoggedIn()) {
+    window.location.href = 'admin-login.html';
+}
+
+// Logout function
+function adminLogout() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('adminSession');
+        window.location.href = 'admin-login.html';
+    }
+}
+
 // Auto-detect API URL based on environment
 const getApiUrl = () => {
     const hostname = window.location.hostname;
