@@ -1,25 +1,38 @@
 const mysql = require('mysql2/promise');
 
-// Create connection pool
-const pool = mysql.createPool({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASSWORD || '',
-    database: process.env.DB_NAME || 'ubenams_db',
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
-});
+// Only create pool if we're supposed to use MySQL (no DATABASE_URL set)
+let pool = null;
+
+// Lazy pool creation - only creates when needed
+function getPool() {
+    if (!pool && !process.env.DATABASE_URL) {
+        pool = mysql.createPool({
+            host: process.env.DB_HOST || 'localhost',
+            user: process.env.DB_USER || 'root',
+            password: process.env.DB_PASSWORD || '',
+            database: process.env.DB_NAME || 'ubenams_db',
+            waitForConnections: true,
+            connectionLimit: 10,
+            queueLimit: 0
+        });
+    }
+    return pool;
+}
 
 // Test connection
 async function testConnection() {
     try {
-        const connection = await pool.getConnection();
-        console.log('✅ Database connected successfully');
+        if (process.env.DATABASE_URL) {
+            console.log('⚠️  DATABASE_URL is set - skipping MySQL connection test');
+            return false;
+        }
+        
+        const connection = await getPool().getConnection();
+        console.log('✅ MySQL Database connected successfully');
         connection.release();
         return true;
     } catch (error) {
-        console.error('❌ Database connection failed:', error.message);
+        console.error('❌ MySQL Database connection failed:', error.message);
         return false;
     }
 }
@@ -27,7 +40,12 @@ async function testConnection() {
 // Initialize database tables
 async function initializeTables() {
     try {
-        const connection = await pool.getConnection();
+        if (process.env.DATABASE_URL) {
+            console.log('⚠️  DATABASE_URL is set - skipping MySQL table initialization');
+            return;
+        }
+        
+        const connection = await getPool().getConnection();
         
         // Create orders table
         await connection.query(`
@@ -84,7 +102,7 @@ async function initializeTables() {
 }
 
 module.exports = {
-    pool,
+    pool: getPool,
     testConnection,
     initializeTables
 };
