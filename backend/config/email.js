@@ -1,22 +1,32 @@
-const sgMail = require('@sendgrid/mail');
+const nodemailer = require('nodemailer');
 
-// Initialize SendGrid with API key from environment
-if (process.env.SENDGRID_API_KEY) {
-    sgMail.setApiKey(process.env.SENDGRID_API_KEY);
-}
+// Create email transporter with proper Gmail SMTP configuration
+const transporter = nodemailer.createTransport({
+    host: 'smtp.gmail.com',
+    port: 587,
+    secure: false, // Use TLS
+    auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASSWORD
+    },
+    tls: {
+        rejectUnauthorized: false
+    }
+});
 
-// Verify SendGrid configuration
+// Verify transporter configuration
 async function verifyEmailConfig() {
-    // Skip email verification if SENDGRID_API_KEY or FROM_EMAIL is not set
-    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
-        console.log('⚠️  Email not configured (missing SENDGRID_API_KEY or FROM_EMAIL)');
+    // Skip email verification if EMAIL_USER or EMAIL_PASSWORD is not set
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
+        console.log('⚠️  Email not configured (missing EMAIL_USER or EMAIL_PASSWORD)');
         console.log('⚠️  Email features will be disabled, but the server will continue running');
         return false;
     }
 
     try {
-        console.log('✅ SendGrid email service configured successfully');
-        console.log(`📧 Sending emails from: ${process.env.FROM_EMAIL}`);
+        await transporter.verify();
+        console.log('✅ Gmail email service configured successfully');
+        console.log(`📧 Sending emails from: ${process.env.EMAIL_USER}`);
         return true;
     } catch (error) {
         console.error('❌ Email configuration failed:', error.message);
@@ -25,19 +35,17 @@ async function verifyEmailConfig() {
     }
 }
 
-// Helper function to send email via SendGrid
+// Helper function to send email
 async function sendEmail(mailOptions) {
-    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
         console.log('⚠️  Email not configured - skipping email');
         return false;
     }
 
     try {
-        await sgMail.send({
-            to: mailOptions.to,
-            from: process.env.FROM_EMAIL, // Must be verified in SendGrid
-            subject: mailOptions.subject,
-            html: mailOptions.html
+        await transporter.sendMail({
+            from: `"UBENAMS Integrated" <${process.env.EMAIL_USER}>`,
+            ...mailOptions
         });
         return true;
     } catch (error) {
@@ -206,7 +214,7 @@ async function sendCustomerOrderConfirmation(orderData) {
 // Send email verification email
 async function sendVerificationEmail(email, firstName, token) {
     // Check if email is configured
-    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
         console.log('⚠️  Email not configured - skipping verification email');
         return false;
     }
@@ -269,7 +277,7 @@ async function sendVerificationEmail(email, firstName, token) {
 // Send welcome email after verification
 async function sendWelcomeEmail(email, firstName) {
     // Check if email is configured
-    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
         console.log('⚠️  Email not configured - skipping welcome email');
         return false;
     }
@@ -333,7 +341,7 @@ async function sendWelcomeEmail(email, firstName) {
 // Send password reset email
 async function sendPasswordResetEmail(email, firstName, token) {
     // Check if email is configured
-    if (!process.env.SENDGRID_API_KEY || !process.env.FROM_EMAIL) {
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) {
         console.log('⚠️  Email not configured - skipping password reset email');
         return false;
     }
