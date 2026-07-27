@@ -134,6 +134,96 @@ const products = [
         category: 'Bathroom Accessories',
         brand: 'Milano',
         description: 'Sleek black freestanding bath shower'
+    },
+    {
+        id: 16,
+        name: 'Dual Flush Water Closet (White)',
+        price: 52000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Kohler',
+        description: 'Water-saving dual flush mechanism with soft-close seat'
+    },
+    {
+        id: 17,
+        name: 'Wall-Hung Water Closet',
+        price: 68000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'American Standard',
+        description: 'Space-saving wall-mounted design with concealed cistern'
+    },
+    {
+        id: 18,
+        name: 'One-Piece Water Closet (Ceramic)',
+        price: 72000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Toto',
+        description: 'Sleek one-piece design, easy to clean and maintain'
+    },
+    {
+        id: 19,
+        name: 'Close-Coupled Water Closet',
+        price: 42000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Ideal Standard',
+        description: 'Classic close-coupled WC with efficient flushing system'
+    },
+    {
+        id: 20,
+        name: 'Smart Water Closet (Bidet Function)',
+        price: 125000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Roca',
+        description: 'Smart toilet with integrated bidet, heated seat, and auto flush'
+    },
+    {
+        id: 21,
+        name: 'Back-to-Wall Water Closet',
+        price: 55000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Duravit',
+        description: 'Modern back-to-wall design with hidden cistern'
+    },
+    {
+        id: 22,
+        name: 'Compact Water Closet (Small Bathrooms)',
+        price: 38000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Cera',
+        description: 'Space-efficient WC perfect for small bathrooms'
+    },
+    {
+        id: 23,
+        name: 'Luxury Water Closet (Gold Accents)',
+        price: 95000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Villeroy & Boch',
+        description: 'Premium WC with elegant gold-plated fittings'
+    },
+    {
+        id: 24,
+        name: 'Rimless Water Closet (Hygienic)',
+        price: 64000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Grohe',
+        description: 'Rimless design for superior hygiene and easy cleaning'
+    },
+    {
+        id: 25,
+        name: 'Eco-Friendly Water Closet (Low Flow)',
+        price: 49000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Jaquar',
+        description: 'Eco-friendly low-flow WC that saves water with every flush'
     }
 ];
 
