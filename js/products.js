@@ -5,7 +5,7 @@ const products = [
         name: 'Vatti Top Flush Water Closet',
         price: 45000,
         image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
-        category: 'Sanitary',
+        category: 'Water Closet',
         brand: 'Vstar',
         description: 'High-quality top flush water closet'
     },
@@ -23,7 +23,7 @@ const products = [
         name: 'Shower Set (Black)',
         price: 18500,
         image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'Brimix',
         description: 'Modern black shower set'
     },
@@ -32,7 +32,7 @@ const products = [
         name: '4-Burner Stainless Steel Gas Hob',
         price: 55000,
         image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=500&h=500&fit=crop',
-        category: 'Kitchen',
+        category: 'Kitchen Accessories',
         brand: 'Nesta',
         description: 'Durable stainless steel gas hob'
     },
@@ -41,7 +41,7 @@ const products = [
         name: 'Maxi 30L 2000W Water Heater',
         price: 35000,
         image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'Maxi',
         description: 'Energy efficient water heater'
     },
@@ -50,7 +50,7 @@ const products = [
         name: '90 x 90 Shower Cubicle',
         price: 85000,
         image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'Cubicle',
         description: 'Spacious shower cubicle'
     },
@@ -59,7 +59,7 @@ const products = [
         name: 'Kitchen Sink Tap',
         price: 8500,
         image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
-        category: 'Kitchen',
+        category: 'Kitchen Accessories',
         brand: 'Faucet',
         description: 'Modern kitchen sink tap'
     },
@@ -68,7 +68,7 @@ const products = [
         name: 'Bathroom Vanity Cabinet',
         price: 65000,
         image: 'https://images.unsplash.com/photo-1604709177225-055f99402ea3?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'Hermitship Home',
         description: 'Elegant bathroom vanity cabinet'
     },
@@ -77,7 +77,7 @@ const products = [
         name: 'Micoe Top Flush Water Closet',
         price: 48000,
         image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
-        category: 'Sanitary',
+        category: 'Water Closet',
         brand: 'Vstar',
         description: 'Premium quality water closet'
     },
@@ -86,7 +86,7 @@ const products = [
         name: 'Water Heater (10Ltr)',
         price: 22000,
         image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'Sweet Home',
         description: 'Compact 10 liter water heater'
     },
@@ -95,7 +95,7 @@ const products = [
         name: 'Smart LED Mirror',
         price: 42000,
         image: 'https://images.unsplash.com/photo-1618220924273-338d82f0e1c9?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'BTZHY',
         description: 'Modern LED bathroom mirror'
     },
@@ -104,7 +104,7 @@ const products = [
         name: 'Kitchen Long Neck Tap',
         price: 12500,
         image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
-        category: 'Kitchen',
+        category: 'Kitchen Accessories',
         brand: 'Choice',
         description: 'Long neck kitchen tap'
     },
@@ -113,7 +113,7 @@ const products = [
         name: 'White And Gold Coloured Wash Hand Basin',
         price: 28000,
         image: 'https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'TNG',
         description: 'Elegant wash hand basin'
     },
@@ -122,7 +122,7 @@ const products = [
         name: 'Modern Round Freestanding Bath Shower (Anti-rust)',
         price: 95000,
         image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'Milano',
         description: 'Anti-rust freestanding bath shower'
     },
@@ -131,7 +131,7 @@ const products = [
         name: 'Modern Round Freestanding Bath Shower (Black)',
         price: 98000,
         image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&h=500&fit=crop',
-        category: 'Bathroom',
+        category: 'Bathroom Accessories',
         brand: 'Milano',
         description: 'Sleek black freestanding bath shower'
     }
