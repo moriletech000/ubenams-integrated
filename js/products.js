@@ -4,7 +4,7 @@ const products = [
         id: 1,
         name: 'Royal W.C',
         price: 45000,
-        image: 'https://i.pinimg.com/736x/08/97/13/0897135cc5d4374e6ba9f4c05ca88a70.jpg',
+        image: 'https://i.pinimg.com/736x/ae/b1/86/aeb186794c06290ecc80282100c7d4d9.jpg',
         category: 'Water Closet',
         brand: 'Vstar',
         description: 'High-quality top flush water closet'
