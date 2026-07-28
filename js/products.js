@@ -2,9 +2,9 @@
 const products = [
     {
         id: 1,
-        name: 'Vatti Top Flush Water Closet',
+        name: 'Royal W.C',
         price: 45000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://kommodo.ai/i/luD3Uf22LnUS3uCLJMSo',
         category: 'Water Closet',
         brand: 'Vstar',
         description: 'High-quality top flush water closet'
