@@ -76,7 +76,7 @@ const products = [
         id: 9,
         name: 'Micoe Top Flush Water Closet',
         price: 48000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/99/5a/a7/995aa74a6685f78f4948443ca0256b40.jpg',
         category: 'Water Closet',
         brand: 'Vstar',
         description: 'Premium quality water closet'
@@ -139,7 +139,7 @@ const products = [
         id: 16,
         name: 'Dual Flush Water Closet (White)',
         price: 52000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/67/2a/48/672a48728933d8a16996379077f546e8.jpg',
         category: 'Water Closet',
         brand: 'Kohler',
         description: 'Water-saving dual flush mechanism with soft-close seat'
@@ -148,7 +148,7 @@ const products = [
         id: 17,
         name: 'Wall-Hung Water Closet',
         price: 68000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/61/2e/93/612e93a33b04ddc0a5d0674bcfc86e1c.jpg',
         category: 'Water Closet',
         brand: 'American Standard',
         description: 'Space-saving wall-mounted design with concealed cistern'
@@ -157,7 +157,7 @@ const products = [
         id: 18,
         name: 'One-Piece Water Closet (Ceramic)',
         price: 72000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/24/be/e5/24bee5c8d229836fcef176c6c21c07e3.jpg',
         category: 'Water Closet',
         brand: 'Toto',
         description: 'Sleek one-piece design, easy to clean and maintain'
@@ -166,7 +166,7 @@ const products = [
         id: 19,
         name: 'Close-Coupled Water Closet',
         price: 42000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/6e/fa/61/6efa61cbe7bea9f4cf02b4f67ebdeee4.jpg',
         category: 'Water Closet',
         brand: 'Ideal Standard',
         description: 'Classic close-coupled WC with efficient flushing system'
@@ -175,7 +175,7 @@ const products = [
         id: 20,
         name: 'Smart Water Closet (Bidet Function)',
         price: 125000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/b8/c5/7e/b8c57eed40567170e09fbf152c0cb718.jpg',
         category: 'Water Closet',
         brand: 'Roca',
         description: 'Smart toilet with integrated bidet, heated seat, and auto flush'
@@ -184,7 +184,7 @@ const products = [
         id: 21,
         name: 'Back-to-Wall Water Closet',
         price: 55000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/84/4d/b8/844db845e2bd2267ba779690e1850e8e.jpg',
         category: 'Water Closet',
         brand: 'Duravit',
         description: 'Modern back-to-wall design with hidden cistern'
@@ -193,7 +193,7 @@ const products = [
         id: 22,
         name: 'Compact Water Closet (Small Bathrooms)',
         price: 38000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/e0/ee/94/e0ee940ea97d58c5dd8bb18ba9ae8496.jpg',
         category: 'Water Closet',
         brand: 'Cera',
         description: 'Space-efficient WC perfect for small bathrooms'
@@ -202,7 +202,7 @@ const products = [
         id: 23,
         name: 'Luxury Water Closet (Gold Accents)',
         price: 95000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/74/0e/3b/740e3b574c83a22a3295925756b69f9b.jpg',
         category: 'Water Closet',
         brand: 'Villeroy & Boch',
         description: 'Premium WC with elegant gold-plated fittings'
@@ -211,7 +211,7 @@ const products = [
         id: 24,
         name: 'Rimless Water Closet (Hygienic)',
         price: 64000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/18/f1/b4/18f1b4cd35b229618df896d07706fcfe.jpg',
         category: 'Water Closet',
         brand: 'Grohe',
         description: 'Rimless design for superior hygiene and easy cleaning'
@@ -220,7 +220,7 @@ const products = [
         id: 25,
         name: 'Eco-Friendly Water Closet (Low Flow)',
         price: 49000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/40/43/fc/4043fc99369286591ef31279ae4da389.jpg',
         category: 'Water Closet',
         brand: 'Jaquar',
         description: 'Eco-friendly low-flow WC that saves water with every flush'
@@ -229,7 +229,7 @@ const products = [
         id: 26,
         name: 'Designer Water Closet (Matte Black)',
         price: 88000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/b3/62/ff/b362ff6b318c42060875a4fa84d0f64e.jpg',
         category: 'Water Closet',
         brand: 'Hansgrohe',
         description: 'Elegant matte black finish for contemporary bathrooms'
@@ -238,7 +238,7 @@ const products = [
         id: 27,
         name: 'Corner Water Closet',
         price: 46000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/4d/13/53/4d1353fd2e50b636c7545246d96d037b.jpg',
         category: 'Water Closet',
         brand: 'Saniflo',
         description: 'Space-saving corner design for awkward bathroom layouts'
