@@ -247,7 +247,7 @@ const products = [
         id: 28,
         name: 'High-Level Water Closet (Victorian Style)',
         price: 75000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/84/4d/b8/844db845e2bd2267ba779690e1850e8e.jpg',
         category: 'Water Closet',
         brand: 'Heritage',
         description: 'Classic Victorian-style high-level cistern WC'
@@ -256,7 +256,7 @@ const products = [
         id: 29,
         name: 'Tankless Water Closet (Modern)',
         price: 82000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/21/b6/63/21b6634c99e2b28ee5960810f248ee3f.jpg',
         category: 'Water Closet',
         brand: 'Geberit',
         description: 'Ultra-modern tankless design with direct water connection'
