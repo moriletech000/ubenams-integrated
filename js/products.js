@@ -224,6 +224,42 @@ const products = [
         category: 'Water Closet',
         brand: 'Jaquar',
         description: 'Eco-friendly low-flow WC that saves water with every flush'
+    },
+    {
+        id: 26,
+        name: 'Designer Water Closet (Matte Black)',
+        price: 88000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Hansgrohe',
+        description: 'Elegant matte black finish for contemporary bathrooms'
+    },
+    {
+        id: 27,
+        name: 'Corner Water Closet',
+        price: 46000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Saniflo',
+        description: 'Space-saving corner design for awkward bathroom layouts'
+    },
+    {
+        id: 28,
+        name: 'High-Level Water Closet (Victorian Style)',
+        price: 75000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Heritage',
+        description: 'Classic Victorian-style high-level cistern WC'
+    },
+    {
+        id: 29,
+        name: 'Tankless Water Closet (Modern)',
+        price: 82000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Geberit',
+        description: 'Ultra-modern tankless design with direct water connection'
     }
 ];
 
