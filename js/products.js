@@ -20,6 +20,7 @@ const products = [
     },
     {
         id: 3,
+        subcategory: 'Utilities',
         name: 'Shower Set (Black)',
         price: 18500,
         image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
@@ -38,6 +39,7 @@ const products = [
     },
     {
         id: 5,
+        subcategory: 'Utilities',
         name: 'Maxi 30L 2000W Water Heater',
         price: 35000,
         image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
@@ -47,6 +49,7 @@ const products = [
     },
     {
         id: 6,
+        subcategory: 'Utilities',
         name: '90 x 90 Shower Cubicle',
         price: 85000,
         image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&h=500&fit=crop',
@@ -65,6 +68,7 @@ const products = [
     },
     {
         id: 8,
+        subcategory: 'Utilities',
         name: 'Bathroom Vanity Cabinet',
         price: 65000,
         image: 'https://images.unsplash.com/photo-1604709177225-055f99402ea3?w=500&h=500&fit=crop',
@@ -83,6 +87,7 @@ const products = [
     },
     {
         id: 10,
+        subcategory: 'Utilities',
         name: 'Water Heater (10Ltr)',
         price: 22000,
         image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
@@ -92,6 +97,7 @@ const products = [
     },
     {
         id: 11,
+        subcategory: 'Utilities',
         name: 'Smart LED Mirror',
         price: 42000,
         image: 'https://images.unsplash.com/photo-1618220924273-338d82f0e1c9?w=500&h=500&fit=crop',
@@ -110,6 +116,7 @@ const products = [
     },
     {
         id: 13,
+        subcategory: 'Taps',
         name: 'White And Gold Coloured Wash Hand Basin',
         price: 28000,
         image: 'https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=500&h=500&fit=crop',
@@ -119,6 +126,7 @@ const products = [
     },
     {
         id: 14,
+        subcategory: 'Utilities',
         name: 'Modern Round Freestanding Bath Shower (Anti-rust)',
         price: 95000,
         image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&h=500&fit=crop',
@@ -128,6 +136,7 @@ const products = [
     },
     {
         id: 15,
+        subcategory: 'Utilities',
         name: 'Modern Round Freestanding Bath Shower (Black)',
         price: 98000,
         image: 'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=500&h=500&fit=crop',
