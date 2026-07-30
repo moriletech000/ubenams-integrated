@@ -265,7 +265,7 @@ const products = [
         id: 30,
         name: 'Soft-Close Water Closet (Silent)',
         price: 58000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/cf/ef/af/cfefafb355f6ebbae8c617d20aa9269e.jpg',
         category: 'Water Closet',
         brand: 'Laufen',
         description: 'Ultra-quiet soft-close seat with premium ceramic bowl'
@@ -274,7 +274,7 @@ const products = [
         id: 31,
         name: 'Elongated Water Closet (Comfort)',
         price: 53000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/c4/49/24/c449244083855af0bac587aa40853b6b.jpg',
         category: 'Water Closet',
         brand: 'Caroma',
         description: 'Ergonomic elongated design for maximum comfort'
@@ -283,7 +283,7 @@ const products = [
         id: 32,
         name: 'Quick-Release Water Closet (Easy Clean)',
         price: 47000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/6b/a4/1b/6ba41b1ead5da025c1999ee5c1890108.jpg',
         category: 'Water Closet',
         brand: 'RAK Ceramics',
         description: 'Quick-release hinges for effortless cleaning and maintenance'
@@ -292,7 +292,7 @@ const products = [
         id: 33,
         name: 'Antibacterial Water Closet (Hygienic Plus)',
         price: 71000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/25/43/2b/25432bb9f45f73812479d1cc38d50f3e.jpg',
         category: 'Water Closet',
         brand: 'Sphinx',
         description: 'Advanced antibacterial coating prevents bacteria growth'
@@ -301,7 +301,7 @@ const products = [
         id: 34,
         name: 'Disabled-Access Water Closet (Comfort Height)',
         price: 62000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/12/04/e2/1204e2af5330d905605833b8a4463d82.jpg',
         category: 'Water Closet',
         brand: 'Armitage Shanks',
         description: 'ADA-compliant comfort height design for accessibility'
@@ -310,7 +310,7 @@ const products = [
         id: 35,
         name: 'Premium Water Closet (Luxury Collection)',
         price: 135000,
-        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/7f/e5/93/7fe5932f4508362e8d7b109ba1149b88.jpg',
         category: 'Water Closet',
         brand: 'Catalano',
         description: 'Top-of-the-line luxury WC with cutting-edge features'
