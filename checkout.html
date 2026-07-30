@@ -95,24 +95,24 @@
                         <h2>Payment Method</h2>
                         <div class="payment-options">
                             <label class="payment-option">
-                                <input type="radio" name="paymentMethod" value="card" checked>
+                                <input type="radio" name="paymentMethod" value="card" disabled>
                                 <span>
                                     <i class="fas fa-credit-card"></i>
-                                    Credit/Debit Card (Paystack)
+                                    Credit/Debit Card (Paystack) <span style="color: red;">(Unavailable)</span>
                                 </span>
                             </label>
                             <label class="payment-option">
-                                <input type="radio" name="paymentMethod" value="transfer">
+                                <input type="radio" name="paymentMethod" value="transfer" checked>
                                 <span>
                                     <i class="fas fa-exchange-alt"></i>
                                     Bank Transfer
                                 </span>
                             </label>
                             <label class="payment-option">
-                                <input type="radio" name="paymentMethod" value="cash">
+                                <input type="radio" name="paymentMethod" value="cash" disabled>
                                 <span>
                                     <i class="fas fa-money-bill"></i>
-                                    Cash on Delivery
+                                    Cash on Delivery <span style="color: red;">(Unavailable)</span>
                                 </span>
                             </label>
                         </div>
