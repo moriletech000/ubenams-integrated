@@ -323,6 +323,206 @@ const products = [
         category: 'Water Closet',
         brand: 'Catalano',
         description: 'Top-of-the-line luxury WC with cutting-edge features'
+    },
+    {
+        id: 36,
+        subcategory: 'Taps',
+        name: 'Chrome Basin Mixer Tap',
+        price: 15500,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Grohe',
+        description: 'Premium chrome finish basin mixer with smooth operation'
+    },
+    {
+        id: 37,
+        subcategory: 'Taps',
+        name: 'Wall-Mounted Bath Tap',
+        price: 22000,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Hansgrohe',
+        description: 'Modern wall-mounted bath filler tap'
+    },
+    {
+        id: 38,
+        subcategory: 'Taps',
+        name: 'Waterfall Basin Tap',
+        price: 18000,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'RAK',
+        description: 'Elegant waterfall spout for modern bathrooms'
+    },
+    {
+        id: 39,
+        subcategory: 'Taps',
+        name: 'Dual Handle Shower Mixer',
+        price: 24500,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Kohler',
+        description: 'Thermostatic shower mixer with dual controls'
+    },
+    {
+        id: 40,
+        subcategory: 'Taps',
+        name: 'Single Lever Basin Tap',
+        price: 12000,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Ideal Standard',
+        description: 'Sleek single lever design for easy temperature control'
+    },
+    {
+        id: 41,
+        subcategory: 'Taps',
+        name: 'Gold-Plated Basin Tap',
+        price: 35000,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Villeroy & Boch',
+        description: 'Luxurious gold-plated finish for premium bathrooms'
+    },
+    {
+        id: 42,
+        subcategory: 'Taps',
+        name: 'Matte Black Basin Tap',
+        price: 28000,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Roca',
+        description: 'Contemporary matte black finish basin mixer'
+    },
+    {
+        id: 43,
+        subcategory: 'Taps',
+        name: 'Tall Basin Tap',
+        price: 19500,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Duravit',
+        description: 'High-rise tap perfect for countertop basins'
+    },
+    {
+        id: 44,
+        subcategory: 'Taps',
+        name: 'Sensor Basin Tap (Touchless)',
+        price: 42000,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Toto',
+        description: 'Automatic sensor tap for hygienic hands-free operation'
+    },
+    {
+        id: 45,
+        subcategory: 'Taps',
+        name: 'Pull-Out Bidet Tap',
+        price: 26000,
+        image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'American Standard',
+        description: 'Versatile pull-out spray head for bidet function'
+    },
+    {
+        id: 46,
+        subcategory: 'Connectors',
+        name: 'Flexible Hose Connector (60cm)',
+        price: 2500,
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Universal',
+        description: 'Stainless steel braided flexible connector'
+    },
+    {
+        id: 47,
+        subcategory: 'Connectors',
+        name: 'Basin Waste Connector',
+        price: 1800,
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'McAlpine',
+        description: 'Chrome plated basin waste with pop-up mechanism'
+    },
+    {
+        id: 48,
+        subcategory: 'Connectors',
+        name: 'Shower Hose (150cm)',
+        price: 3200,
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Grohe',
+        description: 'Anti-twist shower hose with chrome finish'
+    },
+    {
+        id: 49,
+        subcategory: 'Connectors',
+        name: 'Water Supply Connector Kit',
+        price: 4500,
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Plumbsure',
+        description: 'Complete connector kit for tap installation'
+    },
+    {
+        id: 50,
+        subcategory: 'Connectors',
+        name: 'Bath Overflow Connector',
+        price: 2800,
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Wirquin',
+        description: 'Chrome bath overflow and waste connector'
+    },
+    {
+        id: 51,
+        subcategory: 'Buttocks Wash',
+        name: 'Handheld Bidet Spray',
+        price: 8500,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'SmarterFresh',
+        description: 'Chrome plated handheld bidet spray with holder'
+    },
+    {
+        id: 52,
+        subcategory: 'Buttocks Wash',
+        name: 'Wall-Mounted Bidet Jet',
+        price: 12000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Brondell',
+        description: 'Adjustable pressure bidet jet with temperature control'
+    },
+    {
+        id: 53,
+        subcategory: 'Buttocks Wash',
+        name: 'Bidet Attachment (Non-Electric)',
+        price: 15500,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Luxe Bidet',
+        description: 'Easy-install bidet attachment for existing toilets'
+    },
+    {
+        id: 54,
+        subcategory: 'Buttocks Wash',
+        name: 'Premium Bidet Spray Set',
+        price: 18000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Kohler',
+        description: 'Complete bidet spray set with stainless steel hose'
+    },
+    {
+        id: 55,
+        subcategory: 'Buttocks Wash',
+        name: 'Brass Bidet Shattaf',
+        price: 9500,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Bathroom Accessories',
+        brand: 'Shattaf',
+        description: 'Durable brass construction Muslim shower'
     }
 ];
 
@@ -366,4 +566,24 @@ function viewProduct(id) {
 // Get all categories
 function getCategories() {
     return ['All', ...new Set(products.map(p => p.category))];
+}
+
+// Get subcategories for a given category
+function getSubcategories(category) {
+    const categoryProducts = products.filter(p => p.category === category);
+    const subcategories = [...new Set(categoryProducts.map(p => p.subcategory).filter(Boolean))];
+    return subcategories.sort();
+}
+
+// Get products by category and optional subcategory
+function getProductsByCategory(category, subcategory = null) {
+    if (category === 'All') return products;
+    
+    let filtered = products.filter(p => p.category === category);
+    
+    if (subcategory) {
+        filtered = filtered.filter(p => p.subcategory === subcategory);
+    }
+    
+    return filtered;
 }
