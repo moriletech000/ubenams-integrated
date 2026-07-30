@@ -97,6 +97,17 @@
         font-size: 14px;
     }
 
+    .subcategory-dropdown {
+        gap: 10px;
+        margin-top: 15px;
+        padding-top: 15px;
+    }
+
+    .subcategory-btn {
+        padding: 7px 16px;
+        font-size: 13px;
+    }
+
     .products-info p {
         font-size: 14px;
     }
@@ -111,5 +122,18 @@
 
     .filter-buttons {
         gap: 8px;
+    }
+
+    .subcategory-dropdown {
+        gap: 8px;
+        margin-top: 12px;
+        padding-top: 12px;
+    }
+
+    .subcategory-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+        border-radius: 15px;
+        white-space: nowrap;
     }
 }
