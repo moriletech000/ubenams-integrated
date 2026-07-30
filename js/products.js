@@ -260,6 +260,60 @@ const products = [
         category: 'Water Closet',
         brand: 'Geberit',
         description: 'Ultra-modern tankless design with direct water connection'
+    },
+    {
+        id: 30,
+        name: 'Soft-Close Water Closet (Silent)',
+        price: 58000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Laufen',
+        description: 'Ultra-quiet soft-close seat with premium ceramic bowl'
+    },
+    {
+        id: 31,
+        name: 'Elongated Water Closet (Comfort)',
+        price: 53000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Caroma',
+        description: 'Ergonomic elongated design for maximum comfort'
+    },
+    {
+        id: 32,
+        name: 'Quick-Release Water Closet (Easy Clean)',
+        price: 47000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'RAK Ceramics',
+        description: 'Quick-release hinges for effortless cleaning and maintenance'
+    },
+    {
+        id: 33,
+        name: 'Antibacterial Water Closet (Hygienic Plus)',
+        price: 71000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Sphinx',
+        description: 'Advanced antibacterial coating prevents bacteria growth'
+    },
+    {
+        id: 34,
+        name: 'Disabled-Access Water Closet (Comfort Height)',
+        price: 62000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Armitage Shanks',
+        description: 'ADA-compliant comfort height design for accessibility'
+    },
+    {
+        id: 35,
+        name: 'Premium Water Closet (Luxury Collection)',
+        price: 135000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Water Closet',
+        brand: 'Catalano',
+        description: 'Top-of-the-line luxury WC with cutting-edge features'
     }
 ];
 
