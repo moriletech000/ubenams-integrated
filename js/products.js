@@ -115,16 +115,6 @@ const products = [
         description: 'Long neck kitchen tap'
     },
     {
-        id: 13,
-        subcategory: 'Taps',
-        name: 'White And Gold Coloured Wash Hand Basin',
-        price: 28000,
-        image: 'https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?w=500&h=500&fit=crop',
-        category: 'Bathroom Accessories',
-        brand: 'TNG',
-        description: 'Elegant wash hand basin'
-    },
-    {
         id: 14,
         subcategory: 'Utilities',
         name: 'Modern Round Freestanding Bath Shower (Anti-rust)',
