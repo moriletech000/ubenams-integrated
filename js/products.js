@@ -243,15 +243,6 @@ const products = [
         description: 'Space-saving corner design for awkward bathroom layouts'
     },
     {
-        id: 28,
-        name: 'High-Level Water Closet (Victorian Style)',
-        price: 75000,
-        image: 'https://i.pinimg.com/736x/84/4d/b8/844db845e2bd2267ba779690e1850e8e.jpg',
-        category: 'Water Closet',
-        brand: 'WC',
-        description: 'Classic Victorian-style high-level cistern WC'
-    },
-    {
         id: 29,
         name: 'Tankless Water Closet (Modern)',
         price: 82000,
