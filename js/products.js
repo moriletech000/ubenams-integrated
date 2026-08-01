@@ -450,6 +450,118 @@ const products = [
         category: 'Bathroom Accessories',
         brand: 'Shattaf',
         description: 'Durable brass construction Muslim shower'
+    },
+    // Showers
+    {
+        id: 56,
+        name: 'Rainfall Shower Head',
+        price: 45000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Showers',
+        brand: 'Luxury',
+        description: 'Premium rainfall shower head with chrome finish'
+    },
+    {
+        id: 57,
+        name: 'Shower Panel System',
+        price: 85000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Showers',
+        brand: 'Elite',
+        description: 'Complete shower panel with multiple spray options'
+    },
+    {
+        id: 58,
+        name: 'Handheld Shower Set',
+        price: 28000,
+        image: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?w=500&h=500&fit=crop',
+        category: 'Showers',
+        brand: 'Standard',
+        description: 'Adjustable handheld shower with flexible hose'
+    },
+    // Doors
+    {
+        id: 59,
+        name: 'Glass Shower Door',
+        price: 120000,
+        image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&h=500&fit=crop',
+        category: 'Door',
+        brand: 'Premium',
+        description: 'Tempered glass shower door with chrome frame'
+    },
+    {
+        id: 60,
+        name: 'Bathroom Entry Door',
+        price: 95000,
+        image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&h=500&fit=crop',
+        category: 'Door',
+        brand: 'Standard',
+        description: 'Waterproof bathroom entry door'
+    },
+    {
+        id: 61,
+        name: 'Sliding Glass Door',
+        price: 150000,
+        image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?w=500&h=500&fit=crop',
+        category: 'Door',
+        brand: 'Modern',
+        description: 'Space-saving sliding glass door for bathroom'
+    },
+    // Mirrors
+    {
+        id: 62,
+        name: 'LED Bathroom Mirror',
+        price: 55000,
+        image: 'https://images.unsplash.com/photo-1618220924273-338d82f0e1c9?w=500&h=500&fit=crop',
+        category: 'Mirror',
+        brand: 'Smart',
+        description: 'LED illuminated bathroom mirror with defogger'
+    },
+    {
+        id: 63,
+        name: 'Wall-Mounted Mirror',
+        price: 32000,
+        image: 'https://images.unsplash.com/photo-1618220924273-338d82f0e1c9?w=500&h=500&fit=crop',
+        category: 'Mirror',
+        brand: 'Classic',
+        description: 'Elegant wall-mounted bathroom mirror'
+    },
+    {
+        id: 64,
+        name: 'Cabinet Mirror',
+        price: 68000,
+        image: 'https://images.unsplash.com/photo-1618220924273-338d82f0e1c9?w=500&h=500&fit=crop',
+        category: 'Mirror',
+        brand: 'Storage',
+        description: 'Mirror cabinet with built-in storage'
+    },
+    // Home Deco
+    {
+        id: 65,
+        name: 'Decorative Towel Rack',
+        price: 18000,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Deco',
+        brand: 'Deco',
+        description: 'Stylish towel rack for bathroom decoration'
+    },
+    {
+        id: 66,
+        name: 'Bathroom Accessories Set',
+        price: 35000,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Deco',
+        brand: 'Deco',
+        description: 'Complete bathroom accessories set with holder'
+    },
+    {
+        id: 67,
+        name: 'Wall Art Decor',
+        price: 22000,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Deco',
+        brand: 'Art',
+        description: 'Modern wall art for home decoration'
     }
 ];
 
