@@ -535,13 +535,13 @@ const products = [
         brand: 'Storage',
         description: 'Mirror cabinet with built-in storage'
     },
-    // Home Deco
+    // Home Decorative
     {
         id: 65,
         name: 'Decorative Towel Rack',
         price: 18000,
         image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
-        category: 'Home Deco',
+        category: 'Home Decorative',
         brand: 'Deco',
         description: 'Stylish towel rack for bathroom decoration'
     },
@@ -550,7 +550,7 @@ const products = [
         name: 'Bathroom Accessories Set',
         price: 35000,
         image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
-        category: 'Home Deco',
+        category: 'Home Decorative',
         brand: 'Deco',
         description: 'Complete bathroom accessories set with holder'
     },
@@ -559,7 +559,7 @@ const products = [
         name: 'Wall Art Decor',
         price: 22000,
         image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
-        category: 'Home Deco',
+        category: 'Home Decorative',
         brand: 'Art',
         description: 'Modern wall art for home decoration'
     }
