@@ -2,8 +2,8 @@
 const products = [
     {
         id: 1,
-        name: 'Royal W.C',
-        price: 45000,
+        name: 'Royal King',
+        price: 650000,
         image: 'https://i.pinimg.com/736x/ae/b1/86/aeb186794c06290ecc80282100c7d4d9.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -78,8 +78,8 @@ const products = [
     },
     {
         id: 9,
-        name: 'Micoe Top Flush Water Closet',
-        price: 48000,
+        name: 'Flower England Twyford with Free Stand Basin',
+        price: 520000,
         image: 'https://i.pinimg.com/736x/99/5a/a7/995aa74a6685f78f4948443ca0256b40.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -136,8 +136,8 @@ const products = [
     },
     {
         id: 16,
-        name: 'Dual Flush Water Closet (White)',
-        price: 52000,
+        name: 'Guarantee Italy with Free Stand Basin',
+        price: 520000,
         image: 'https://i.pinimg.com/736x/67/2a/48/672a48728933d8a16996379077f546e8.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -145,8 +145,8 @@ const products = [
     },
     {
         id: 17,
-        name: 'Wall-Hung Water Closet',
-        price: 68000,
+        name: 'Lavida',
+        price: 250000,
         image: 'https://i.pinimg.com/736x/61/2e/93/612e93a33b04ddc0a5d0674bcfc86e1c.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -154,8 +154,8 @@ const products = [
     },
     {
         id: 18,
-        name: 'One-Piece Water Closet (Ceramic)',
-        price: 72000,
+        name: 'Jetmatis England',
+        price: 220000,
         image: 'https://i.pinimg.com/736x/24/be/e5/24bee5c8d229836fcef176c6c21c07e3.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -163,8 +163,8 @@ const products = [
     },
     {
         id: 19,
-        name: 'Close-Coupled Water Closet',
-        price: 42000,
+        name: 'Close-Couple',
+        price: 130000,
         image: 'https://i.pinimg.com/736x/6e/fa/61/6efa61cbe7bea9f4cf02b4f67ebdeee4.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -172,8 +172,8 @@ const products = [
     },
     {
         id: 20,
-        name: 'Smart Water Closet (Bidet Function)',
-        price: 125000,
+        name: 'Guarantee Italy',
+        price: 220000,
         image: 'https://i.pinimg.com/736x/b8/c5/7e/b8c57eed40567170e09fbf152c0cb718.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -181,8 +181,8 @@ const products = [
     },
     {
         id: 21,
-        name: 'Back-to-Wall Water Closet',
-        price: 55000,
+        name: 'Guarantee Italy',
+        price: 700000,
         image: 'https://i.pinimg.com/736x/84/4d/b8/844db845e2bd2267ba779690e1850e8e.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -190,8 +190,8 @@ const products = [
     },
     {
         id: 22,
-        name: 'Compact Water Closet (Small Bathrooms)',
-        price: 38000,
+        name: 'Guarantee Italy with Suspended Basin',
+        price: 380000,
         image: 'https://i.pinimg.com/736x/e0/ee/94/e0ee940ea97d58c5dd8bb18ba9ae8496.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -199,8 +199,8 @@ const products = [
     },
     {
         id: 23,
-        name: 'Luxury Water Closet (Gold Accents)',
-        price: 95000,
+        name: 'Guarantee Italy with Suspended Basin',
+        price: 380000,
         image: 'https://i.pinimg.com/736x/74/0e/3b/740e3b574c83a22a3295925756b69f9b.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -208,8 +208,8 @@ const products = [
     },
     {
         id: 24,
-        name: 'Rimless Water Closet (Hygienic)',
-        price: 64000,
+        name: 'Guarantee Italy White',
+        price: 260000,
         image: 'https://i.pinimg.com/736x/18/f1/b4/18f1b4cd35b229618df896d07706fcfe.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -217,8 +217,8 @@ const products = [
     },
     {
         id: 25,
-        name: 'Eco-Friendly Water Closet (Low Flow)',
-        price: 49000,
+        name: 'Guarantee Italy Black',
+        price: 380000,
         image: 'https://i.pinimg.com/736x/40/43/fc/4043fc99369286591ef31279ae4da389.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -226,8 +226,8 @@ const products = [
     },
     {
         id: 26,
-        name: 'Designer Water Closet (Matte Black)',
-        price: 88000,
+        name: 'Guarantee Italy Gold',
+        price: 900000,
         image: 'https://i.pinimg.com/736x/b3/62/ff/b362ff6b318c42060875a4fa84d0f64e.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -235,8 +235,8 @@ const products = [
     },
     {
         id: 27,
-        name: 'Corner Water Closet',
-        price: 46000,
+        name: 'Guarantee Italy Black',
+        price: 750000,
         image: 'https://i.pinimg.com/736x/4d/13/53/4d1353fd2e50b636c7545246d96d037b.jpg',
         category: 'Water Closet',
         brand: 'WC',
@@ -244,66 +244,12 @@ const products = [
     },
     {
         id: 29,
-        name: 'Tankless Water Closet (Modern)',
-        price: 82000,
+        name: 'Guarantee Italy White',
+        price: 700000,
         image: 'https://i.pinimg.com/736x/21/b6/63/21b6634c99e2b28ee5960810f248ee3f.jpg',
         category: 'Water Closet',
         brand: 'WC',
         description: 'Ultra-modern tankless design with direct water connection'
-    },
-    {
-        id: 30,
-        name: 'Soft-Close Water Closet (Silent)',
-        price: 58000,
-        image: 'https://i.pinimg.com/736x/cf/ef/af/cfefafb355f6ebbae8c617d20aa9269e.jpg',
-        category: 'Water Closet',
-        brand: 'WC',
-        description: 'Ultra-quiet soft-close seat with premium ceramic bowl'
-    },
-    {
-        id: 31,
-        name: 'Elongated Water Closet (Comfort)',
-        price: 53000,
-        image: 'https://i.pinimg.com/736x/c4/49/24/c449244083855af0bac587aa40853b6b.jpg',
-        category: 'Water Closet',
-        brand: 'WC',
-        description: 'Ergonomic elongated design for maximum comfort'
-    },
-    {
-        id: 32,
-        name: 'Quick-Release Water Closet (Easy Clean)',
-        price: 47000,
-        image: 'https://i.pinimg.com/736x/6b/a4/1b/6ba41b1ead5da025c1999ee5c1890108.jpg',
-        category: 'Water Closet',
-        brand: 'WC',
-        description: 'Quick-release hinges for effortless cleaning and maintenance'
-    },
-    {
-        id: 33,
-        name: 'Antibacterial Water Closet (Hygienic Plus)',
-        price: 71000,
-        image: 'https://i.pinimg.com/736x/25/43/2b/25432bb9f45f73812479d1cc38d50f3e.jpg',
-        category: 'Water Closet',
-        brand: 'WC',
-        description: 'Advanced antibacterial coating prevents bacteria growth'
-    },
-    {
-        id: 34,
-        name: 'Disabled-Access Water Closet (Comfort Height)',
-        price: 62000,
-        image: 'https://i.pinimg.com/736x/12/04/e2/1204e2af5330d905605833b8a4463d82.jpg',
-        category: 'Water Closet',
-        brand: 'WC',
-        description: 'ADA-compliant comfort height design for accessibility'
-    },
-    {
-        id: 35,
-        name: 'Premium Water Closet (Luxury Collection)',
-        price: 135000,
-        image: 'https://i.pinimg.com/736x/7f/e5/93/7fe5932f4508362e8d7b109ba1149b88.jpg',
-        category: 'Water Closet',
-        brand: 'WC',
-        description: 'Top-of-the-line luxury WC with cutting-edge features'
     },
     {
         id: 36,
