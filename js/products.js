@@ -562,6 +562,69 @@ const products = [
         category: 'Home Decorative',
         brand: 'Art',
         description: 'Modern wall art for home decoration'
+    },
+    {
+        id: 68,
+        name: 'Decorative Soap Dispenser',
+        price: 8500,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Decorative',
+        brand: 'Elegant',
+        description: 'Elegant soap dispenser for bathroom'
+    },
+    {
+        id: 69,
+        name: 'Bathroom Storage Basket',
+        price: 12000,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Decorative',
+        brand: 'Storage',
+        description: 'Woven storage basket for bathroom organization'
+    },
+    {
+        id: 70,
+        name: 'Decorative Candle Holder',
+        price: 15000,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Decorative',
+        brand: 'Ambience',
+        description: 'Beautiful candle holder for home ambience'
+    },
+    {
+        id: 71,
+        name: 'Bathroom Rug Set',
+        price: 25000,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Decorative',
+        brand: 'Comfort',
+        description: 'Soft and absorbent bathroom rug set'
+    },
+    {
+        id: 72,
+        name: 'Decorative Plant Holder',
+        price: 18500,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Decorative',
+        brand: 'Green',
+        description: 'Modern plant holder for bathroom or living room'
+    },
+    {
+        id: 73,
+        name: 'Wall-Mounted Shelf',
+        price: 32000,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Decorative',
+        brand: 'Storage',
+        description: 'Decorative wall-mounted shelf for display'
+    },
+    {
+        id: 74,
+        name: 'Decorative Tissue Box Cover',
+        price: 9500,
+        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        category: 'Home Decorative',
+        brand: 'Style',
+        description: 'Elegant tissue box cover for bathroom or bedroom'
     }
 ];
 
