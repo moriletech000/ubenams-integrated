@@ -10,7 +10,6 @@ if (!process.env.DATABASE_URL) {
 }
 
 console.log('✅ DATABASE_URL found, initializing PostgreSQL connection...');
-console.log('✅ DATABASE_URL found, initializing PostgreSQL connection...');
 
 // Neon requires SSL - always enable for production
 const sslConfig = process.env.DATABASE_URL.includes('neon.tech') 
@@ -27,15 +26,8 @@ const pool = new Pool({
     connectionTimeoutMillis: 10000, // Timeout for new connections
 });
 
-// Create connection pool
-const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
-    ssl: sslConfig,
-    // Connection pool settings for Neon (optimized for serverless)
-    max: 20, // Maximum number of connections
-    idleTimeoutMillis: 30000, // Close idle connections after 30s
-    connectionTimeoutMillis: 10000, // Timeout for new connections
-});
+// Test connection
+
 
 // Test connection
 async function testConnection() {
