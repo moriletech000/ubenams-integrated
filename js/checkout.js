@@ -283,15 +283,15 @@ function showBankTransferModal(orderData) {
             <div style="background: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 15px;">
                 <div style="margin-bottom: 12px;">
                     <p style="color: #666; font-size: 12px; margin-bottom: 3px;">Bank Name</p>
-                    <p style="font-size: 16px; font-weight: bold; color: #222;">Access Bank</p>
+                    <p style="font-size: 16px; font-weight: bold; color: #222;">Zenith Bank</p>
                 </div>
                 <div style="margin-bottom: 12px;">
                     <p style="color: #666; font-size: 12px; margin-bottom: 3px;">Account Name</p>
-                    <p style="font-size: 16px; font-weight: bold; color: #222;">Ubenams Integrated Limited</p>
+                    <p style="font-size: 16px; font-weight: bold; color: #222;">Ubenams Integrated</p>
                 </div>
                 <div style="margin-bottom: 12px;">
                     <p style="color: #666; font-size: 12px; margin-bottom: 3px;">Account Number</p>
-                    <p style="font-size: 22px; font-weight: bold; color: #088178; font-family: monospace;">1234567890</p>
+                    <p style="font-size: 22px; font-weight: bold; color: #088178; font-family: monospace;">1227775902</p>
                     <button onclick="copyAccountNumber()" style="background: #088178; color: white; border: none; padding: 6px 12px; border-radius: 5px; cursor: pointer; margin-top: 5px; font-size: 11px;">
                         <i class="fas fa-copy"></i> Copy Account Number
                     </button>
@@ -335,7 +335,7 @@ function showBankTransferModal(orderData) {
 }
 
 function copyAccountNumber() {
-    const accountNumber = '1234567890';
+    const accountNumber = '1227775902';
     navigator.clipboard.writeText(accountNumber).then(() => {
         showNotification('Account number copied!');
     });
