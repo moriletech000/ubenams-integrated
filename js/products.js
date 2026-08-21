@@ -540,7 +540,7 @@ const products = [
         id: 65,
         name: 'Decorative Towel Rack',
         price: 18000,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/b3/d1/e9/b3d1e98ee9210d309b4e040946093403.jpg',
         category: 'Home Decorative',
         brand: 'Deco',
         description: 'Stylish towel rack for bathroom decoration'
@@ -549,7 +549,7 @@ const products = [
         id: 66,
         name: 'Bathroom Accessories Set',
         price: 35000,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/70/65/db/7065dbb3b4363ceaa4d69d5e5da87d1d.jpg',
         category: 'Home Decorative',
         brand: 'Deco',
         description: 'Complete bathroom accessories set with holder'
@@ -558,7 +558,7 @@ const products = [
         id: 67,
         name: 'Wall Art Decor',
         price: 22000,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/4a/ff/0a/4aff0abeda2595c278e0d8cecd736d77.jpg',
         category: 'Home Decorative',
         brand: 'Art',
         description: 'Modern wall art for home decoration'
@@ -567,7 +567,7 @@ const products = [
         id: 68,
         name: 'Decorative Soap Dispenser',
         price: 8500,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/34/d4/8c/34d48c7ff7b3f5f598f1cf018936b738.jpg',
         category: 'Home Decorative',
         brand: 'Elegant',
         description: 'Elegant soap dispenser for bathroom'
@@ -576,7 +576,7 @@ const products = [
         id: 69,
         name: 'Bathroom Storage Basket',
         price: 12000,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/ee/dc/d6/eedcd61d1b920a66dc0a7e686ce4cfc9.jpg',
         category: 'Home Decorative',
         brand: 'Storage',
         description: 'Woven storage basket for bathroom organization'
@@ -585,7 +585,7 @@ const products = [
         id: 70,
         name: 'Decorative Candle Holder',
         price: 15000,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/ae/36/31/ae3631bbae9d244557604529e1c9dd3e.jpg',
         category: 'Home Decorative',
         brand: 'Ambience',
         description: 'Beautiful candle holder for home ambience'
@@ -594,7 +594,7 @@ const products = [
         id: 71,
         name: 'Bathroom Rug Set',
         price: 25000,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/d0/1e/e0/d01ee03f901f1c61bd32ca6ba043b13b.jpg',
         category: 'Home Decorative',
         brand: 'Comfort',
         description: 'Soft and absorbent bathroom rug set'
@@ -603,7 +603,7 @@ const products = [
         id: 72,
         name: 'Decorative Plant Holder',
         price: 18500,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/72/a7/10/72a7103b5e60f8f1a01af656daa8111a.jpg',
         category: 'Home Decorative',
         brand: 'Green',
         description: 'Modern plant holder for bathroom or living room'
@@ -612,7 +612,7 @@ const products = [
         id: 73,
         name: 'Wall-Mounted Shelf',
         price: 32000,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/6f/78/40/6f78405ade82ef6ffe8b45e6f7e973c3.jpg',
         category: 'Home Decorative',
         brand: 'Storage',
         description: 'Decorative wall-mounted shelf for display'
@@ -621,7 +621,7 @@ const products = [
         id: 74,
         name: 'Decorative Tissue Box Cover',
         price: 9500,
-        image: 'https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?w=500&h=500&fit=crop',
+        image: 'https://i.pinimg.com/736x/15/ff/7a/15ff7abf877ba8b851360c453e1a15bc.jpg',
         category: 'Home Decorative',
         brand: 'Style',
         description: 'Elegant tissue box cover for bathroom or bedroom'
