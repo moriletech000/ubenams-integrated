@@ -281,7 +281,7 @@ nav ul li a.active {
 }
 
 .product-info {
-    padding: 15px 0;
+    padding: 15px 15px 15px;
     display: flex;
     flex-direction: column;
 }
@@ -589,7 +589,7 @@ footer {
     }
 
     .product-info {
-        padding: 10px 0;
+        padding: 10px 10px 10px;
     }
 
     .product-name {
