@@ -541,6 +541,11 @@ footer {
         padding: 40px 0;
     }
 
+    .features-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
     .feature-box {
         padding: 20px;
     }
