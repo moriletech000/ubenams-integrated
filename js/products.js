@@ -542,7 +542,7 @@ const products = [
         price: 18000,
         image: 'https://i.pinimg.com/736x/b3/d1/e9/b3d1e98ee9210d309b4e040946093403.jpg',
         category: 'Home Decorative',
-        brand: 'Deco',
+        brand: 'Gold',
         description: 'Stylish towel rack for bathroom decoration'
     },
     {
@@ -551,7 +551,7 @@ const products = [
         price: 35000,
         image: 'https://i.pinimg.com/736x/70/65/db/7065dbb3b4363ceaa4d69d5e5da87d1d.jpg',
         category: 'Home Decorative',
-        brand: 'Deco',
+        brand: 'Gold',
         description: 'Complete bathroom accessories set with holder'
     },
     {
@@ -560,7 +560,7 @@ const products = [
         price: 22000,
         image: 'https://i.pinimg.com/736x/4a/ff/0a/4aff0abeda2595c278e0d8cecd736d77.jpg',
         category: 'Home Decorative',
-        brand: 'Art',
+        brand: 'Gold',
         description: 'Modern wall art for home decoration'
     },
     {
@@ -569,7 +569,7 @@ const products = [
         price: 8500,
         image: 'https://i.pinimg.com/736x/34/d4/8c/34d48c7ff7b3f5f598f1cf018936b738.jpg',
         category: 'Home Decorative',
-        brand: 'Elegant',
+        brand: 'Gold',
         description: 'Elegant soap dispenser for bathroom'
     },
     {
@@ -578,7 +578,7 @@ const products = [
         price: 12000,
         image: 'https://i.pinimg.com/736x/ee/dc/d6/eedcd61d1b920a66dc0a7e686ce4cfc9.jpg',
         category: 'Home Decorative',
-        brand: 'Storage',
+        brand: 'Gold',
         description: 'Woven storage basket for bathroom organization'
     },
     {
@@ -587,7 +587,7 @@ const products = [
         price: 15000,
         image: 'https://i.pinimg.com/736x/ae/36/31/ae3631bbae9d244557604529e1c9dd3e.jpg',
         category: 'Home Decorative',
-        brand: 'Ambience',
+        brand: 'Gold',
         description: 'Beautiful candle holder for home ambience'
     },
     {
@@ -596,7 +596,7 @@ const products = [
         price: 25000,
         image: 'https://i.pinimg.com/736x/d0/1e/e0/d01ee03f901f1c61bd32ca6ba043b13b.jpg',
         category: 'Home Decorative',
-        brand: 'Comfort',
+        brand: 'Gold',
         description: 'Soft and absorbent bathroom rug set'
     },
     {
@@ -605,7 +605,7 @@ const products = [
         price: 18500,
         image: 'https://i.pinimg.com/736x/72/a7/10/72a7103b5e60f8f1a01af656daa8111a.jpg',
         category: 'Home Decorative',
-        brand: 'Green',
+        brand: 'Gold',
         description: 'Modern plant holder for bathroom or living room'
     },
     {
@@ -614,7 +614,7 @@ const products = [
         price: 32000,
         image: 'https://i.pinimg.com/736x/6f/78/40/6f78405ade82ef6ffe8b45e6f7e973c3.jpg',
         category: 'Home Decorative',
-        brand: 'Storage',
+        brand: 'Gold',
         description: 'Decorative wall-mounted shelf for display'
     },
     {
@@ -623,7 +623,7 @@ const products = [
         price: 9500,
         image: 'https://i.pinimg.com/736x/15/ff/7a/15ff7abf877ba8b851360c453e1a15bc.jpg',
         category: 'Home Decorative',
-        brand: 'Style',
+        brand: 'Gold',
         description: 'Elegant tissue box cover for bathroom or bedroom'
     }
 ];
