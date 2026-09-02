@@ -560,7 +560,7 @@ const products = [
         price: 22000,
         image: 'https://i.pinimg.com/736x/4a/ff/0a/4aff0abeda2595c278e0d8cecd736d77.jpg',
         category: 'Home Decorative',
-        brand: 'Gold',
+        brand: 'Gold and White',
         description: 'Modern wall art for home decoration'
     },
     {
@@ -587,7 +587,7 @@ const products = [
         price: 15000,
         image: 'https://i.pinimg.com/736x/ae/36/31/ae3631bbae9d244557604529e1c9dd3e.jpg',
         category: 'Home Decorative',
-        brand: 'Gold',
+        brand: 'Gold and Black',
         description: 'Beautiful candle holder for home ambience'
     },
     {
