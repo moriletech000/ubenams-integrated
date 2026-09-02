@@ -543,7 +543,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/b3/d1/e9/b3d1e98ee9210d309b4e040946093403.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Stylish towel rack for bathroom decoration'
+        description: 'Beautiful singing birds perched on elegant flower vase - bring nature\'s melody into your home'
     },
     {
         id: 66,
@@ -552,7 +552,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/70/65/db/7065dbb3b4363ceaa4d69d5e5da87d1d.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Complete bathroom accessories set with holder'
+        description: 'Fierce and majestic wild leopard sculpture - add untamed elegance to your living space'
     },
     {
         id: 67,
@@ -561,7 +561,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/4a/ff/0a/4aff0abeda2595c278e0d8cecd736d77.jpg',
         category: 'Home Decorative',
         brand: 'Gold and White',
-        description: 'Modern wall art for home decoration'
+        description: 'Exquisite gem-studded apple decor - the jewel that completes your home collection'
     },
     {
         id: 68,
@@ -570,7 +570,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/34/d4/8c/34d48c7ff7b3f5f598f1cf018936b738.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Elegant soap dispenser for bathroom'
+        description: 'Regal and elegant lion statue - showcase the king of the jungle in your kingdom'
     },
     {
         id: 69,
@@ -579,7 +579,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/ee/dc/d6/eedcd61d1b920a66dc0a7e686ce4cfc9.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Woven storage basket for bathroom organization'
+        description: 'Chic fashion bag centerpiece - where style meets sophistication for your decor'
     },
     {
         id: 70,
@@ -588,7 +588,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/ae/36/31/ae3631bbae9d244557604529e1c9dd3e.jpg',
         category: 'Home Decorative',
         brand: 'Gold and Black',
-        description: 'Beautiful candle holder for home ambience'
+        description: 'Cosmic galaxy apple design - bring the universe\'s beauty to your interior'
     },
     {
         id: 71,
@@ -597,7 +597,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/d0/1e/e0/d01ee03f901f1c61bd32ca6ba043b13b.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Soft and absorbent bathroom rug set'
+        description: 'Powerful riding stallion sculpture - gallop into luxury with this dynamic masterpiece'
     },
     {
         id: 72,
@@ -606,7 +606,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/72/a7/10/72a7103b5e60f8f1a01af656daa8111a.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Modern plant holder for bathroom or living room'
+        description: 'Stunning majestic peacock with spread feathers - display nature\'s most beautiful showpiece'
     },
     {
         id: 73,
@@ -615,7 +615,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/6f/78/40/6f78405ade82ef6ffe8b45e6f7e973c3.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Decorative wall-mounted shelf for display'
+        description: 'Commanding roaring lion sculpture - let power and prestige echo through your space'
     },
     {
         id: 74,
@@ -624,7 +624,7 @@ const products = [
         image: 'https://i.pinimg.com/736x/15/ff/7a/15ff7abf877ba8b851360c453e1a15bc.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Elegant tissue box cover for bathroom or bedroom'
+        description: 'Soaring predator eagle in flight - capture freedom and strength in stunning detail'
     }
 ];
 
