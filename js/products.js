@@ -610,12 +610,12 @@ const products = [
     },
     {
         id: 73,
-        name: 'Roaring Lion',
+        name: 'Roaring Tiger',
         price: 270000,
         image: 'https://i.pinimg.com/736x/6f/78/40/6f78405ade82ef6ffe8b45e6f7e973c3.jpg',
         category: 'Home Decorative',
         brand: 'Gold',
-        description: 'Commanding roaring lion sculpture - let power and prestige echo through your space'
+        description: 'Fierce roaring tiger sculpture - unleash the spirit of the wild into your decor'
     },
     {
         id: 74,
