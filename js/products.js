@@ -30,6 +30,7 @@ const products = [
     },
     {
         id: 4,
+        subcategory: 'Gas Cooker',
         name: '4-Burner Stainless Steel Gas Hob',
         price: 55000,
         image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=500&h=500&fit=crop',
@@ -59,6 +60,7 @@ const products = [
     },
     {
         id: 7,
+        subcategory: 'Oven',
         name: 'Kitchen Sink Tap',
         price: 8500,
         image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',
@@ -107,6 +109,7 @@ const products = [
     },
     {
         id: 12,
+        subcategory: 'Microwave',
         name: 'Kitchen Long Neck Tap',
         price: 12500,
         image: 'https://images.unsplash.com/photo-1585159812596-fac104f2f069?w=500&h=500&fit=crop',

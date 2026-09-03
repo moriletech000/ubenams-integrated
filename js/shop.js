@@ -45,10 +45,13 @@ function filterByCategory(category) {
         }
     });
     
-    // Show/hide subcategory dropdown for Bathroom Accessories
+    // Show/hide subcategory dropdown for Bathroom Accessories and Kitchen Accessories
     const dropdown = document.getElementById('subcategory-dropdown');
     if (category === 'Bathroom Accessories') {
-        loadSubcategoryDropdown();
+        loadSubcategoryDropdown('Bathroom Accessories');
+        dropdown.style.display = 'block';
+    } else if (category === 'Kitchen Accessories') {
+        loadSubcategoryDropdown('Kitchen Accessories');
         dropdown.style.display = 'block';
     } else {
         dropdown.style.display = 'none';
@@ -58,9 +61,9 @@ function filterByCategory(category) {
 }
 
 // Load subcategory dropdown buttons
-function loadSubcategoryDropdown() {
+function loadSubcategoryDropdown(category) {
     const container = document.getElementById('subcategory-dropdown');
-    const subcategories = getSubcategories('Bathroom Accessories');
+    const subcategories = getSubcategories(category);
     
     container.innerHTML = `
         <button class="subcategory-btn active" onclick="filterBySubcategory(null)">
