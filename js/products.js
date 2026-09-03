@@ -258,7 +258,7 @@ const products = [
         price: 15500,
         image: 'https://i.pinimg.com/736x/1e/35/c0/1e35c07c22eec256ce7942448f184b52.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Grohe',
+        brand: 'Single',
         description: 'Premium chrome finish basin mixer with smooth operation'
     },
     {
@@ -268,7 +268,7 @@ const products = [
         price: 22000,
         image: 'https://i.pinimg.com/736x/b3/1e/3f/b31e3ff154d77f54ee6eb1c8feb81320.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Hansgrohe',
+        brand: 'Single',
         description: 'Modern wall-mounted bath filler tap'
     },
     {
@@ -278,7 +278,7 @@ const products = [
         price: 18000,
         image: 'https://i.pinimg.com/736x/32/c5/1c/32c51c25304a64cf9d2895ca34b7f7a9.jpg',
         category: 'Bathroom Accessories',
-        brand: 'RAK',
+        brand: 'Single',
         description: 'Elegant waterfall spout for modern bathrooms'
     },
     {
@@ -288,7 +288,7 @@ const products = [
         price: 24500,
         image: 'https://i.pinimg.com/736x/13/9b/fc/139bfcc3c68444b72d3bebb9fd983925.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Kohler',
+        brand: 'Single',
         description: 'Thermostatic shower mixer with dual controls'
     },
     {
@@ -298,7 +298,7 @@ const products = [
         price: 12000,
         image: 'https://i.pinimg.com/736x/19/0f/49/190f49ec520918d39c6e6ac3f2854f61.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Ideal Standard',
+        brand: 'Single',
         description: 'Sleek single lever design for easy temperature control'
     },
     {
@@ -308,7 +308,7 @@ const products = [
         price: 35000,
         image: 'https://i.pinimg.com/736x/82/bd/51/82bd516442977bb90cb8edefc7e02894.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Villeroy & Boch',
+        brand: 'Single',
         description: 'Luxurious gold-plated finish for premium bathrooms'
     },
     {
@@ -318,7 +318,7 @@ const products = [
         price: 28000,
         image: 'https://i.pinimg.com/736x/bd/02/48/bd02482fd549d94bd55e563676ed7151.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Roca',
+        brand: 'Single',
         description: 'Contemporary matte black finish basin mixer'
     },
     {
@@ -328,7 +328,7 @@ const products = [
         price: 19500,
         image: 'https://i.pinimg.com/736x/2c/61/c2/2c61c2636cd20898d5886c23f4fa3bdb.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Duravit',
+        brand: 'Single',
         description: 'High-rise tap perfect for countertop basins'
     },
     {
@@ -338,7 +338,7 @@ const products = [
         price: 42000,
         image: 'https://i.pinimg.com/736x/2c/e7/5a/2ce75a75c50429e20d7b5b76aaaab028.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Toto',
+        brand: 'Single',
         description: 'Automatic sensor tap for hygienic hands-free operation'
     },
     {
@@ -348,7 +348,7 @@ const products = [
         price: 26000,
         image: 'https://i.pinimg.com/736x/8c/b5/e8/8cb5e8ee4a7149bc67c4d47eba7c29b4.jpg',
         category: 'Bathroom Accessories',
-        brand: 'American Standard',
+        brand: 'Single',
         description: 'Versatile pull-out spray head for bidet function'
     },
     {
