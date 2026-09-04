@@ -359,7 +359,7 @@ const products = [
         subcategory: 'Taps',
         name: 'Tap Name 1',
         price: 0,
-        image: 'https://via.placeholder.com/500x500?text=Tap+1',
+        image: 'https://i.pinimg.com/736x/63/33/be/6333be6154b3db99a3014ba7e9f573bb.jpg',
         category: 'Bathroom Accessories',
         brand: 'Bathroom - Single',
         description: 'Premium quality tap for modern bathrooms'
@@ -369,7 +369,7 @@ const products = [
         subcategory: 'Taps',
         name: 'Tap Name 2',
         price: 0,
-        image: 'https://via.placeholder.com/500x500?text=Tap+2',
+        image: 'https://i.pinimg.com/736x/ba/ec/24/baec24b3ac04533dd0894db0520e5ab0.jpg',
         category: 'Bathroom Accessories',
         brand: 'Bathroom - Single',
         description: 'Premium quality tap for modern bathrooms'
@@ -379,7 +379,7 @@ const products = [
         subcategory: 'Taps',
         name: 'Tap Name 3',
         price: 0,
-        image: 'https://via.placeholder.com/500x500?text=Tap+3',
+        image: 'https://i.pinimg.com/736x/f9/fa/97/f9fa9704d7db2cbf74be1f8434fced1f.jpg',
         category: 'Bathroom Accessories',
         brand: 'Bathroom - Single',
         description: 'Premium quality tap for modern bathrooms'
@@ -389,7 +389,7 @@ const products = [
         subcategory: 'Taps',
         name: 'Tap Name 4',
         price: 0,
-        image: 'https://via.placeholder.com/500x500?text=Tap+4',
+        image: 'https://i.pinimg.com/736x/13/25/70/1325700bd533e634bd5246d182330ad6.jpg',
         category: 'Bathroom Accessories',
         brand: 'Bathroom - Single',
         description: 'Premium quality tap for modern bathrooms'
@@ -399,7 +399,7 @@ const products = [
         subcategory: 'Taps',
         name: 'Tap Name 5',
         price: 0,
-        image: 'https://via.placeholder.com/500x500?text=Tap+5',
+        image: 'https://i.pinimg.com/736x/11/0b/71/110b7140a4a8262a638aff1c87498d5c.jpg',
         category: 'Bathroom Accessories',
         brand: 'Bathroom - Single',
         description: 'Premium quality tap for modern bathrooms'
@@ -409,7 +409,7 @@ const products = [
         subcategory: 'Taps',
         name: 'Tap Name 6',
         price: 0,
-        image: 'https://via.placeholder.com/500x500?text=Tap+6',
+        image: 'https://i.pinimg.com/736x/0c/1d/85/0c1d851421afd88d36ef26ff6ef55d26.jpg',
         category: 'Bathroom Accessories',
         brand: 'Bathroom - Single',
         description: 'Premium quality tap for modern bathrooms'
@@ -419,7 +419,7 @@ const products = [
         subcategory: 'Taps',
         name: 'Tap Name 7',
         price: 0,
-        image: 'https://via.placeholder.com/500x500?text=Tap+7',
+        image: 'https://i.pinimg.com/736x/b2/b6/7c/b2b67c4f3a7234c49fa70b7b7d65c3ee.jpg',
         category: 'Bathroom Accessories',
         brand: 'Bathroom - Single',
         description: 'Premium quality tap for modern bathrooms'
