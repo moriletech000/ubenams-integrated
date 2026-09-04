@@ -628,6 +628,34 @@ const products = [
         category: 'Home Decorative',
         brand: 'Gold',
         description: 'Soaring predator eagle in flight - capture freedom and strength in stunning detail'
+    },
+    // Cabinet
+    {
+        id: 75,
+        name: 'Modern Kitchen Cabinet',
+        price: 150000,
+        image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=500&h=500&fit=crop',
+        category: 'Cabinet',
+        brand: 'Premium',
+        description: 'Sleek modern kitchen cabinet with soft-close doors'
+    },
+    {
+        id: 76,
+        name: 'Bathroom Vanity Cabinet',
+        price: 85000,
+        image: 'https://images.unsplash.com/photo-1604709177225-055f99402ea3?w=500&h=500&fit=crop',
+        category: 'Cabinet',
+        brand: 'Classic',
+        description: 'Elegant bathroom vanity cabinet with storage'
+    },
+    {
+        id: 77,
+        name: 'Wall-Mounted Cabinet',
+        price: 65000,
+        image: 'https://images.unsplash.com/photo-1556909172-54557c7e4fb7?w=500&h=500&fit=crop',
+        category: 'Cabinet',
+        brand: 'Space Saver',
+        description: 'Space-saving wall-mounted cabinet with mirror'
     }
 ];
 
