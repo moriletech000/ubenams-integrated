@@ -337,7 +337,7 @@ const products = [
     {
         id: 44,
         subcategory: 'Taps',
-        name: 'Tinai Chrome Tap',
+        name: 'Tonobo Basin Tap',
         price: 12000,
         image: 'https://i.pinimg.com/736x/2c/e7/5a/2ce75a75c50429e20d7b5b76aaaab028.jpg',
         category: 'Bathroom Accessories',
@@ -347,7 +347,7 @@ const products = [
     {
         id: 45,
         subcategory: 'Taps',
-        name: 'Tinai Black Tap',
+        name: 'Tinai Chrome Tap',
         price: 12000,
         image: 'https://i.pinimg.com/736x/8c/b5/e8/8cb5e8ee4a7149bc67c4d47eba7c29b4.jpg',
         category: 'Bathroom Accessories',
