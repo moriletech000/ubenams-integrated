@@ -83,11 +83,9 @@ function displayCheckoutSummary() {
     `).join('');
 
     const subtotal = getCartTotal();
-    const shipping = 0; // Removed shipping cost
     const total = subtotal; // Total equals subtotal when shipping is 0
 
     document.getElementById('checkout-subtotal').textContent = formatPrice(subtotal);
-    document.getElementById('checkout-shipping').textContent = formatPrice(shipping);
     document.getElementById('checkout-total').textContent = formatPrice(total);
 }
 

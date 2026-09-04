@@ -62,10 +62,8 @@ function displayCart() {
 
 function updateCartSummary() {
     const subtotal = getCartTotal();
-    const shipping = 0; // Removed shipping cost
     const total = subtotal; // Total equals subtotal when shipping is 0
 
     document.getElementById('subtotal').textContent = formatPrice(subtotal);
-    document.getElementById('shipping').textContent = formatPrice(shipping);
     document.getElementById('total').textContent = formatPrice(total);
 }
