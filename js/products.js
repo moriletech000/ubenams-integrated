@@ -355,6 +355,76 @@ const products = [
         description: 'Versatile pull-out spray head for bidet function'
     },
     {
+        id: 356,
+        subcategory: 'Taps',
+        name: 'Tap Name 1',
+        price: 0,
+        image: 'https://via.placeholder.com/500x500?text=Tap+1',
+        category: 'Bathroom Accessories',
+        brand: 'Bathroom - Single',
+        description: 'Premium quality tap for modern bathrooms'
+    },
+    {
+        id: 357,
+        subcategory: 'Taps',
+        name: 'Tap Name 2',
+        price: 0,
+        image: 'https://via.placeholder.com/500x500?text=Tap+2',
+        category: 'Bathroom Accessories',
+        brand: 'Bathroom - Single',
+        description: 'Premium quality tap for modern bathrooms'
+    },
+    {
+        id: 358,
+        subcategory: 'Taps',
+        name: 'Tap Name 3',
+        price: 0,
+        image: 'https://via.placeholder.com/500x500?text=Tap+3',
+        category: 'Bathroom Accessories',
+        brand: 'Bathroom - Single',
+        description: 'Premium quality tap for modern bathrooms'
+    },
+    {
+        id: 359,
+        subcategory: 'Taps',
+        name: 'Tap Name 4',
+        price: 0,
+        image: 'https://via.placeholder.com/500x500?text=Tap+4',
+        category: 'Bathroom Accessories',
+        brand: 'Bathroom - Single',
+        description: 'Premium quality tap for modern bathrooms'
+    },
+    {
+        id: 360,
+        subcategory: 'Taps',
+        name: 'Tap Name 5',
+        price: 0,
+        image: 'https://via.placeholder.com/500x500?text=Tap+5',
+        category: 'Bathroom Accessories',
+        brand: 'Bathroom - Single',
+        description: 'Premium quality tap for modern bathrooms'
+    },
+    {
+        id: 361,
+        subcategory: 'Taps',
+        name: 'Tap Name 6',
+        price: 0,
+        image: 'https://via.placeholder.com/500x500?text=Tap+6',
+        category: 'Bathroom Accessories',
+        brand: 'Bathroom - Single',
+        description: 'Premium quality tap for modern bathrooms'
+    },
+    {
+        id: 362,
+        subcategory: 'Taps',
+        name: 'Tap Name 7',
+        price: 0,
+        image: 'https://via.placeholder.com/500x500?text=Tap+7',
+        category: 'Bathroom Accessories',
+        brand: 'Bathroom - Single',
+        description: 'Premium quality tap for modern bathrooms'
+    },
+    {
         id: 46,
         subcategory: 'Connectors',
         name: 'Flexible Hose Connector (60cm)',
