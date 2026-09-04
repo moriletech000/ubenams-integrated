@@ -62,7 +62,7 @@ function displayCart() {
 
 function updateCartSummary() {
     const subtotal = getCartTotal();
-    const shipping = subtotal > 0 ? 5000 : 0;
+    const shipping = 0; // Removed shipping cost
     const total = subtotal + shipping;
 
     document.getElementById('subtotal').textContent = formatPrice(subtotal);

@@ -83,7 +83,7 @@ function displayCheckoutSummary() {
     `).join('');
 
     const subtotal = getCartTotal();
-    const shipping = 5000;
+    const shipping = 0; // Removed shipping cost
     const total = subtotal + shipping;
 
     document.getElementById('checkout-subtotal').textContent = formatPrice(subtotal);
@@ -119,8 +119,8 @@ function processCheckout() {
         },
         items: cart,
         subtotal: getCartTotal(),
-        shipping: 5000,
-        total: getCartTotal() + 5000,
+        shipping: 0, // Removed shipping cost
+        total: getCartTotal() + 0,
         paymentMethod: formData.get('paymentMethod')
     };
 
