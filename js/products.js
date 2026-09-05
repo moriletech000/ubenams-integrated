@@ -361,7 +361,7 @@ const products = [
         price: 12000,
         image: 'https://i.pinimg.com/736x/63/33/be/6333be6154b3db99a3014ba7e9f573bb.jpg',
         category: 'Bathroom Accessories',
-        brand: 'Bathroom - Single',
+        brand: 'Bathroom/Dinning - Single',
         description: 'Premium quality tap for modern bathrooms'
     },
     {
