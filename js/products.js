@@ -726,6 +726,62 @@ const products = [
         category: 'Cabinet',
         brand: 'Space Saver',
         description: 'Space-saving wall-mounted cabinet with mirror'
+    },
+    // Kitchen Sink
+    {
+        id: 78,
+        name: 'Stainless Steel Kitchen Sink',
+        price: 45000,
+        image: 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=500&h=500&fit=crop',
+        category: 'Kitchen Sink',
+        brand: 'Premium',
+        description: 'Double bowl stainless steel kitchen sink with drainer'
+    },
+    {
+        id: 79,
+        name: 'Single Bowl Kitchen Sink',
+        price: 35000,
+        image: 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=500&h=500&fit=crop',
+        category: 'Kitchen Sink',
+        brand: 'Standard',
+        description: 'Single bowl kitchen sink with modern design'
+    },
+    {
+        id: 80,
+        name: 'Granite Kitchen Sink',
+        price: 75000,
+        image: 'https://images.unsplash.com/photo-1556909212-d5b604d0c90d?w=500&h=500&fit=crop',
+        category: 'Kitchen Sink',
+        brand: 'Luxury',
+        description: 'Durable granite composite kitchen sink'
+    },
+    // Water Heater
+    {
+        id: 81,
+        name: 'Electric Water Heater 30L',
+        price: 45000,
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
+        category: 'Water Heater',
+        brand: 'Thermex',
+        description: '30 liter electric water heater with digital display'
+    },
+    {
+        id: 82,
+        name: 'Instant Water Heater',
+        price: 35000,
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
+        category: 'Water Heater',
+        brand: 'Instant Hot',
+        description: 'Tankless instant water heater for on-demand hot water'
+    },
+    {
+        id: 83,
+        name: 'Solar Water Heater 100L',
+        price: 150000,
+        image: 'https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=500&h=500&fit=crop',
+        category: 'Water Heater',
+        brand: 'Eco Solar',
+        description: '100 liter solar water heater system with backup element'
     }
 ];
 
