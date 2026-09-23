@@ -255,6 +255,78 @@ const products = [
         description: 'Ultra-modern tankless design with direct water connection'
     },
     {
+        id: 30,
+        name: 'Royal Comfort Pro',
+        price: 450000,
+        image: 'https://i.pinimg.com/736x/ef/00/b0/ef00b0b3652abd1faaf44d8ba93815a5.jpg',
+        category: 'Water Closet',
+        brand: 'WC',
+        description: 'Premium comfort height design with soft-close technology'
+    },
+    {
+        id: 31,
+        name: 'Eco-Smart Dual Flush',
+        price: 280000,
+        image: 'https://i.pinimg.com/736x/28/91/ef/2891efaf7469311189930ed18d3ecfb2.jpg',
+        category: 'Water Closet',
+        brand: 'WC',
+        description: 'Water-efficient dual flush system with ceramic finish'
+    },
+    {
+        id: 32,
+        name: 'Luxury Wall-Hung White',
+        price: 550000,
+        image: 'https://i.pinimg.com/736x/24/69/db/2469db7402f16c34895baa948122e102.jpg',
+        category: 'Water Closet',
+        brand: 'WC',
+        description: 'Contemporary wall-hung design for easy floor cleaning'
+    },
+    {
+        id: 33,
+        name: 'Smart Bidet WC Pro',
+        price: 850000,
+        image: 'https://i.pinimg.com/736x/54/59/6d/54596d22337823397c74cd631c25b290.jpg',
+        category: 'Water Closet',
+        brand: 'WC',
+        description: 'Integrated bidet function with heated seat and remote control'
+    },
+    {
+        id: 34,
+        name: 'Classic Beige Elegance',
+        price: 320000,
+        image: 'https://i.pinimg.com/736x/eb/3b/e2/eb3be2c2d23f3d004b2c3163867c3761.jpg',
+        category: 'Water Closet',
+        brand: 'WC',
+        description: 'Timeless beige finish perfect for traditional bathrooms'
+    },
+    {
+        id: 35,
+        name: 'Compact Space Saver',
+        price: 195000,
+        image: 'https://i.pinimg.com/736x/42/a1/63/42a1630fcd80b1810633f12db25d68af.jpg',
+        category: 'Water Closet',
+        brand: 'WC',
+        description: 'Ideal for small bathrooms with compact footprint design'
+    },
+    {
+        id: 28,
+        name: 'Rimless Hygiene Plus',
+        price: 410000,
+        image: 'https://i.pinimg.com/736x/91/e0/58/91e05868eedd7570fd35d3e83a164c95.jpg',
+        category: 'Water Closet',
+        brand: 'WC',
+        description: 'Revolutionary rimless design for superior hygiene and easy cleaning'
+    },
+    {
+        id: 100,
+        name: 'Matte Black Premium',
+        price: 680000,
+        image: 'https://i.pinimg.com/736x/e3/94/a0/e394a05a8e68079ca2f7389738d6e5b9.jpg',
+        category: 'Water Closet',
+        brand: 'WC',
+        description: 'Stunning matte black finish with designer aesthetics'
+    },
+    {
         id: 36,
         subcategory: 'Taps',
         name: 'White Plastic Tap',
